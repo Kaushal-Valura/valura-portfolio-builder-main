@@ -1,0 +1,3011 @@
+[
+ {
+  "id": "P001",
+  "source": "Public",
+  "name": "iShares Core S&P 500 UCITS ETF (Acc)",
+  "type": "UCITS ETF",
+  "ticker": "CSPX",
+  "subclass": "EQ-USLC",
+  "geography": "United States",
+  "geo": [
+   1.0,
+   0.0,
+   0.0
+  ],
+  "ccy": "USD",
+  "underlyingCcy": "USD",
+  "domicile": "Ireland",
+  "usSitus": "No",
+  "liquidity": "Daily",
+  "sector": "Diversified",
+  "issuer": "BlackRock iShares",
+  "rating": "",
+  "yield": 0.0,
+  "fee": 0.0007,
+  "aumM": 0.0,
+  "platform": "Yes",
+  "accreditedOnly": "No",
+  "minAccredited": 0.0,
+  "minNonAccredited": 0.0,
+  "ddStatus": "",
+  "commitment": "",
+  "call1y": 0.0,
+  "lockupYrs": 0.0,
+  "ret": 0.075,
+  "vol": 0.16,
+  "beta": 1.0,
+  "risk": 4.0,
+  "factors": null,
+  "scen": [
+   null,
+   null,
+   null,
+   null
+  ],
+  "distToBarrier": null,
+  "issuerCreditRisk": "",
+  "notes": "Core US equity",
+  "facts": [
+   [
+    "Level 3 / strategy",
+    "Blend"
+   ],
+   [
+    "Segment",
+    "Large cap"
+   ],
+   [
+    "Manager / issuer",
+    "BlackRock iShares"
+   ],
+   [
+    "Domicile",
+    "Ireland"
+   ],
+   [
+    "Expense ratio",
+    "0.07%"
+   ]
+  ]
+ },
+ {
+  "id": "P002",
+  "source": "Public",
+  "name": "iShares Core MSCI EM IMI UCITS ETF (Acc)",
+  "type": "UCITS ETF",
+  "ticker": "EIMI",
+  "subclass": "EQ-EM",
+  "geography": "Emerging Markets",
+  "geo": [
+   0.0,
+   0.2,
+   0.8
+  ],
+  "ccy": "USD",
+  "underlyingCcy": "Multi",
+  "domicile": "Ireland",
+  "usSitus": "No",
+  "liquidity": "Daily",
+  "sector": "Diversified",
+  "issuer": "BlackRock iShares",
+  "rating": "",
+  "yield": 0.0,
+  "fee": 0.0018,
+  "aumM": 0.0,
+  "platform": "Yes",
+  "accreditedOnly": "No",
+  "minAccredited": 0.0,
+  "minNonAccredited": 0.0,
+  "ddStatus": "",
+  "commitment": "",
+  "call1y": 0.0,
+  "lockupYrs": 0.0,
+  "ret": 0.071,
+  "vol": 0.2,
+  "beta": 0.9,
+  "risk": 4.0,
+  "factors": null,
+  "scen": [
+   null,
+   null,
+   null,
+   null
+  ],
+  "distToBarrier": null,
+  "issuerCreditRisk": "",
+  "notes": "Look-through India weight is an estimate",
+  "facts": [
+   [
+    "Level 3 / strategy",
+    "Broad EM"
+   ],
+   [
+    "Segment",
+    "All cap"
+   ],
+   [
+    "Manager / issuer",
+    "BlackRock iShares"
+   ],
+   [
+    "Domicile",
+    "Ireland"
+   ],
+   [
+    "Expense ratio",
+    "0.18%"
+   ]
+  ]
+ },
+ {
+  "id": "P003",
+  "source": "Public",
+  "name": "iShares S&P 500 Energy Sector UCITS ETF",
+  "type": "UCITS ETF",
+  "ticker": "IUES",
+  "subclass": "EQ-ENRG",
+  "geography": "United States",
+  "geo": [
+   1.0,
+   0.0,
+   0.0
+  ],
+  "ccy": "USD",
+  "underlyingCcy": "USD",
+  "domicile": "Ireland",
+  "usSitus": "No",
+  "liquidity": "Daily",
+  "sector": "Energy",
+  "issuer": "BlackRock iShares",
+  "rating": "",
+  "yield": 0.0,
+  "fee": 0.0015,
+  "aumM": 0.0,
+  "platform": "Yes",
+  "accreditedOnly": "No",
+  "minAccredited": 0.0,
+  "minNonAccredited": 0.0,
+  "ddStatus": "",
+  "commitment": "",
+  "call1y": 0.0,
+  "lockupYrs": 0.0,
+  "ret": 0.075,
+  "vol": 0.25,
+  "beta": 0.8,
+  "risk": 4.0,
+  "factors": null,
+  "scen": [
+   null,
+   null,
+   null,
+   null
+  ],
+  "distToBarrier": null,
+  "issuerCreditRisk": "",
+  "notes": "Oil-shock hedge",
+  "facts": [
+   [
+    "Level 3 / strategy",
+    "Integrated oil / E&P"
+   ],
+   [
+    "Segment",
+    "Large cap"
+   ],
+   [
+    "Manager / issuer",
+    "BlackRock iShares"
+   ],
+   [
+    "Domicile",
+    "Ireland"
+   ],
+   [
+    "Expense ratio",
+    "0.15%"
+   ]
+  ]
+ },
+ {
+  "id": "P004",
+  "source": "Public",
+  "name": "iShares $ Treasury Bond 3-7yr UCITS ETF",
+  "type": "UCITS ETF",
+  "ticker": "CBU7",
+  "subclass": "FI-UST",
+  "geography": "United States",
+  "geo": [
+   1.0,
+   0.0,
+   0.0
+  ],
+  "ccy": "USD",
+  "underlyingCcy": "USD",
+  "domicile": "Ireland",
+  "usSitus": "No",
+  "liquidity": "Daily",
+  "sector": "Government",
+  "issuer": "BlackRock iShares",
+  "rating": "",
+  "yield": 0.0,
+  "fee": 0.0007,
+  "aumM": 0.0,
+  "platform": "Yes",
+  "accreditedOnly": "No",
+  "minAccredited": 0.0,
+  "minNonAccredited": 0.0,
+  "ddStatus": "",
+  "commitment": "",
+  "call1y": 0.0,
+  "lockupYrs": 0.0,
+  "ret": 0.046,
+  "vol": 0.05,
+  "beta": 0.05,
+  "risk": 1.0,
+  "factors": null,
+  "scen": [
+   null,
+   null,
+   null,
+   null
+  ],
+  "distToBarrier": null,
+  "issuerCreditRisk": "",
+  "notes": "",
+  "facts": [
+   [
+    "Level 3 / strategy",
+    "Intermediate (3-7y)"
+   ],
+   [
+    "Segment",
+    "Intermediate duration"
+   ],
+   [
+    "Manager / issuer",
+    "BlackRock iShares"
+   ],
+   [
+    "Domicile",
+    "Ireland"
+   ],
+   [
+    "Expense ratio",
+    "0.07%"
+   ]
+  ]
+ },
+ {
+  "id": "P005",
+  "source": "Public",
+  "name": "iShares $ Corp Bond UCITS ETF",
+  "type": "UCITS ETF",
+  "ticker": "LQDE",
+  "subclass": "FI-IG",
+  "geography": "United States",
+  "geo": [
+   1.0,
+   0.0,
+   0.0
+  ],
+  "ccy": "USD",
+  "underlyingCcy": "USD",
+  "domicile": "Ireland",
+  "usSitus": "No",
+  "liquidity": "Daily",
+  "sector": "Corporate credit",
+  "issuer": "BlackRock iShares",
+  "rating": "",
+  "yield": 0.0,
+  "fee": 0.002,
+  "aumM": 0.0,
+  "platform": "Yes",
+  "accreditedOnly": "No",
+  "minAccredited": 0.0,
+  "minNonAccredited": 0.0,
+  "ddStatus": "",
+  "commitment": "",
+  "call1y": 0.0,
+  "lockupYrs": 0.0,
+  "ret": 0.061,
+  "vol": 0.08,
+  "beta": 0.15,
+  "risk": 2.0,
+  "factors": null,
+  "scen": [
+   null,
+   null,
+   null,
+   null
+  ],
+  "distToBarrier": null,
+  "issuerCreditRisk": "",
+  "notes": "",
+  "facts": [
+   [
+    "Level 3 / strategy",
+    "US corporate"
+   ],
+   [
+    "Segment",
+    "Intermediate duration"
+   ],
+   [
+    "Manager / issuer",
+    "BlackRock iShares"
+   ],
+   [
+    "Domicile",
+    "Ireland"
+   ],
+   [
+    "Expense ratio",
+    "0.2%"
+   ]
+  ]
+ },
+ {
+  "id": "P006",
+  "source": "Public",
+  "name": "iShares Listed Private Equity UCITS ETF",
+  "type": "UCITS ETF",
+  "ticker": "IPRV",
+  "subclass": "PM-PE",
+  "geography": "Global",
+  "geo": [
+   0.6,
+   0.0,
+   0.4
+  ],
+  "ccy": "USD",
+  "underlyingCcy": "Multi",
+  "domicile": "Ireland",
+  "usSitus": "No",
+  "liquidity": "Daily",
+  "sector": "Financials",
+  "issuer": "BlackRock iShares",
+  "rating": "",
+  "yield": 0.0,
+  "fee": 0.0075,
+  "aumM": 0.0,
+  "platform": "Yes",
+  "accreditedOnly": "No",
+  "minAccredited": 0.0,
+  "minNonAccredited": 0.0,
+  "ddStatus": "",
+  "commitment": "",
+  "call1y": 0.0,
+  "lockupYrs": 0.0,
+  "ret": 0.098,
+  "vol": 0.24,
+  "beta": 1.3,
+  "risk": 5.0,
+  "factors": null,
+  "scen": [
+   null,
+   null,
+   null,
+   null
+  ],
+  "distToBarrier": null,
+  "issuerCreditRisk": "",
+  "notes": "Listed proxy for private equity",
+  "facts": [
+   [
+    "Level 3 / strategy",
+    "Listed PE (proxy)"
+   ],
+   [
+    "Segment",
+    "All cap"
+   ],
+   [
+    "Manager / issuer",
+    "BlackRock iShares"
+   ],
+   [
+    "Domicile",
+    "Ireland"
+   ],
+   [
+    "Expense ratio",
+    "0.75%"
+   ]
+  ]
+ },
+ {
+  "id": "P007",
+  "source": "Public",
+  "name": "iShares Physical Gold ETC (tracks LBMA gold price)",
+  "type": "ETC",
+  "ticker": "IGLN",
+  "subclass": "CM-GOLD",
+  "geography": "Global",
+  "geo": [
+   0.0,
+   0.0,
+   1.0
+  ],
+  "ccy": "USD",
+  "underlyingCcy": "USD",
+  "domicile": "Ireland",
+  "usSitus": "No",
+  "liquidity": "Daily",
+  "sector": "Commodities",
+  "issuer": "BlackRock iShares",
+  "rating": "",
+  "yield": 0.0,
+  "fee": 0.0012,
+  "aumM": 0.0,
+  "platform": "Yes",
+  "accreditedOnly": "No",
+  "minAccredited": 0.0,
+  "minNonAccredited": 0.0,
+  "ddStatus": "",
+  "commitment": "",
+  "call1y": 0.0,
+  "lockupYrs": 0.0,
+  "ret": 0.055,
+  "vol": 0.15,
+  "beta": 0.1,
+  "risk": 3.0,
+  "factors": null,
+  "scen": [
+   null,
+   null,
+   null,
+   null
+  ],
+  "distToBarrier": null,
+  "issuerCreditRisk": "",
+  "notes": "Low-correlation diversifier #1",
+  "facts": [
+   [
+    "Level 3 / strategy",
+    "Physical gold"
+   ],
+   [
+    "Segment",
+    "n/a"
+   ],
+   [
+    "Manager / issuer",
+    "BlackRock iShares"
+   ],
+   [
+    "Domicile",
+    "Ireland"
+   ],
+   [
+    "Expense ratio",
+    "0.12%"
+   ]
+  ]
+ },
+ {
+  "id": "P008",
+  "source": "Public",
+  "name": "iShares Global Infrastructure UCITS ETF",
+  "type": "UCITS ETF",
+  "ticker": "INFR",
+  "subclass": "RA-INF",
+  "geography": "Global",
+  "geo": [
+   0.4,
+   0.0,
+   0.6
+  ],
+  "ccy": "USD",
+  "underlyingCcy": "Multi",
+  "domicile": "Ireland",
+  "usSitus": "No",
+  "liquidity": "Daily",
+  "sector": "Infrastructure",
+  "issuer": "BlackRock iShares",
+  "rating": "",
+  "yield": 0.0,
+  "fee": 0.0065,
+  "aumM": 0.0,
+  "platform": "Yes",
+  "accreditedOnly": "No",
+  "minAccredited": 0.0,
+  "minNonAccredited": 0.0,
+  "ddStatus": "",
+  "commitment": "",
+  "call1y": 0.0,
+  "lockupYrs": 0.0,
+  "ret": 0.071,
+  "vol": 0.15,
+  "beta": 0.6,
+  "risk": 3.0,
+  "factors": null,
+  "scen": [
+   null,
+   null,
+   null,
+   null
+  ],
+  "distToBarrier": null,
+  "issuerCreditRisk": "",
+  "notes": "",
+  "facts": [
+   [
+    "Level 3 / strategy",
+    "Utilities / transport"
+   ],
+   [
+    "Segment",
+    "Large cap"
+   ],
+   [
+    "Manager / issuer",
+    "BlackRock iShares"
+   ],
+   [
+    "Domicile",
+    "Ireland"
+   ],
+   [
+    "Expense ratio",
+    "0.65%"
+   ]
+  ]
+ },
+ {
+  "id": "P009",
+  "source": "Public",
+  "name": "Vanguard S&P 500 ETF (US-listed)",
+  "type": "ETF (US-listed)",
+  "ticker": "VOO",
+  "subclass": "EQ-USLC",
+  "geography": "United States",
+  "geo": [
+   1.0,
+   0.0,
+   0.0
+  ],
+  "ccy": "USD",
+  "underlyingCcy": "USD",
+  "domicile": "United States",
+  "usSitus": "Yes",
+  "liquidity": "Daily",
+  "sector": "Diversified",
+  "issuer": "Vanguard",
+  "rating": "",
+  "yield": 0.0,
+  "fee": 0.0003,
+  "aumM": 0.0,
+  "platform": "Yes",
+  "accreditedOnly": "No",
+  "minAccredited": 0.0,
+  "minNonAccredited": 0.0,
+  "ddStatus": "",
+  "commitment": "",
+  "call1y": 0.0,
+  "lockupYrs": 0.0,
+  "ret": 0.075,
+  "vol": 0.16,
+  "beta": 1.0,
+  "risk": 4.0,
+  "factors": null,
+  "scen": [
+   null,
+   null,
+   null,
+   null
+  ],
+  "distToBarrier": null,
+  "issuerCreditRisk": "",
+  "notes": "US situs example",
+  "facts": [
+   [
+    "Level 3 / strategy",
+    "Blend"
+   ],
+   [
+    "Segment",
+    "Large cap"
+   ],
+   [
+    "Manager / issuer",
+    "Vanguard"
+   ],
+   [
+    "Domicile",
+    "United States"
+   ],
+   [
+    "Expense ratio",
+    "0.03%"
+   ]
+  ]
+ },
+ {
+  "id": "P010",
+  "source": "Public",
+  "name": "Developed markets ex-US equity UCITS ETF (illustrative)",
+  "type": "UCITS ETF",
+  "ticker": "-",
+  "subclass": "EQ-DM",
+  "geography": "Developed ex-US",
+  "geo": [
+   0.0,
+   0.0,
+   1.0
+  ],
+  "ccy": "USD",
+  "underlyingCcy": "EUR, JPY, GBP",
+  "domicile": "Ireland",
+  "usSitus": "No",
+  "liquidity": "Daily",
+  "sector": "Diversified",
+  "issuer": "Illustrative",
+  "rating": "",
+  "yield": 0.0,
+  "fee": 0.0012,
+  "aumM": 0.0,
+  "platform": "Yes",
+  "accreditedOnly": "No",
+  "minAccredited": 0.0,
+  "minNonAccredited": 0.0,
+  "ddStatus": "",
+  "commitment": "",
+  "call1y": 0.0,
+  "lockupYrs": 0.0,
+  "ret": 0.075,
+  "vol": 0.17,
+  "beta": 0.85,
+  "risk": 4.0,
+  "factors": null,
+  "scen": [
+   null,
+   null,
+   null,
+   null
+  ],
+  "distToBarrier": null,
+  "issuerCreditRisk": "",
+  "notes": "Replace with Valura's chosen DM ex-US UCITS line",
+  "facts": [
+   [
+    "Level 3 / strategy",
+    "Europe / Japan / UK"
+   ],
+   [
+    "Segment",
+    "Large cap"
+   ],
+   [
+    "Manager / issuer",
+    "Illustrative"
+   ],
+   [
+    "Domicile",
+    "Ireland"
+   ],
+   [
+    "Expense ratio",
+    "0.12%"
+   ]
+  ]
+ },
+ {
+  "id": "P011",
+  "source": "Public",
+  "name": "Nifty 50 index fund - GIFT City retail scheme (illustrative)",
+  "type": "UCITS fund",
+  "ticker": "-",
+  "subclass": "EQ-IN",
+  "geography": "India",
+  "geo": [
+   0.0,
+   1.0,
+   0.0
+  ],
+  "ccy": "USD",
+  "underlyingCcy": "INR",
+  "domicile": "India (GIFT IFSC)",
+  "usSitus": "No",
+  "liquidity": "Daily",
+  "sector": "Diversified",
+  "issuer": "Illustrative",
+  "rating": "",
+  "yield": 0.0,
+  "fee": 0.003,
+  "aumM": 0.0,
+  "platform": "Yes",
+  "accreditedOnly": "No",
+  "minAccredited": 0.0,
+  "minNonAccredited": 0.0,
+  "ddStatus": "",
+  "commitment": "",
+  "call1y": 0.0,
+  "lockupYrs": 0.0,
+  "ret": 0.071,
+  "vol": 0.2,
+  "beta": 0.7,
+  "risk": 4.0,
+  "factors": null,
+  "scen": [
+   null,
+   null,
+   null,
+   null
+  ],
+  "distToBarrier": null,
+  "issuerCreditRisk": "",
+  "notes": "",
+  "facts": [
+   [
+    "Level 3 / strategy",
+    "Large cap (Nifty 50)"
+   ],
+   [
+    "Segment",
+    "Large cap"
+   ],
+   [
+    "Manager / issuer",
+    "Illustrative"
+   ],
+   [
+    "Domicile",
+    "India (GIFT IFSC)"
+   ],
+   [
+    "Expense ratio",
+    "0.3%"
+   ]
+  ]
+ },
+ {
+  "id": "P012",
+  "source": "Public",
+  "name": "US mid-cap equity UCITS ETF (illustrative)",
+  "type": "UCITS ETF",
+  "ticker": "-",
+  "subclass": "EQ-USSM",
+  "geography": "United States",
+  "geo": [
+   1.0,
+   0.0,
+   0.0
+  ],
+  "ccy": "USD",
+  "underlyingCcy": "USD",
+  "domicile": "Ireland",
+  "usSitus": "No",
+  "liquidity": "Daily",
+  "sector": "Diversified",
+  "issuer": "Illustrative",
+  "rating": "",
+  "yield": 0.0,
+  "fee": 0.0015,
+  "aumM": 0.0,
+  "platform": "Yes",
+  "accreditedOnly": "No",
+  "minAccredited": 0.0,
+  "minNonAccredited": 0.0,
+  "ddStatus": "",
+  "commitment": "",
+  "call1y": 0.0,
+  "lockupYrs": 0.0,
+  "ret": 0.071,
+  "vol": 0.21,
+  "beta": 1.15,
+  "risk": 4.0,
+  "factors": null,
+  "scen": [
+   null,
+   null,
+   null,
+   null
+  ],
+  "distToBarrier": null,
+  "issuerCreditRisk": "",
+  "notes": "",
+  "facts": [
+   [
+    "Level 3 / strategy",
+    "Mid cap"
+   ],
+   [
+    "Segment",
+    "Mid cap"
+   ],
+   [
+    "Manager / issuer",
+    "Illustrative"
+   ],
+   [
+    "Domicile",
+    "Ireland"
+   ],
+   [
+    "Expense ratio",
+    "0.15%"
+   ]
+  ]
+ },
+ {
+  "id": "P013",
+  "source": "Public",
+  "name": "Global technology & AI equity fund (illustrative)",
+  "type": "UCITS fund",
+  "ticker": "-",
+  "subclass": "EQ-TECH",
+  "geography": "Global",
+  "geo": [
+   0.8,
+   0.0,
+   0.2
+  ],
+  "ccy": "USD",
+  "underlyingCcy": "USD",
+  "domicile": "Luxembourg",
+  "usSitus": "No",
+  "liquidity": "Daily",
+  "sector": "Technology",
+  "issuer": "Illustrative",
+  "rating": "",
+  "yield": 0.0,
+  "fee": 0.009,
+  "aumM": 0.0,
+  "platform": "Yes",
+  "accreditedOnly": "No",
+  "minAccredited": 0.0,
+  "minNonAccredited": 0.0,
+  "ddStatus": "",
+  "commitment": "",
+  "call1y": 0.0,
+  "lockupYrs": 0.0,
+  "ret": 0.075,
+  "vol": 0.24,
+  "beta": 1.25,
+  "risk": 5.0,
+  "factors": null,
+  "scen": [
+   null,
+   null,
+   null,
+   null
+  ],
+  "distToBarrier": null,
+  "issuerCreditRisk": "",
+  "notes": "",
+  "facts": [
+   [
+    "Level 3 / strategy",
+    "Semis / software"
+   ],
+   [
+    "Segment",
+    "Large cap"
+   ],
+   [
+    "Manager / issuer",
+    "Illustrative"
+   ],
+   [
+    "Domicile",
+    "Luxembourg"
+   ],
+   [
+    "Expense ratio",
+    "0.9%"
+   ]
+  ]
+ },
+ {
+  "id": "P014",
+  "source": "Public",
+  "name": "US TIPS UCITS ETF (illustrative)",
+  "type": "UCITS ETF",
+  "ticker": "-",
+  "subclass": "FI-TIPS",
+  "geography": "United States",
+  "geo": [
+   1.0,
+   0.0,
+   0.0
+  ],
+  "ccy": "USD",
+  "underlyingCcy": "USD",
+  "domicile": "Ireland",
+  "usSitus": "No",
+  "liquidity": "Daily",
+  "sector": "Government",
+  "issuer": "Illustrative",
+  "rating": "",
+  "yield": 0.0,
+  "fee": 0.001,
+  "aumM": 0.0,
+  "platform": "Yes",
+  "accreditedOnly": "No",
+  "minAccredited": 0.0,
+  "minNonAccredited": 0.0,
+  "ddStatus": "",
+  "commitment": "",
+  "call1y": 0.0,
+  "lockupYrs": 0.0,
+  "ret": 0.046,
+  "vol": 0.06,
+  "beta": 0.1,
+  "risk": 1.0,
+  "factors": null,
+  "scen": [
+   null,
+   null,
+   null,
+   null
+  ],
+  "distToBarrier": null,
+  "issuerCreditRisk": "",
+  "notes": "",
+  "facts": [
+   [
+    "Level 3 / strategy",
+    "Broad TIPS"
+   ],
+   [
+    "Segment",
+    "Intermediate duration"
+   ],
+   [
+    "Manager / issuer",
+    "Illustrative"
+   ],
+   [
+    "Domicile",
+    "Ireland"
+   ],
+   [
+    "Expense ratio",
+    "0.1%"
+   ]
+  ]
+ },
+ {
+  "id": "P015",
+  "source": "Public",
+  "name": "USD high-yield corporate bond UCITS ETF (illustrative)",
+  "type": "UCITS ETF",
+  "ticker": "-",
+  "subclass": "FI-HY",
+  "geography": "United States",
+  "geo": [
+   1.0,
+   0.0,
+   0.0
+  ],
+  "ccy": "USD",
+  "underlyingCcy": "USD",
+  "domicile": "Ireland",
+  "usSitus": "No",
+  "liquidity": "Daily",
+  "sector": "Corporate credit",
+  "issuer": "Illustrative",
+  "rating": "",
+  "yield": 0.0,
+  "fee": 0.005,
+  "aumM": 0.0,
+  "platform": "Yes",
+  "accreditedOnly": "No",
+  "minAccredited": 0.0,
+  "minNonAccredited": 0.0,
+  "ddStatus": "",
+  "commitment": "",
+  "call1y": 0.0,
+  "lockupYrs": 0.0,
+  "ret": 0.067,
+  "vol": 0.1,
+  "beta": 0.45,
+  "risk": 3.0,
+  "factors": null,
+  "scen": [
+   null,
+   null,
+   null,
+   null
+  ],
+  "distToBarrier": null,
+  "issuerCreditRisk": "",
+  "notes": "Diversified alternative to single-name HY",
+  "facts": [
+   [
+    "Level 3 / strategy",
+    "US HY (diversified)"
+   ],
+   [
+    "Segment",
+    "Short / intermediate"
+   ],
+   [
+    "Manager / issuer",
+    "Illustrative"
+   ],
+   [
+    "Domicile",
+    "Ireland"
+   ],
+   [
+    "Expense ratio",
+    "0.5%"
+   ]
+  ]
+ },
+ {
+  "id": "P016",
+  "source": "Public",
+  "name": "EM USD sovereign bond UCITS ETF (illustrative)",
+  "type": "UCITS ETF",
+  "ticker": "-",
+  "subclass": "FI-EMD",
+  "geography": "Emerging Markets",
+  "geo": [
+   0.0,
+   0.05,
+   0.95
+  ],
+  "ccy": "USD",
+  "underlyingCcy": "USD",
+  "domicile": "Ireland",
+  "usSitus": "No",
+  "liquidity": "Daily",
+  "sector": "Government",
+  "issuer": "Illustrative",
+  "rating": "",
+  "yield": 0.0,
+  "fee": 0.0045,
+  "aumM": 0.0,
+  "platform": "Yes",
+  "accreditedOnly": "No",
+  "minAccredited": 0.0,
+  "minNonAccredited": 0.0,
+  "ddStatus": "",
+  "commitment": "",
+  "call1y": 0.0,
+  "lockupYrs": 0.0,
+  "ret": 0.067,
+  "vol": 0.09,
+  "beta": 0.4,
+  "risk": 3.0,
+  "factors": null,
+  "scen": [
+   null,
+   null,
+   null,
+   null
+  ],
+  "distToBarrier": null,
+  "issuerCreditRisk": "",
+  "notes": "",
+  "facts": [
+   [
+    "Level 3 / strategy",
+    "Sovereign"
+   ],
+   [
+    "Segment",
+    "Intermediate duration"
+   ],
+   [
+    "Manager / issuer",
+    "Illustrative"
+   ],
+   [
+    "Domicile",
+    "Ireland"
+   ],
+   [
+    "Expense ratio",
+    "0.45%"
+   ]
+  ]
+ },
+ {
+  "id": "P017",
+  "source": "Public",
+  "name": "USD money market fund (illustrative)",
+  "type": "Money market fund",
+  "ticker": "-",
+  "subclass": "CA-MM",
+  "geography": "United States",
+  "geo": [
+   1.0,
+   0.0,
+   0.0
+  ],
+  "ccy": "USD",
+  "underlyingCcy": "USD",
+  "domicile": "Ireland",
+  "usSitus": "No",
+  "liquidity": "Daily",
+  "sector": "Government",
+  "issuer": "Illustrative",
+  "rating": "",
+  "yield": 0.0,
+  "fee": 0.001,
+  "aumM": 0.0,
+  "platform": "Yes",
+  "accreditedOnly": "No",
+  "minAccredited": 0.0,
+  "minNonAccredited": 0.0,
+  "ddStatus": "",
+  "commitment": "",
+  "call1y": 0.0,
+  "lockupYrs": 0.0,
+  "ret": 0.035,
+  "vol": 0.01,
+  "beta": 0.0,
+  "risk": 1.0,
+  "factors": null,
+  "scen": [
+   null,
+   null,
+   null,
+   null
+  ],
+  "distToBarrier": null,
+  "issuerCreditRisk": "",
+  "notes": "Liquidity buffer for capital calls",
+  "facts": [
+   [
+    "Level 3 / strategy",
+    "USD money market"
+   ],
+   [
+    "Segment",
+    "Short duration"
+   ],
+   [
+    "Manager / issuer",
+    "Illustrative"
+   ],
+   [
+    "Domicile",
+    "Ireland"
+   ],
+   [
+    "Expense ratio",
+    "0.1%"
+   ]
+  ]
+ },
+ {
+  "id": "P018",
+  "source": "Public",
+  "name": "Broad commodities UCITS ETF (illustrative)",
+  "type": "UCITS ETF",
+  "ticker": "-",
+  "subclass": "CM-BRD",
+  "geography": "Global",
+  "geo": [
+   0.0,
+   0.0,
+   1.0
+  ],
+  "ccy": "USD",
+  "underlyingCcy": "USD",
+  "domicile": "Ireland",
+  "usSitus": "No",
+  "liquidity": "Daily",
+  "sector": "Commodities",
+  "issuer": "Illustrative",
+  "rating": "",
+  "yield": 0.0,
+  "fee": 0.003,
+  "aumM": 0.0,
+  "platform": "Yes",
+  "accreditedOnly": "No",
+  "minAccredited": 0.0,
+  "minNonAccredited": 0.0,
+  "ddStatus": "",
+  "commitment": "",
+  "call1y": 0.0,
+  "lockupYrs": 0.0,
+  "ret": 0.048,
+  "vol": 0.17,
+  "beta": 0.4,
+  "risk": 4.0,
+  "factors": null,
+  "scen": [
+   null,
+   null,
+   null,
+   null
+  ],
+  "distToBarrier": null,
+  "issuerCreditRisk": "",
+  "notes": "",
+  "facts": [
+   [
+    "Level 3 / strategy",
+    "Diversified index"
+   ],
+   [
+    "Segment",
+    "n/a"
+   ],
+   [
+    "Manager / issuer",
+    "Illustrative"
+   ],
+   [
+    "Domicile",
+    "Ireland"
+   ],
+   [
+    "Expense ratio",
+    "0.3%"
+   ]
+  ]
+ },
+ {
+  "id": "P019",
+  "source": "Public",
+  "name": "Global REIT UCITS ETF (illustrative)",
+  "type": "UCITS ETF",
+  "ticker": "-",
+  "subclass": "RA-REIT",
+  "geography": "Global",
+  "geo": [
+   0.6,
+   0.0,
+   0.4
+  ],
+  "ccy": "USD",
+  "underlyingCcy": "Multi",
+  "domicile": "Ireland",
+  "usSitus": "No",
+  "liquidity": "Daily",
+  "sector": "Real estate",
+  "issuer": "Illustrative",
+  "rating": "",
+  "yield": 0.0,
+  "fee": 0.004,
+  "aumM": 0.0,
+  "platform": "Yes",
+  "accreditedOnly": "No",
+  "minAccredited": 0.0,
+  "minNonAccredited": 0.0,
+  "ddStatus": "",
+  "commitment": "",
+  "call1y": 0.0,
+  "lockupYrs": 0.0,
+  "ret": 0.081,
+  "vol": 0.19,
+  "beta": 0.85,
+  "risk": 4.0,
+  "factors": null,
+  "scen": [
+   null,
+   null,
+   null,
+   null
+  ],
+  "distToBarrier": null,
+  "issuerCreditRisk": "",
+  "notes": "",
+  "facts": [
+   [
+    "Level 3 / strategy",
+    "Global REITs"
+   ],
+   [
+    "Segment",
+    "All cap"
+   ],
+   [
+    "Manager / issuer",
+    "Illustrative"
+   ],
+   [
+    "Domicile",
+    "Ireland"
+   ],
+   [
+    "Expense ratio",
+    "0.4%"
+   ]
+  ]
+ },
+ {
+  "id": "P020",
+  "source": "Public",
+  "name": "Equity long/short UCITS fund - liquid alternative (illustrative)",
+  "type": "UCITS fund",
+  "ticker": "-",
+  "subclass": "HF-EQ",
+  "geography": "Global",
+  "geo": [
+   0.5,
+   0.0,
+   0.5
+  ],
+  "ccy": "USD",
+  "underlyingCcy": "USD",
+  "domicile": "Luxembourg",
+  "usSitus": "No",
+  "liquidity": "Weekly",
+  "sector": "Multi-strategy",
+  "issuer": "Illustrative",
+  "rating": "",
+  "yield": 0.0,
+  "fee": 0.015,
+  "aumM": 0.0,
+  "platform": "Yes",
+  "accreditedOnly": "No",
+  "minAccredited": 0.0,
+  "minNonAccredited": 0.0,
+  "ddStatus": "",
+  "commitment": "",
+  "call1y": 0.0,
+  "lockupYrs": 0.0,
+  "ret": 0.067,
+  "vol": 0.09,
+  "beta": 0.45,
+  "risk": 3.0,
+  "factors": null,
+  "scen": [
+   null,
+   null,
+   null,
+   null
+  ],
+  "distToBarrier": null,
+  "issuerCreditRisk": "",
+  "notes": "",
+  "facts": [
+   [
+    "Level 3 / strategy",
+    "Long/short equity"
+   ],
+   [
+    "Segment",
+    "n/a"
+   ],
+   [
+    "Manager / issuer",
+    "Illustrative"
+   ],
+   [
+    "Domicile",
+    "Luxembourg"
+   ],
+   [
+    "Expense ratio",
+    "1.5%"
+   ]
+  ]
+ },
+ {
+  "id": "P021",
+  "source": "Public",
+  "name": "Global macro UCITS fund (illustrative)",
+  "type": "UCITS fund",
+  "ticker": "-",
+  "subclass": "HF-MAC",
+  "geography": "Global",
+  "geo": [
+   0.5,
+   0.0,
+   0.5
+  ],
+  "ccy": "USD",
+  "underlyingCcy": "Multi",
+  "domicile": "Luxembourg",
+  "usSitus": "No",
+  "liquidity": "Weekly",
+  "sector": "Multi-strategy",
+  "issuer": "Illustrative",
+  "rating": "",
+  "yield": 0.0,
+  "fee": 0.015,
+  "aumM": 0.0,
+  "platform": "Yes",
+  "accreditedOnly": "No",
+  "minAccredited": 0.0,
+  "minNonAccredited": 0.0,
+  "ddStatus": "",
+  "commitment": "",
+  "call1y": 0.0,
+  "lockupYrs": 0.0,
+  "ret": 0.067,
+  "vol": 0.1,
+  "beta": 0.05,
+  "risk": 3.0,
+  "factors": null,
+  "scen": [
+   null,
+   null,
+   null,
+   null
+  ],
+  "distToBarrier": null,
+  "issuerCreditRisk": "",
+  "notes": "",
+  "facts": [
+   [
+    "Level 3 / strategy",
+    "Discretionary macro"
+   ],
+   [
+    "Segment",
+    "n/a"
+   ],
+   [
+    "Manager / issuer",
+    "Illustrative"
+   ],
+   [
+    "Domicile",
+    "Luxembourg"
+   ],
+   [
+    "Expense ratio",
+    "1.5%"
+   ]
+  ]
+ },
+ {
+  "id": "P022",
+  "source": "Public",
+  "name": "KraneShares Mount Lucas Managed Futures Index Strategy ETF",
+  "type": "ETF (US-listed)",
+  "ticker": "KMLM",
+  "subclass": "HF-MAC",
+  "geography": "Global",
+  "geo": [
+   0.5,
+   0.0,
+   0.5
+  ],
+  "ccy": "USD",
+  "underlyingCcy": "Multi",
+  "domicile": "United States",
+  "usSitus": "Yes",
+  "liquidity": "Daily",
+  "sector": "Multi-strategy",
+  "issuer": "KraneShares / Mount Lucas",
+  "rating": "",
+  "yield": 0.0,
+  "fee": 0.009,
+  "aumM": 190.0,
+  "platform": "Yes",
+  "accreditedOnly": "No",
+  "minAccredited": 0.0,
+  "minNonAccredited": 0.0,
+  "ddStatus": "",
+  "commitment": "",
+  "call1y": 0.0,
+  "lockupYrs": 0.0,
+  "ret": 0.067,
+  "vol": 0.11,
+  "beta": -0.48,
+  "risk": 3.0,
+  "factors": null,
+  "scen": [
+   null,
+   null,
+   null,
+   null
+  ],
+  "distToBarrier": null,
+  "issuerCreditRisk": "",
+  "notes": "Low-correlation diversifier #2: index of 22 futures (11 commodities, 6 currencies, 5 bond markets); beta -0.48 vs S&P 500 (etfrc, to Jun 2025)",
+  "facts": [
+   [
+    "Level 3 / strategy",
+    "Systematic trend (KFA MLM Index)"
+   ],
+   [
+    "Segment",
+    "n/a"
+   ],
+   [
+    "Manager / issuer",
+    "KraneShares / Mount Lucas"
+   ],
+   [
+    "Domicile",
+    "United States"
+   ],
+   [
+    "Expense ratio",
+    "0.9%"
+   ],
+   [
+    "Fund AUM (USD m)",
+    "190"
+   ]
+  ]
+ },
+ {
+  "id": "P023",
+  "source": "Public",
+  "name": "Unlimited HFND Multi-Strategy Return Tracker ETF",
+  "type": "ETF (US-listed)",
+  "ticker": "HFND",
+  "subclass": "HF-MS",
+  "geography": "Global",
+  "geo": [
+   0.6,
+   0.0,
+   0.4
+  ],
+  "ccy": "USD",
+  "underlyingCcy": "Multi",
+  "domicile": "United States",
+  "usSitus": "Yes",
+  "liquidity": "Daily",
+  "sector": "Multi-strategy",
+  "issuer": "Unlimited Funds",
+  "rating": "",
+  "yield": 0.0,
+  "fee": 0.0107,
+  "aumM": 34.0,
+  "platform": "Yes",
+  "accreditedOnly": "No",
+  "minAccredited": 0.0,
+  "minNonAccredited": 0.0,
+  "ddStatus": "",
+  "commitment": "",
+  "call1y": 0.0,
+  "lockupYrs": 0.0,
+  "ret": 0.067,
+  "vol": 0.07,
+  "beta": 0.35,
+  "risk": 3.0,
+  "factors": null,
+  "scen": [
+   null,
+   null,
+   null,
+   null
+  ],
+  "distToBarrier": null,
+  "issuerCreditRisk": "",
+  "notes": "Alpha ETF #1: active, replicates hedge-fund industry gross returns via ETFs and futures; small AUM (~USD 34m)",
+  "facts": [
+   [
+    "Level 3 / strategy",
+    "Hedge-fund replication (multi-strategy)"
+   ],
+   [
+    "Segment",
+    "n/a"
+   ],
+   [
+    "Manager / issuer",
+    "Unlimited Funds"
+   ],
+   [
+    "Domicile",
+    "United States"
+   ],
+   [
+    "Expense ratio",
+    "1.07%"
+   ],
+   [
+    "Fund AUM (USD m)",
+    "34"
+   ]
+  ]
+ },
+ {
+  "id": "P024",
+  "source": "Public",
+  "name": "SPDR Bridgewater All Weather ETF",
+  "type": "ETF (US-listed)",
+  "ticker": "ALLW",
+  "subclass": "MA-RP",
+  "geography": "Global",
+  "geo": [
+   0.5,
+   0.0,
+   0.5
+  ],
+  "ccy": "USD",
+  "underlyingCcy": "Multi",
+  "domicile": "United States",
+  "usSitus": "Yes",
+  "liquidity": "Daily",
+  "sector": "Diversified",
+  "issuer": "State Street / Bridgewater",
+  "rating": "",
+  "yield": 0.0,
+  "fee": 0.0085,
+  "aumM": 1600.0,
+  "platform": "Yes",
+  "accreditedOnly": "No",
+  "minAccredited": 0.0,
+  "minNonAccredited": 0.0,
+  "ddStatus": "",
+  "commitment": "",
+  "call1y": 0.0,
+  "lockupYrs": 0.0,
+  "ret": 0.07,
+  "vol": 0.11,
+  "beta": 0.45,
+  "risk": 3.0,
+  "factors": null,
+  "scen": [
+   null,
+   null,
+   null,
+   null
+  ],
+  "distToBarrier": null,
+  "issuerCreditRisk": "",
+  "notes": "Alpha ETF #2: active, uses derivatives / leverage; targets 10-12% volatility; launched Mar 2025",
+  "facts": [
+   [
+    "Level 3 / strategy",
+    "All-weather risk parity"
+   ],
+   [
+    "Segment",
+    "n/a"
+   ],
+   [
+    "Manager / issuer",
+    "State Street / Bridgewater"
+   ],
+   [
+    "Domicile",
+    "United States"
+   ],
+   [
+    "Expense ratio",
+    "0.85%"
+   ],
+   [
+    "Fund AUM (USD m)",
+    "1600"
+   ]
+  ]
+ },
+ {
+  "id": "P025",
+  "source": "Public",
+  "name": "CoreWeave 9.750% Senior Notes due 1 Oct 2031",
+  "type": "Bond",
+  "ticker": "CRWV 2031",
+  "subclass": "FI-HY",
+  "geography": "United States",
+  "geo": [
+   1.0,
+   0.0,
+   0.0
+  ],
+  "ccy": "USD",
+  "underlyingCcy": "USD",
+  "domicile": "United States",
+  "usSitus": "No",
+  "liquidity": "Daily",
+  "sector": "Technology",
+  "issuer": "CoreWeave, Inc.",
+  "rating": "B+",
+  "yield": 0.1578,
+  "fee": 0.0,
+  "aumM": 2750.0,
+  "platform": "Yes",
+  "accreditedOnly": "Yes",
+  "minAccredited": 2000.0,
+  "minNonAccredited": 2000.0,
+  "ddStatus": "",
+  "commitment": "",
+  "call1y": 0.0,
+  "lockupYrs": 0.0,
+  "ret": 0.10389999999999999,
+  "vol": 0.18,
+  "beta": 0.7,
+  "risk": 5.0,
+  "factors": null,
+  "scen": [
+   0.1,
+   0.22,
+   -0.12,
+   -0.35
+  ],
+  "distToBarrier": null,
+  "issuerCreditRisk": "",
+  "notes": "144A / Reg S notes; issuer Ba3 / B+ / BB-; YTM ~15.8% (15 Oct 2026); US situs override 'No' assumes the portfolio-interest exemption - confirm",
+  "facts": [
+   [
+    "Level 3 / strategy",
+    "Single-issuer HY (AI infrastructure)"
+   ],
+   [
+    "Segment",
+    "Short / intermediate"
+   ],
+   [
+    "Manager / issuer",
+    "CoreWeave, Inc."
+   ],
+   [
+    "Domicile",
+    "United States"
+   ],
+   [
+    "Fund AUM (USD m)",
+    "2750"
+   ],
+   [
+    "Credit rating",
+    "B+"
+   ],
+   [
+    "Coupon",
+    "9.75%"
+   ],
+   [
+    "Maturity",
+    "01 Oct 2031"
+   ],
+   [
+    "Yield to maturity",
+    "15.78%"
+   ],
+   [
+    "Modified duration",
+    "3.7"
+   ],
+   [
+    "Seniority",
+    "Senior unsecured"
+   ]
+  ]
+ },
+ {
+  "id": "P026",
+  "source": "Public",
+  "name": "USD Fixed Maturity Plan Dec-2029 - global ex-US IG corporates (illustrative)",
+  "type": "Fixed maturity plan",
+  "ticker": "-",
+  "subclass": "FI-IG",
+  "geography": "Global",
+  "geo": [
+   0.0,
+   0.0,
+   1.0
+  ],
+  "ccy": "USD",
+  "underlyingCcy": "USD",
+  "domicile": "Luxembourg",
+  "usSitus": "No",
+  "liquidity": "Locked (lock-up)",
+  "sector": "Corporate credit",
+  "issuer": "Illustrative",
+  "rating": "A-",
+  "yield": 0.054,
+  "fee": 0.0035,
+  "aumM": 0.0,
+  "platform": "Yes",
+  "accreditedOnly": "No",
+  "minAccredited": 1000.0,
+  "minNonAccredited": 1000.0,
+  "ddStatus": "",
+  "commitment": "",
+  "call1y": 0.0,
+  "lockupYrs": 3.0,
+  "ret": 0.052000000000000005,
+  "vol": 0.04,
+  "beta": 0.1,
+  "risk": 2.0,
+  "factors": null,
+  "scen": [
+   null,
+   null,
+   null,
+   null
+  ],
+  "distToBarrier": null,
+  "issuerCreditRisk": "",
+  "notes": "Closed-ended until maturity; indicative portfolio yield 5.4%",
+  "facts": [
+   [
+    "Level 3 / strategy",
+    "Hold-to-maturity IG"
+   ],
+   [
+    "Segment",
+    "Short / intermediate"
+   ],
+   [
+    "Manager / issuer",
+    "Illustrative"
+   ],
+   [
+    "Domicile",
+    "Luxembourg"
+   ],
+   [
+    "Expense ratio",
+    "0.35%"
+   ],
+   [
+    "Credit rating",
+    "A-"
+   ],
+   [
+    "Maturity",
+    "31 Dec 2029"
+   ],
+   [
+    "Yield to maturity",
+    "5.4%"
+   ],
+   [
+    "Modified duration",
+    "2.9"
+   ],
+   [
+    "Seniority",
+    "Senior"
+   ]
+  ]
+ },
+ {
+  "id": "P027",
+  "source": "Public",
+  "name": "Multi-asset balanced UCITS fund (illustrative)",
+  "type": "UCITS fund",
+  "ticker": "-",
+  "subclass": "MA-BAL",
+  "geography": "Global",
+  "geo": [
+   0.6,
+   0.0,
+   0.4
+  ],
+  "ccy": "USD",
+  "underlyingCcy": "Multi",
+  "domicile": "Luxembourg",
+  "usSitus": "No",
+  "liquidity": "Daily",
+  "sector": "Diversified",
+  "issuer": "Illustrative",
+  "rating": "",
+  "yield": 0.0,
+  "fee": 0.008,
+  "aumM": 0.0,
+  "platform": "Yes",
+  "accreditedOnly": "No",
+  "minAccredited": 0.0,
+  "minNonAccredited": 0.0,
+  "ddStatus": "",
+  "commitment": "",
+  "call1y": 0.0,
+  "lockupYrs": 0.0,
+  "ret": 0.07,
+  "vol": 0.1,
+  "beta": 0.6,
+  "risk": 3.0,
+  "factors": null,
+  "scen": [
+   null,
+   null,
+   null,
+   null
+  ],
+  "distToBarrier": null,
+  "issuerCreditRisk": "",
+  "notes": "",
+  "facts": [
+   [
+    "Level 3 / strategy",
+    "Balanced"
+   ],
+   [
+    "Segment",
+    "n/a"
+   ],
+   [
+    "Manager / issuer",
+    "Illustrative"
+   ],
+   [
+    "Domicile",
+    "Luxembourg"
+   ],
+   [
+    "Expense ratio",
+    "0.8%"
+   ]
+  ]
+ },
+ {
+  "id": "A001",
+  "source": "Private",
+  "name": "India Long/Short Equity Fund - GIFT IFSC Cat III AIF (illustrative)",
+  "type": "AIF Cat III (GIFT City)",
+  "ticker": "",
+  "subclass": "HF-EQ",
+  "geography": "India",
+  "geo": [
+   0.0,
+   1.0,
+   0.0
+  ],
+  "ccy": "USD",
+  "underlyingCcy": "INR",
+  "domicile": "India (GIFT IFSC)",
+  "usSitus": "No",
+  "liquidity": "Monthly",
+  "sector": "Long/short equity - India",
+  "issuer": "Manager A (illustrative)",
+  "rating": "",
+  "yield": 0.0,
+  "fee": 0.015,
+  "aumM": 0.0,
+  "platform": "Yes",
+  "accreditedOnly": "No",
+  "minAccredited": 25000.0,
+  "minNonAccredited": 150000.0,
+  "ddStatus": "Approved",
+  "commitment": "No",
+  "call1y": 1.0,
+  "lockupYrs": 1.0,
+  "ret": 0.096,
+  "vol": 0.14,
+  "beta": 0.45,
+  "risk": 3.0,
+  "factors": null,
+  "scen": [
+   0.11,
+   0.18,
+   -0.2,
+   -0.12
+  ],
+  "distToBarrier": null,
+  "issuerCreditRisk": "",
+  "notes": "Marked to market; low smoothing",
+  "facts": [
+   [
+    "Strategy (Level 3)",
+    "Long/short equity - India"
+   ],
+   [
+    "Manager",
+    "Manager A (illustrative)"
+   ],
+   [
+    "IFSCA scheme type",
+    "Restricted scheme"
+   ],
+   [
+    "Vintage",
+    "2025"
+   ],
+   [
+    "Structure",
+    "Open-ended"
+   ],
+   [
+    "Redemption frequency",
+    "Monthly"
+   ],
+   [
+    "Notice (days)",
+    "30"
+   ],
+   [
+    "Lock-up (yrs)",
+    "1"
+   ],
+   [
+    "Management fee",
+    "1.5%"
+   ],
+   [
+    "Performance fee / carry",
+    "15%"
+   ],
+   [
+    "Hurdle",
+    "8%"
+   ],
+   [
+    "Target net IRR",
+    "12%"
+   ],
+   [
+    "Prior fund net IRR",
+    "14%"
+   ],
+   [
+    "DD rating (1-5)",
+    "4"
+   ],
+   [
+    "NAV frequency",
+    "Monthly"
+   ],
+   [
+    "Fee drag (approx.)",
+    "2.55%"
+   ]
+  ]
+ },
+ {
+  "id": "A002",
+  "source": "Private",
+  "name": "India Performing Credit Fund - GIFT IFSC Cat II AIF (illustrative)",
+  "type": "AIF Cat II (GIFT City)",
+  "ticker": "",
+  "subclass": "PM-PC",
+  "geography": "India",
+  "geo": [
+   0.0,
+   1.0,
+   0.0
+  ],
+  "ccy": "USD",
+  "underlyingCcy": "INR",
+  "domicile": "India (GIFT IFSC)",
+  "usSitus": "No",
+  "liquidity": "Locked (lock-up)",
+  "sector": "Senior secured direct lending - India",
+  "issuer": "Manager B (illustrative)",
+  "rating": "",
+  "yield": 0.0,
+  "fee": 0.015,
+  "aumM": 0.0,
+  "platform": "Yes",
+  "accreditedOnly": "No",
+  "minAccredited": 25000.0,
+  "minNonAccredited": 150000.0,
+  "ddStatus": "Approved",
+  "commitment": "Yes",
+  "call1y": 0.5,
+  "lockupYrs": 5.0,
+  "ret": 0.08800000000000001,
+  "vol": 0.08,
+  "beta": 0.35,
+  "risk": 4.0,
+  "factors": null,
+  "scen": [
+   0.08,
+   0.1,
+   -0.04,
+   -0.07
+  ],
+  "distToBarrier": null,
+  "issuerCreditRisk": "",
+  "notes": "Commitment-based; 50% called in year 1",
+  "facts": [
+   [
+    "Strategy (Level 3)",
+    "Senior secured direct lending - India"
+   ],
+   [
+    "Manager",
+    "Manager B (illustrative)"
+   ],
+   [
+    "IFSCA scheme type",
+    "Restricted scheme"
+   ],
+   [
+    "Vintage",
+    "2026"
+   ],
+   [
+    "Structure",
+    "Closed-ended"
+   ],
+   [
+    "Fund term (yrs)",
+    "5"
+   ],
+   [
+    "Redemption frequency",
+    "None (distributions quarterly)"
+   ],
+   [
+    "Lock-up (yrs)",
+    "5"
+   ],
+   [
+    "Management fee",
+    "1.5%"
+   ],
+   [
+    "Performance fee / carry",
+    "15%"
+   ],
+   [
+    "Hurdle",
+    "9%"
+   ],
+   [
+    "Target net IRR",
+    "11%"
+   ],
+   [
+    "Target net MOIC",
+    "1.4x"
+   ],
+   [
+    "Prior fund net IRR",
+    "13%"
+   ],
+   [
+    "DD rating (1-5)",
+    "4"
+   ],
+   [
+    "NAV frequency",
+    "Quarterly"
+   ],
+   [
+    "Fee drag (approx.)",
+    "2.25%"
+   ]
+  ]
+ },
+ {
+  "id": "A003",
+  "source": "Private",
+  "name": "India Real Estate & Infrastructure Yield Fund - GIFT IFSC Cat II AIF (illustrative)",
+  "type": "AIF Cat II (GIFT City)",
+  "ticker": "",
+  "subclass": "PM-RIA",
+  "geography": "India",
+  "geo": [
+   0.0,
+   1.0,
+   0.0
+  ],
+  "ccy": "USD",
+  "underlyingCcy": "INR",
+  "domicile": "India (GIFT IFSC)",
+  "usSitus": "No",
+  "liquidity": "Locked (lock-up)",
+  "sector": "Rent-yielding RE & infra - India",
+  "issuer": "Manager C (illustrative)",
+  "rating": "",
+  "yield": 0.0,
+  "fee": 0.0175,
+  "aumM": 0.0,
+  "platform": "Yes",
+  "accreditedOnly": "No",
+  "minAccredited": 25000.0,
+  "minNonAccredited": 150000.0,
+  "ddStatus": "In review",
+  "commitment": "Yes",
+  "call1y": 0.4,
+  "lockupYrs": 6.0,
+  "ret": 0.10400000000000001,
+  "vol": 0.1,
+  "beta": 0.4,
+  "risk": 4.0,
+  "factors": null,
+  "scen": [
+   0.08,
+   0.12,
+   -0.06,
+   -0.1
+  ],
+  "distToBarrier": null,
+  "issuerCreditRisk": "",
+  "notes": "DD in progress - not yet live",
+  "facts": [
+   [
+    "Strategy (Level 3)",
+    "Rent-yielding RE & infra - India"
+   ],
+   [
+    "Manager",
+    "Manager C (illustrative)"
+   ],
+   [
+    "IFSCA scheme type",
+    "Restricted scheme"
+   ],
+   [
+    "Vintage",
+    "2026"
+   ],
+   [
+    "Structure",
+    "Closed-ended"
+   ],
+   [
+    "Fund term (yrs)",
+    "6"
+   ],
+   [
+    "Redemption frequency",
+    "None"
+   ],
+   [
+    "Lock-up (yrs)",
+    "6"
+   ],
+   [
+    "Management fee",
+    "1.75%"
+   ],
+   [
+    "Performance fee / carry",
+    "20%"
+   ],
+   [
+    "Hurdle",
+    "10%"
+   ],
+   [
+    "Target net IRR",
+    "13%"
+   ],
+   [
+    "Target net MOIC",
+    "1.6x"
+   ],
+   [
+    "Prior fund net IRR",
+    "14%"
+   ],
+   [
+    "DD rating (1-5)",
+    "3"
+   ],
+   [
+    "NAV frequency",
+    "Quarterly"
+   ],
+   [
+    "Fee drag (approx.)",
+    "3.15%"
+   ]
+  ]
+ },
+ {
+  "id": "A004",
+  "source": "Private",
+  "name": "Global PE Secondaries Feeder - GIFT IFSC (illustrative)",
+  "type": "Feeder fund",
+  "ticker": "",
+  "subclass": "PM-PE",
+  "geography": "Global",
+  "geo": [
+   0.6,
+   0.0,
+   0.4
+  ],
+  "ccy": "USD",
+  "underlyingCcy": "USD",
+  "domicile": "India (GIFT IFSC)",
+  "usSitus": "No",
+  "liquidity": "Locked (lock-up)",
+  "sector": "PE secondaries - global",
+  "issuer": "Manager D (illustrative)",
+  "rating": "",
+  "yield": 0.0,
+  "fee": 0.0125,
+  "aumM": 0.0,
+  "platform": "Yes",
+  "accreditedOnly": "No",
+  "minAccredited": 50000.0,
+  "minNonAccredited": 150000.0,
+  "ddStatus": "Approved",
+  "commitment": "Yes",
+  "call1y": 0.35,
+  "lockupYrs": 6.0,
+  "ret": 0.10400000000000001,
+  "vol": 0.14400000000000002,
+  "beta": 0.6,
+  "risk": 5.0,
+  "factors": null,
+  "scen": [
+   null,
+   null,
+   null,
+   null
+  ],
+  "distToBarrier": null,
+  "issuerCreditRisk": "",
+  "notes": "",
+  "facts": [
+   [
+    "Strategy (Level 3)",
+    "PE secondaries - global"
+   ],
+   [
+    "Manager",
+    "Manager D (illustrative)"
+   ],
+   [
+    "IFSCA scheme type",
+    "Restricted scheme"
+   ],
+   [
+    "Vintage",
+    "2026"
+   ],
+   [
+    "Structure",
+    "Closed-ended"
+   ],
+   [
+    "Fund term (yrs)",
+    "6"
+   ],
+   [
+    "Redemption frequency",
+    "None"
+   ],
+   [
+    "Lock-up (yrs)",
+    "6"
+   ],
+   [
+    "Management fee",
+    "1.25%"
+   ],
+   [
+    "Performance fee / carry",
+    "12.5%"
+   ],
+   [
+    "Hurdle",
+    "8%"
+   ],
+   [
+    "Target net IRR",
+    "13%"
+   ],
+   [
+    "Target net MOIC",
+    "1.6x"
+   ],
+   [
+    "Prior fund net IRR",
+    "15%"
+   ],
+   [
+    "DD rating (1-5)",
+    "4"
+   ],
+   [
+    "NAV frequency",
+    "Quarterly"
+   ],
+   [
+    "Fee drag (approx.)",
+    "2.25%"
+   ]
+  ]
+ },
+ {
+  "id": "A005",
+  "source": "Private",
+  "name": "India Pre-IPO & Late-Stage Growth Fund - Cat II AIF (illustrative)",
+  "type": "AIF Cat II (GIFT City)",
+  "ticker": "",
+  "subclass": "PM-PE",
+  "geography": "India",
+  "geo": [
+   0.0,
+   1.0,
+   0.0
+  ],
+  "ccy": "USD",
+  "underlyingCcy": "INR",
+  "domicile": "India (GIFT IFSC)",
+  "usSitus": "No",
+  "liquidity": "Locked (lock-up)",
+  "sector": "Late-stage growth - India",
+  "issuer": "Manager E (illustrative)",
+  "rating": "",
+  "yield": 0.0,
+  "fee": 0.02,
+  "aumM": 0.0,
+  "platform": "Yes",
+  "accreditedOnly": "No",
+  "minAccredited": 50000.0,
+  "minNonAccredited": 150000.0,
+  "ddStatus": "Approved",
+  "commitment": "Yes",
+  "call1y": 0.3,
+  "lockupYrs": 7.0,
+  "ret": 0.136,
+  "vol": 0.2,
+  "beta": 0.9,
+  "risk": 5.0,
+  "factors": null,
+  "scen": [
+   null,
+   null,
+   null,
+   null
+  ],
+  "distToBarrier": null,
+  "issuerCreditRisk": "",
+  "notes": "High dispersion of outcomes",
+  "facts": [
+   [
+    "Strategy (Level 3)",
+    "Late-stage growth - India"
+   ],
+   [
+    "Manager",
+    "Manager E (illustrative)"
+   ],
+   [
+    "IFSCA scheme type",
+    "Restricted scheme"
+   ],
+   [
+    "Vintage",
+    "2025"
+   ],
+   [
+    "Structure",
+    "Closed-ended"
+   ],
+   [
+    "Fund term (yrs)",
+    "7"
+   ],
+   [
+    "Redemption frequency",
+    "None"
+   ],
+   [
+    "Lock-up (yrs)",
+    "7"
+   ],
+   [
+    "Management fee",
+    "2%"
+   ],
+   [
+    "Performance fee / carry",
+    "20%"
+   ],
+   [
+    "Hurdle",
+    "10%"
+   ],
+   [
+    "Target net IRR",
+    "17%"
+   ],
+   [
+    "Target net MOIC",
+    "2x"
+   ],
+   [
+    "Prior fund net IRR",
+    "19%"
+   ],
+   [
+    "DD rating (1-5)",
+    "3"
+   ],
+   [
+    "NAV frequency",
+    "Quarterly"
+   ],
+   [
+    "Fee drag (approx.)",
+    "4.4%"
+   ]
+  ]
+ },
+ {
+  "id": "A006",
+  "source": "Private",
+  "name": "Global Macro Hedge Fund - offshore (illustrative)",
+  "type": "Private fund (offshore)",
+  "ticker": "",
+  "subclass": "HF-MAC",
+  "geography": "Global",
+  "geo": [
+   0.5,
+   0.0,
+   0.5
+  ],
+  "ccy": "USD",
+  "underlyingCcy": "Multi",
+  "domicile": "Cayman Islands",
+  "usSitus": "No",
+  "liquidity": "Quarterly",
+  "sector": "Discretionary global macro",
+  "issuer": "Manager F (illustrative)",
+  "rating": "",
+  "yield": 0.0,
+  "fee": 0.02,
+  "aumM": 0.0,
+  "platform": "No",
+  "accreditedOnly": "Yes",
+  "minAccredited": 1000000.0,
+  "minNonAccredited": 1000000.0,
+  "ddStatus": "Not started",
+  "commitment": "No",
+  "call1y": 1.0,
+  "lockupYrs": 1.0,
+  "ret": 0.05600000000000001,
+  "vol": 0.09,
+  "beta": 0.05,
+  "risk": 3.0,
+  "factors": null,
+  "scen": [
+   null,
+   null,
+   null,
+   null
+  ],
+  "distToBarrier": null,
+  "issuerCreditRisk": "",
+  "notes": "Example of a fund not yet on the Valura platform",
+  "facts": [
+   [
+    "Strategy (Level 3)",
+    "Discretionary global macro"
+   ],
+   [
+    "Manager",
+    "Manager F (illustrative)"
+   ],
+   [
+    "IFSCA scheme type",
+    "n/a"
+   ],
+   [
+    "Vintage",
+    "2018"
+   ],
+   [
+    "Structure",
+    "Open-ended"
+   ],
+   [
+    "Redemption frequency",
+    "Quarterly"
+   ],
+   [
+    "Notice (days)",
+    "60"
+   ],
+   [
+    "Lock-up (yrs)",
+    "1"
+   ],
+   [
+    "Management fee",
+    "2%"
+   ],
+   [
+    "Performance fee / carry",
+    "20%"
+   ],
+   [
+    "Target net IRR",
+    "7%"
+   ],
+   [
+    "Prior fund net IRR",
+    "8%"
+   ],
+   [
+    "NAV frequency",
+    "Monthly"
+   ],
+   [
+    "Fee drag (approx.)",
+    "4%"
+   ]
+  ]
+ },
+ {
+  "id": "S101",
+  "source": "Structured",
+  "name": "95% Protected Income Note on S&P 500 - 3y, 5.25% p.a. fixed (illustrative)",
+  "type": "Protected Income Note",
+  "ticker": "",
+  "subclass": "SP-CPN",
+  "geography": "S&P 500",
+  "geo": [
+   1.0,
+   0.0,
+   0.0
+  ],
+  "ccy": "USD",
+  "underlyingCcy": "USD",
+  "domicile": "Netherlands",
+  "usSitus": "No",
+  "liquidity": "Weekly",
+  "sector": "EQ-USLC",
+  "issuer": "Issuer A (illustrative)",
+  "rating": "A+",
+  "yield": 0.0525,
+  "fee": 0.0,
+  "aumM": 0.0,
+  "platform": "Yes",
+  "accreditedOnly": "No",
+  "minAccredited": 10000.0,
+  "minNonAccredited": 10000.0,
+  "ddStatus": "",
+  "commitment": "",
+  "call1y": 0.0,
+  "lockupYrs": 3.0,
+  "ret": 0.04916177100711925,
+  "vol": 0.032000000000000015,
+  "beta": 0.2000000000000001,
+  "risk": 1.0,
+  "factors": [
+   -0.2000000000000001,
+   -0.2000000000000001,
+   0.4000000000000002,
+   -0.2000000000000001,
+   0.0,
+   -0.2000000000000001,
+   -0.7000000000000001
+  ],
+  "scen": [
+   0.0525,
+   0.0525,
+   0.0024999999999999536,
+   0.0024999999999999536
+  ],
+  "distToBarrier": null,
+  "issuerCreditRisk": "Medium",
+  "notes": "Income with max 5% capital at risk: 100% back if S&P >= initial at maturity, else 100% minus the fall, floored at 95%",
+  "facts": [
+   [
+    "Payoff family",
+    "Protected income"
+   ],
+   [
+    "Issuer",
+    "Issuer A (illustrative)"
+   ],
+   [
+    "Issuer rating",
+    "A+"
+   ],
+   [
+    "Underlying",
+    "S&P 500"
+   ],
+   [
+    "Tenor (yrs)",
+    "3"
+   ],
+   [
+    "Coupon / yield p.a.",
+    "5.25%"
+   ],
+   [
+    "Coupon type",
+    "Fixed"
+   ],
+   [
+    "Capital protection at maturity",
+    "95%"
+   ],
+   [
+    "Barrier / strike (% of initial)",
+    "100%"
+   ],
+   [
+    "Distance to barrier",
+    "n/a"
+   ],
+   [
+    "Prob. below barrier at maturity",
+    "25.04%"
+   ],
+   [
+    "Max loss at maturity",
+    "5%"
+   ]
+  ]
+ },
+ {
+  "id": "S102",
+  "source": "Structured",
+  "name": "Participation Note on S&P 500 - 3y, 100% participation, 35% cap, 90% protection (illustrative)",
+  "type": "Participation Note",
+  "ticker": "",
+  "subclass": "SP-PRT",
+  "geography": "S&P 500",
+  "geo": [
+   1.0,
+   0.0,
+   0.0
+  ],
+  "ccy": "USD",
+  "underlyingCcy": "USD",
+  "domicile": "Switzerland",
+  "usSitus": "No",
+  "liquidity": "Weekly",
+  "sector": "EQ-USLC",
+  "issuer": "Issuer B (illustrative)",
+  "rating": "A",
+  "yield": 0.0,
+  "fee": 0.0,
+  "aumM": 0.0,
+  "platform": "Yes",
+  "accreditedOnly": "No",
+  "minAccredited": 10000.0,
+  "minNonAccredited": 10000.0,
+  "ddStatus": "",
+  "commitment": "",
+  "call1y": 0.0,
+  "lockupYrs": 3.0,
+  "ret": 0.0615,
+  "vol": 0.0736,
+  "beta": 0.46,
+  "risk": 2.0,
+  "factors": [
+   -0.46,
+   -0.46,
+   0.92,
+   -0.46,
+   0.0,
+   -0.46,
+   -0.96
+  ],
+  "scen": [
+   0.072,
+   0.16000000000000003,
+   -0.0828,
+   -0.09999999999999998
+  ],
+  "distToBarrier": null,
+  "issuerCreditRisk": "Medium",
+  "notes": "Equity upside with a 10% maximum loss at maturity",
+  "facts": [
+   [
+    "Payoff family",
+    "Protection / participation"
+   ],
+   [
+    "Issuer",
+    "Issuer B (illustrative)"
+   ],
+   [
+    "Issuer rating",
+    "A"
+   ],
+   [
+    "Underlying",
+    "S&P 500"
+   ],
+   [
+    "Tenor (yrs)",
+    "3"
+   ],
+   [
+    "Coupon type",
+    "None"
+   ],
+   [
+    "Participation",
+    "100%"
+   ],
+   [
+    "Cap (max total return)",
+    "35%"
+   ],
+   [
+    "Capital protection at maturity",
+    "90%"
+   ],
+   [
+    "Distance to barrier",
+    "n/a"
+   ],
+   [
+    "Max loss at maturity",
+    "10%"
+   ]
+  ]
+ },
+ {
+  "id": "S001",
+  "source": "Structured",
+  "name": "Phoenix autocallable on Nasdaq-100, 2 years (example)",
+  "type": "Phoenix Autocallable",
+  "ticker": "",
+  "subclass": "SP-YLD",
+  "geography": "Nasdaq-100",
+  "geo": [
+   1.0,
+   0.0,
+   0.0
+  ],
+  "ccy": "USD",
+  "underlyingCcy": "USD",
+  "domicile": "Switzerland",
+  "usSitus": "No",
+  "liquidity": "Weekly",
+  "sector": "EQ-TECH",
+  "issuer": "Issuer C (illustrative)",
+  "rating": "A",
+  "yield": 0.1,
+  "fee": 0.0,
+  "aumM": 0.0,
+  "platform": "Yes",
+  "accreditedOnly": "No",
+  "minAccredited": 10000.0,
+  "minNonAccredited": 10000.0,
+  "ddStatus": "",
+  "commitment": "",
+  "call1y": 0.0,
+  "lockupYrs": 2.0,
+  "ret": 0.09018191398174859,
+  "vol": 0.17279999999999998,
+  "beta": 0.8999999999999999,
+  "risk": 4.0,
+  "factors": [
+   -1.44,
+   -0.72,
+   1.44,
+   -0.72,
+   0.0,
+   -1.44,
+   -1.22
+  ],
+  "scen": [
+   0.1,
+   0.1,
+   -0.07279999999999998,
+   -0.18799999999999997
+  ],
+  "distToBarrier": 0.4,
+  "issuerCreditRisk": "Medium",
+  "notes": "Example only - not in the portfolio",
+  "facts": [
+   [
+    "Payoff family",
+    "Income"
+   ],
+   [
+    "Issuer",
+    "Issuer C (illustrative)"
+   ],
+   [
+    "Issuer rating",
+    "A"
+   ],
+   [
+    "Underlying",
+    "Nasdaq-100"
+   ],
+   [
+    "Tenor (yrs)",
+    "2"
+   ],
+   [
+    "Coupon / yield p.a.",
+    "10%"
+   ],
+   [
+    "Coupon type",
+    "Memory (Phoenix)"
+   ],
+   [
+    "Barrier / strike (% of initial)",
+    "60%"
+   ],
+   [
+    "Autocall trigger",
+    "100%"
+   ],
+   [
+    "Distance to barrier",
+    "40%"
+   ],
+   [
+    "Prob. below barrier at maturity",
+    "3.78%"
+   ],
+   [
+    "Max loss at maturity",
+    "100%"
+   ]
+  ]
+ },
+ {
+  "id": "S002",
+  "source": "Structured",
+  "name": "AMC - AI power & infrastructure basket (example)",
+  "type": "AMC",
+  "ticker": "",
+  "subclass": "SP-AMC",
+  "geography": "AI power & infrastructure basket",
+  "geo": [
+   0.5,
+   0.0,
+   0.5
+  ],
+  "ccy": "USD",
+  "underlyingCcy": "USD",
+  "domicile": "Luxembourg",
+  "usSitus": "No",
+  "liquidity": "Weekly",
+  "sector": "RA-INF",
+  "issuer": "Issuer D (illustrative)",
+  "rating": "AA-",
+  "yield": 0.0,
+  "fee": 0.01,
+  "aumM": 0.0,
+  "platform": "Yes",
+  "accreditedOnly": "No",
+  "minAccredited": 10000.0,
+  "minNonAccredited": 10000.0,
+  "ddStatus": "",
+  "commitment": "",
+  "call1y": 0.0,
+  "lockupYrs": 5.0,
+  "ret": 0.06099999999999999,
+  "vol": 0.15,
+  "beta": 0.6,
+  "risk": 3.0,
+  "factors": [
+   -1.0,
+   1.0,
+   2.0,
+   1.0,
+   0.0,
+   0.0,
+   -0.25
+  ],
+  "scen": [
+   0.049999999999999996,
+   0.11,
+   -0.060000000000000005,
+   -0.13
+  ],
+  "distToBarrier": null,
+  "issuerCreditRisk": "Low",
+  "notes": "Example only",
+  "facts": [
+   [
+    "Payoff family",
+    "Tracker"
+   ],
+   [
+    "Issuer",
+    "Issuer D (illustrative)"
+   ],
+   [
+    "Issuer rating",
+    "AA-"
+   ],
+   [
+    "Underlying",
+    "AI power & infrastructure basket"
+   ],
+   [
+    "Tenor (yrs)",
+    "5"
+   ],
+   [
+    "Coupon type",
+    "None"
+   ],
+   [
+    "Participation",
+    "100%"
+   ],
+   [
+    "Distance to barrier",
+    "n/a"
+   ],
+   [
+    "Max loss at maturity",
+    "100%"
+   ]
+  ]
+ }
+]

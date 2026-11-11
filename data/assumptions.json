@@ -1,0 +1,535 @@
+{
+ "client": {
+  "name": "CL-002 - HNI sample client (USD 1m)",
+  "jurisdiction": "UAE resident (AED pegged to USD); INR view also shown",
+  "baseCcy": "USD",
+  "riskProfile": "Medium",
+  "horizon": 5.0,
+  "target": 0.1,
+  "amount": 1000000.0,
+  "accredited": "Yes",
+  "accreditedVerified": "No"
+ },
+ "market": {
+  "usdInr": 94.7,
+  "inrDep": 0.035,
+  "toughMult": 1.645,
+  "targetVol": 0.1,
+  "drawdownTrigger": -0.2,
+  "maxIlliquid": 0.4,
+  "spx": 7690.73,
+  "fedFunds": 0.03875,
+  "repo": 0.055,
+  "usd5y": 0.05,
+  "eqHedgeRatio": 0.5,
+  "putSpreadCost": 0.03,
+  "hyProtCost": 0.025,
+  "inrStress": 0.05,
+  "inrHedgeRatio": 0.5,
+  "noteIssuerAdj": -0.5
+ },
+ "limits": {
+  "singleIssuer": 0.05,
+  "largePosition": 0.25,
+  "distressedYield": 0.12,
+  "highFee": 0.01,
+  "smallFundAum": 100.0,
+  "factorHeadwind": -0.5,
+  "factorTailwind": 0.5,
+  "worstScenario": -0.2,
+  "severeLoss": -0.3,
+  "barrierProximity": 0.1,
+  "usEstateTax": 60000.0,
+  "aiExposure": 0.1
+ },
+ "factors": [
+  {
+   "name": "Rates & Central Banks",
+   "weight": 0.2,
+   "consensus": "One more Fed hike, then a long pause",
+   "number": "Fed funds 3.75-4.00%"
+  },
+  {
+   "name": "Inflation",
+   "weight": 0.15,
+   "consensus": "Peaks in late 2026, eases in 2027",
+   "number": "US CPI 3.7% (core 2.6%)"
+  },
+  {
+   "name": "Growth, Earnings & AI",
+   "weight": 0.2,
+   "consensus": "Strong earnings growth continues into 2027",
+   "number": "S&P 500 EPS +32% (2026e)"
+  },
+  {
+   "name": "Energy & Geopolitics",
+   "weight": 0.15,
+   "consensus": "Oil falls from ~USD 105 toward USD 75-85 in 2027",
+   "number": "Brent ~USD 105"
+  },
+  {
+   "name": "Currency & the Dollar",
+   "weight": 0.1,
+   "consensus": "Rupee broadly stable to slightly weaker",
+   "number": "USD/INR ~94.7"
+  },
+  {
+   "name": "Valuation & Sentiment",
+   "weight": 0.1,
+   "consensus": "Experts split: 3% to 7.5% for US stocks",
+   "number": "Forward P/E 19.0"
+  },
+  {
+   "name": "Credit, Fiscal & Liquidity",
+   "weight": 0.1,
+   "consensus": "Spreads drift wider from tight levels",
+   "number": "High-yield spread 312 bp"
+  }
+ ],
+ "notes": [
+  "Expected returns: J.P. Morgan 2027 LTCMA where published, otherwise house proxies; bonds use yield minus expected loss; private funds use 80% of target net IRR; structured notes are modelled from their terms. All editable.",
+  "Probabilities are blended from dated alternative-data signals on the Scenario Engine; refresh them before each client meeting. The calibration log tracks accuracy (Brier score) over time.",
+  "Products marked 'illustrative' are placeholders; verify names, share classes, minimums, fees and availability before execution. Hedge costs are approximations, not quotes.",
+  "Tax: US estate tax can apply to US-situs assets of non-US persons above USD 60,000. IFSCA accredited-investor status must be verified before AIF commitments below USD 150,000. Market data as of 1-20 Oct 2026."
+ ],
+ "l1": [
+  {
+   "code": "EQ",
+   "name": "Equity",
+   "label": "Equity"
+  },
+  {
+   "code": "FI",
+   "name": "Fixed Income",
+   "label": "Fixed income"
+  },
+  {
+   "code": "CA",
+   "name": "Cash & Money Market",
+   "label": "Cash"
+  },
+  {
+   "code": "CM",
+   "name": "Commodities",
+   "label": "Commodities"
+  },
+  {
+   "code": "RA",
+   "name": "Real Assets (listed)",
+   "label": "Real assets"
+  },
+  {
+   "code": "HF",
+   "name": "Hedge Funds",
+   "label": "Hedge funds"
+  },
+  {
+   "code": "PM",
+   "name": "Private Markets",
+   "label": "Private mkts"
+  },
+  {
+   "code": "MA",
+   "name": "Multi-Asset",
+   "label": "Multi-asset"
+  },
+  {
+   "code": "SP",
+   "name": "Structured Products",
+   "label": "Structured"
+  },
+  {
+   "code": "OT",
+   "name": "Other / Future additions",
+   "label": "Other"
+  }
+ ],
+ "corr": [
+  [
+   0.8,
+   0.19,
+   0.0,
+   0.19,
+   0.62,
+   0.52,
+   0.62,
+   0.68,
+   0.62,
+   0.38
+  ],
+  [
+   0.19,
+   0.55,
+   0.19,
+   0.14,
+   0.33,
+   0.28,
+   0.24,
+   0.38,
+   0.38,
+   0.28
+  ],
+  [
+   0.0,
+   0.19,
+   1.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.05,
+   0.05,
+   0.0
+  ],
+  [
+   0.19,
+   0.14,
+   0.0,
+   0.35,
+   0.19,
+   0.19,
+   0.1,
+   0.19,
+   0.14,
+   0.14
+  ],
+  [
+   0.62,
+   0.33,
+   0.0,
+   0.19,
+   0.7,
+   0.43,
+   0.52,
+   0.52,
+   0.47,
+   0.33
+  ],
+  [
+   0.52,
+   0.28,
+   0.0,
+   0.19,
+   0.43,
+   0.55,
+   0.47,
+   0.43,
+   0.43,
+   0.33
+  ],
+  [
+   0.62,
+   0.24,
+   0.0,
+   0.1,
+   0.52,
+   0.47,
+   0.65,
+   0.47,
+   0.47,
+   0.33
+  ],
+  [
+   0.68,
+   0.38,
+   0.05,
+   0.19,
+   0.52,
+   0.43,
+   0.47,
+   0.7,
+   0.47,
+   0.38
+  ],
+  [
+   0.62,
+   0.38,
+   0.05,
+   0.14,
+   0.47,
+   0.43,
+   0.47,
+   0.47,
+   0.7,
+   0.33
+  ],
+  [
+   0.38,
+   0.28,
+   0.0,
+   0.14,
+   0.33,
+   0.33,
+   0.33,
+   0.38,
+   0.33,
+   0.5
+  ]
+ ],
+ "scenarios": [
+  {
+   "name": "Base: sticky inflation, Fed pauses after one more hike",
+   "label": "Base",
+   "trigger": "Core CPI ~2.5-3%, Brent USD 90-105, earnings keep growing",
+   "prob": 0.551412953518087,
+   "pessimistic": 0.4872276183542632,
+   "optimistic": 0.6155982886819108,
+   "confidence": "High"
+  },
+  {
+   "name": "Bull: ceasefire and AI delivers",
+   "label": "Bull",
+   "trigger": "US-Iran deal, Hormuz reopens, Brent below USD 80; AI earnings beat",
+   "prob": 0.18259270538523958,
+   "pessimistic": 0.13031031924899963,
+   "optimistic": 0.23487509152147953,
+   "confidence": "Medium"
+  },
+  {
+   "name": "Bear: stagflation squeeze",
+   "label": "Bear (stagflation)",
+   "trigger": "Escalation, Brent above USD 130, Fed toward 4.75%, 10-yr near 6%",
+   "prob": 0.1604037005614875,
+   "pessimistic": 0.22624055372496887,
+   "optimistic": 0.09456684739800612,
+   "confidence": "Medium"
+  },
+  {
+   "name": "Tail: AI repricing and growth scare",
+   "label": "Tail (AI repricing)",
+   "trigger": "AI revenue disappoints, AI credit cracks, equities fall ~25-30%, Fed pivots",
+   "prob": 0.10559064053518591,
+   "pessimistic": 0.1562215086717683,
+   "optimistic": 0.05495977239860353,
+   "confidence": "Medium"
+  }
+ ],
+ "engineConfidence": 0.6582393395015094,
+ "engineConfidenceLevel": "Medium",
+ "sleeves": [
+  {
+   "name": "Equity",
+   "target": 0.1
+  },
+  {
+   "name": "Bonds & fixed income",
+   "target": 0.5
+  },
+  {
+   "name": "Diversifiers (low correlation)",
+   "target": 0.1
+  },
+  {
+   "name": "Alpha / hedge-fund ETFs",
+   "target": 0.1
+  },
+  {
+   "name": "Private assets (AIFs)",
+   "target": 0.2
+  }
+ ],
+ "geoTargets": [
+  {
+   "name": "United States",
+   "target": 0.4
+  },
+  {
+   "name": "India",
+   "target": 0.2
+  },
+  {
+   "name": "Rest of world (ex-US, ex-India)",
+   "target": 0.4
+  }
+ ],
+ "monitoring": [
+  {
+   "indicator": "US core CPI, y/y (%)",
+   "linked": "F2 Inflation",
+   "current": 2.6,
+   "amber": 3.0,
+   "red": 3.5,
+   "direction": "Higher is worse",
+   "action": "Shorten bond duration; raise gold / TIPS.",
+   "source": "BLS via investingLive, Sep 2026"
+  },
+  {
+   "indicator": "US 10-year Treasury yield (%)",
+   "linked": "F1 Rates",
+   "current": 5.24,
+   "amber": 5.5,
+   "red": 6.0,
+   "direction": "Higher is worse",
+   "action": "Add duration in steps to lock carry.",
+   "source": "Fed H.15 via Admirals, 1 Oct 2026"
+  },
+  {
+   "indicator": "Brent crude (USD/bbl)",
+   "linked": "F4 Oil & Geopolitics",
+   "current": 105.56,
+   "amber": 115.0,
+   "red": 130.0,
+   "direction": "Higher is worse",
+   "action": "Apply stagflation weights.",
+   "source": "Insightful Trade, 16 Oct 2026"
+  },
+  {
+   "indicator": "VIX (fear gauge)",
+   "linked": "F6 Valuation",
+   "current": 19.99,
+   "amber": 25.0,
+   "red": 35.0,
+   "direction": "Higher is worse",
+   "action": "Execute equity hedge if not yet in place.",
+   "source": "Tapeboard, 16 Oct 2026"
+  },
+  {
+   "indicator": "US high-yield spread (bp)",
+   "linked": "F7 Credit & Fiscal",
+   "current": 312.0,
+   "amber": 400.0,
+   "red": 500.0,
+   "direction": "Higher is worse",
+   "action": "Recession playbook; cut single-name credit.",
+   "source": "Guggenheim, 30 Sep 2026"
+  },
+  {
+   "indicator": "CoreWeave 9.75% 2031 notes - yield to maturity (%)",
+   "linked": "Next Best Actions",
+   "current": 15.78,
+   "amber": 14.0,
+   "red": 18.0,
+   "direction": "Higher is worse",
+   "action": "Exit above red unless thesis re-underwritten.",
+   "source": "Benzinga via Admirals, 15 Oct 2026"
+  },
+  {
+   "indicator": "US unemployment rate (%)",
+   "linked": "F3 Growth & AI",
+   "current": 4.2,
+   "amber": 4.5,
+   "red": 5.0,
+   "direction": "Higher is worse",
+   "action": "Growth scare: add Treasuries.",
+   "source": "BLS via Admirals, Sep 2026"
+  },
+  {
+   "indicator": "USD/INR (rupees per USD)",
+   "linked": "F5 Currency",
+   "current": 94.7,
+   "amber": 98.0,
+   "red": 100.0,
+   "direction": "Higher is worse",
+   "action": "USD client: execute INR hedge on India AIF NAVs.",
+   "source": "ExchangeRates.org.uk, 20 Oct 2026"
+  },
+  {
+   "indicator": "Kalshi 2027 US recession odds (%)",
+   "linked": "Scenario Engine",
+   "current": 20.0,
+   "amber": 30.0,
+   "red": 40.0,
+   "direction": "Higher is worse",
+   "action": "Raise tail probability; review hedges.",
+   "source": "Kalshi via Crypto Briefing, 26 Sep 2026"
+  },
+  {
+   "indicator": "Scenario-engine confidence score (0-1)",
+   "linked": "Scenario Engine",
+   "current": 0.6582393395015094,
+   "amber": 0.5,
+   "red": 0.35,
+   "direction": "Lower is worse",
+   "action": "Refresh stale signals before the client meeting.",
+   "source": "Live"
+  },
+  {
+   "indicator": "Lines blocked by eligibility checks (count)",
+   "linked": "Portfolio Builder",
+   "current": 0.0,
+   "amber": 1.0,
+   "red": 2.0,
+   "direction": "Higher is worse",
+   "action": "Fix before execution.",
+   "source": "Live"
+  },
+  {
+   "indicator": "Lines awaiting due diligence / verification (count)",
+   "linked": "Portfolio Builder",
+   "current": 1.0,
+   "amber": 1.0,
+   "red": 3.0,
+   "direction": "Higher is worse",
+   "action": "Complete DD before commitment.",
+   "source": "Live"
+  },
+  {
+   "indicator": "Structured notes within 10% of barrier (count)",
+   "linked": "Structured Notes",
+   "current": 0.0,
+   "amber": 1.0,
+   "red": 2.0,
+   "direction": "Higher is worse",
+   "action": "Review note; consider switch.",
+   "source": "Live"
+  },
+  {
+   "indicator": "US-situs exposure (USD)",
+   "linked": "Risk & Hedging",
+   "current": 150000.0,
+   "amber": 60000.0,
+   "red": 100000.0,
+   "direction": "Higher is worse",
+   "action": "Switch to UCITS lines.",
+   "source": "Live"
+  },
+  {
+   "indicator": "Portfolio drawdown from peak",
+   "linked": "Risk & Hedging",
+   "current": 0.0,
+   "amber": -0.1,
+   "red": -0.2,
+   "direction": "Lower is worse",
+   "action": "Formal review; no panic selling.",
+   "source": "Update from statement"
+  }
+ ],
+ "events": [
+  {
+   "date": "28 Oct 2026",
+   "event": "FOMC rate decision",
+   "factor": "F1 Rates",
+   "why": "Hike odds ~47% after September CPI."
+  },
+  {
+   "date": "29 Oct 2026",
+   "event": "US Q3 GDP (GDPNow 3.6%) and September PCE",
+   "factor": "F2 / F3",
+   "why": "Growth vs inflation; tests the nowcast."
+  },
+  {
+   "date": "3 Nov 2026",
+   "event": "US midterm elections",
+   "factor": "F7",
+   "why": "Fiscal path."
+  },
+  {
+   "date": "10 Nov 2026",
+   "event": "US October CPI",
+   "factor": "F2",
+   "why": "Is inflation spreading beyond energy?"
+  },
+  {
+   "date": "Nov 2026",
+   "event": "CoreWeave Q3 results and any refinancing",
+   "factor": "F7 / NBA",
+   "why": "Decides the single-name credit action."
+  },
+  {
+   "date": "9 Dec 2026",
+   "event": "FOMC decision and projections",
+   "factor": "F1",
+   "why": "December hike priced at ~81% (5 Oct)."
+  }
+ ]
+}

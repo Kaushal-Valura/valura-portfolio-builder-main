@@ -1,0 +1,860 @@
+[
+ {
+  "code": "EQ-USLC",
+  "l1": "EQ",
+  "l1Name": "Equity",
+  "name": "US Large Cap",
+  "ret": 0.075,
+  "vol": 0.16,
+  "beta": 1.0,
+  "risk": 4.0,
+  "scen": [
+   0.09,
+   0.2,
+   -0.18,
+   -0.28
+  ],
+  "factors": [
+   -1.0,
+   -1.0,
+   2.0,
+   -1.0,
+   0.0,
+   -1.0,
+   -1.0
+  ],
+  "riskEq": 0.0
+ },
+ {
+  "code": "EQ-USSM",
+  "l1": "EQ",
+  "l1Name": "Equity",
+  "name": "US Mid & Small Cap",
+  "ret": 0.071,
+  "vol": 0.21,
+  "beta": 1.15,
+  "risk": 4.0,
+  "scen": [
+   0.07,
+   0.24,
+   -0.22,
+   -0.32
+  ],
+  "factors": [
+   -2.0,
+   -1.0,
+   1.0,
+   -1.0,
+   0.0,
+   1.0,
+   -2.0
+  ],
+  "riskEq": 0.0
+ },
+ {
+  "code": "EQ-DM",
+  "l1": "EQ",
+  "l1Name": "Equity",
+  "name": "Developed ex-US",
+  "ret": 0.075,
+  "vol": 0.17,
+  "beta": 0.85,
+  "risk": 4.0,
+  "scen": [
+   0.08,
+   0.18,
+   -0.2,
+   -0.24
+  ],
+  "factors": [
+   -1.0,
+   -1.0,
+   1.0,
+   -2.0,
+   -1.0,
+   1.0,
+   -1.0
+  ],
+  "riskEq": 0.0
+ },
+ {
+  "code": "EQ-EM",
+  "l1": "EQ",
+  "l1Name": "Equity",
+  "name": "Emerging Markets",
+  "ret": 0.071,
+  "vol": 0.2,
+  "beta": 0.9,
+  "risk": 4.0,
+  "scen": [
+   0.08,
+   0.18,
+   -0.22,
+   -0.22
+  ],
+  "factors": [
+   -1.0,
+   -1.0,
+   1.0,
+   -2.0,
+   -1.0,
+   1.0,
+   -1.0
+  ],
+  "riskEq": 0.0
+ },
+ {
+  "code": "EQ-IN",
+  "l1": "EQ",
+  "l1Name": "Equity",
+  "name": "India Equity",
+  "ret": 0.071,
+  "vol": 0.2,
+  "beta": 0.7,
+  "risk": 4.0,
+  "scen": [
+   0.1,
+   0.2,
+   -0.24,
+   -0.18
+  ],
+  "factors": [
+   -1.0,
+   -1.0,
+   2.0,
+   -2.0,
+   -1.0,
+   0.0,
+   -1.0
+  ],
+  "riskEq": 0.0
+ },
+ {
+  "code": "EQ-ENRG",
+  "l1": "EQ",
+  "l1Name": "Equity",
+  "name": "Sector - Energy & Materials",
+  "ret": 0.075,
+  "vol": 0.25,
+  "beta": 0.8,
+  "risk": 4.0,
+  "scen": [
+   0.06,
+   0.02,
+   0.15,
+   -0.15
+  ],
+  "factors": [
+   0.0,
+   2.0,
+   1.0,
+   2.0,
+   0.0,
+   1.0,
+   0.0
+  ],
+  "riskEq": 0.0
+ },
+ {
+  "code": "EQ-TECH",
+  "l1": "EQ",
+  "l1Name": "Equity",
+  "name": "Sector - Technology & AI",
+  "ret": 0.075,
+  "vol": 0.24,
+  "beta": 1.25,
+  "risk": 5.0,
+  "scen": [
+   0.12,
+   0.28,
+   -0.24,
+   -0.4
+  ],
+  "factors": [
+   -2.0,
+   -1.0,
+   2.0,
+   -1.0,
+   0.0,
+   -2.0,
+   -1.0
+  ],
+  "riskEq": 0.0
+ },
+ {
+  "code": "FI-UST",
+  "l1": "FI",
+  "l1Name": "Fixed Income",
+  "name": "US Treasuries",
+  "ret": 0.046,
+  "vol": 0.05,
+  "beta": 0.05,
+  "risk": 1.0,
+  "scen": [
+   0.055,
+   0.09,
+   -0.04,
+   0.1
+  ],
+  "factors": [
+   1.0,
+   -1.0,
+   -1.0,
+   0.0,
+   0.0,
+   2.0,
+   -1.0
+  ],
+  "riskEq": 0.0
+ },
+ {
+  "code": "FI-TIPS",
+  "l1": "FI",
+  "l1Name": "Fixed Income",
+  "name": "Inflation-linked bonds (TIPS)",
+  "ret": 0.046,
+  "vol": 0.06,
+  "beta": 0.1,
+  "risk": 1.0,
+  "scen": [
+   0.05,
+   0.07,
+   0.02,
+   0.06
+  ],
+  "factors": [
+   1.0,
+   2.0,
+   -1.0,
+   1.0,
+   0.0,
+   1.0,
+   -1.0
+  ],
+  "riskEq": 0.0
+ },
+ {
+  "code": "FI-IG",
+  "l1": "FI",
+  "l1Name": "Fixed Income",
+  "name": "Investment-grade credit",
+  "ret": 0.061,
+  "vol": 0.08,
+  "beta": 0.15,
+  "risk": 2.0,
+  "scen": [
+   0.06,
+   0.1,
+   -0.07,
+   0.04
+  ],
+  "factors": [
+   1.0,
+   -1.0,
+   1.0,
+   -1.0,
+   0.0,
+   0.0,
+   -1.0
+  ],
+  "riskEq": 0.0
+ },
+ {
+  "code": "FI-HY",
+  "l1": "FI",
+  "l1Name": "Fixed Income",
+  "name": "High yield",
+  "ret": 0.067,
+  "vol": 0.1,
+  "beta": 0.45,
+  "risk": 3.0,
+  "scen": [
+   0.065,
+   0.11,
+   -0.1,
+   -0.06
+  ],
+  "factors": [
+   0.0,
+   -1.0,
+   1.0,
+   -1.0,
+   0.0,
+   -1.0,
+   -2.0
+  ],
+  "riskEq": 0.0
+ },
+ {
+  "code": "FI-EMD",
+  "l1": "FI",
+  "l1Name": "Fixed Income",
+  "name": "Emerging-market debt (hard currency)",
+  "ret": 0.067,
+  "vol": 0.09,
+  "beta": 0.4,
+  "risk": 3.0,
+  "scen": [
+   0.06,
+   0.12,
+   -0.12,
+   -0.04
+  ],
+  "factors": [
+   -1.0,
+   -1.0,
+   1.0,
+   -1.0,
+   -1.0,
+   0.0,
+   -1.0
+  ],
+  "riskEq": 0.0
+ },
+ {
+  "code": "CA-MM",
+  "l1": "CA",
+  "l1Name": "Cash & Money Market",
+  "name": "Money market & T-bills",
+  "ret": 0.035,
+  "vol": 0.01,
+  "beta": 0.0,
+  "risk": 1.0,
+  "scen": [
+   0.04,
+   0.038,
+   0.045,
+   0.035
+  ],
+  "factors": [
+   2.0,
+   1.0,
+   0.0,
+   0.0,
+   0.0,
+   1.0,
+   1.0
+  ],
+  "riskEq": 0.0
+ },
+ {
+  "code": "CM-GOLD",
+  "l1": "CM",
+  "l1Name": "Commodities",
+  "name": "Gold & precious metals",
+  "ret": 0.055,
+  "vol": 0.15,
+  "beta": 0.1,
+  "risk": 3.0,
+  "scen": [
+   0.04,
+   -0.05,
+   0.2,
+   0.1
+  ],
+  "factors": [
+   -1.0,
+   2.0,
+   -1.0,
+   2.0,
+   -1.0,
+   -1.0,
+   1.0
+  ],
+  "riskEq": 0.0
+ },
+ {
+  "code": "CM-BRD",
+  "l1": "CM",
+  "l1Name": "Commodities",
+  "name": "Broad commodities",
+  "ret": 0.048,
+  "vol": 0.17,
+  "beta": 0.4,
+  "risk": 4.0,
+  "scen": [
+   0.03,
+   -0.08,
+   0.22,
+   -0.12
+  ],
+  "factors": [
+   0.0,
+   2.0,
+   1.0,
+   2.0,
+   -1.0,
+   0.0,
+   0.0
+  ],
+  "riskEq": 0.0
+ },
+ {
+  "code": "RA-INF",
+  "l1": "RA",
+  "l1Name": "Real Assets (listed)",
+  "name": "Listed infrastructure",
+  "ret": 0.071,
+  "vol": 0.15,
+  "beta": 0.6,
+  "risk": 3.0,
+  "scen": [
+   0.06,
+   0.12,
+   -0.05,
+   -0.12
+  ],
+  "factors": [
+   -1.0,
+   1.0,
+   2.0,
+   1.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "riskEq": 0.0
+ },
+ {
+  "code": "RA-REIT",
+  "l1": "RA",
+  "l1Name": "Real Assets (listed)",
+  "name": "Listed real estate (REITs)",
+  "ret": 0.081,
+  "vol": 0.19,
+  "beta": 0.85,
+  "risk": 4.0,
+  "scen": [
+   0.06,
+   0.15,
+   -0.12,
+   -0.15
+  ],
+  "factors": [
+   -2.0,
+   0.0,
+   1.0,
+   -1.0,
+   0.0,
+   0.0,
+   -1.0
+  ],
+  "riskEq": 0.0
+ },
+ {
+  "code": "HF-EQ",
+  "l1": "HF",
+  "l1Name": "Hedge Funds",
+  "name": "Equity hedge",
+  "ret": 0.067,
+  "vol": 0.09,
+  "beta": 0.45,
+  "risk": 3.0,
+  "scen": [
+   0.06,
+   0.1,
+   -0.06,
+   -0.1
+  ],
+  "factors": [
+   0.0,
+   0.0,
+   1.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "riskEq": 0.0
+ },
+ {
+  "code": "HF-MAC",
+  "l1": "HF",
+  "l1Name": "Hedge Funds",
+  "name": "Macro & managed futures",
+  "ret": 0.067,
+  "vol": 0.1,
+  "beta": 0.05,
+  "risk": 3.0,
+  "scen": [
+   0.05,
+   0.04,
+   0.08,
+   0.06
+  ],
+  "factors": [
+   1.0,
+   1.0,
+   0.0,
+   1.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "riskEq": 0.0
+ },
+ {
+  "code": "HF-CRD",
+  "l1": "HF",
+  "l1Name": "Hedge Funds",
+  "name": "Credit & event-driven",
+  "ret": 0.067,
+  "vol": 0.08,
+  "beta": 0.3,
+  "risk": 3.0,
+  "scen": [
+   0.06,
+   0.09,
+   -0.05,
+   -0.06
+  ],
+  "factors": [
+   0.0,
+   0.0,
+   1.0,
+   0.0,
+   0.0,
+   0.0,
+   1.0
+  ],
+  "riskEq": 0.0
+ },
+ {
+  "code": "HF-MS",
+  "l1": "HF",
+  "l1Name": "Hedge Funds",
+  "name": "Multi-strategy",
+  "ret": 0.067,
+  "vol": 0.06,
+  "beta": 0.25,
+  "risk": 3.0,
+  "scen": [
+   0.06,
+   0.08,
+   -0.02,
+   -0.03
+  ],
+  "factors": [
+   0.0,
+   0.0,
+   1.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "riskEq": 0.0
+ },
+ {
+  "code": "PM-PE",
+  "l1": "PM",
+  "l1Name": "Private Markets",
+  "name": "Private equity",
+  "ret": 0.098,
+  "vol": 0.2,
+  "beta": 1.1,
+  "risk": 5.0,
+  "scen": [
+   0.07,
+   0.12,
+   -0.12,
+   -0.18
+  ],
+  "factors": [
+   -1.0,
+   -1.0,
+   1.0,
+   -1.0,
+   0.0,
+   0.0,
+   -1.0
+  ],
+  "riskEq": 0.0
+ },
+ {
+  "code": "PM-PC",
+  "l1": "PM",
+  "l1Name": "Private Markets",
+  "name": "Private credit",
+  "ret": 0.077,
+  "vol": 0.09,
+  "beta": 0.4,
+  "risk": 4.0,
+  "scen": [
+   0.075,
+   0.08,
+   -0.03,
+   -0.05
+  ],
+  "factors": [
+   1.0,
+   1.0,
+   1.0,
+   -1.0,
+   0.0,
+   0.0,
+   -1.0
+  ],
+  "riskEq": 0.0
+ },
+ {
+  "code": "PM-RIA",
+  "l1": "PM",
+  "l1Name": "Private Markets",
+  "name": "Private real estate & infrastructure",
+  "ret": 0.076,
+  "vol": 0.12,
+  "beta": 0.5,
+  "risk": 4.0,
+  "scen": [
+   0.06,
+   0.09,
+   -0.04,
+   -0.08
+  ],
+  "factors": [
+   -1.0,
+   1.0,
+   1.0,
+   1.0,
+   0.0,
+   0.0,
+   -1.0
+  ],
+  "riskEq": 0.0
+ },
+ {
+  "code": "MA-BAL",
+  "l1": "MA",
+  "l1Name": "Multi-Asset",
+  "name": "Multi-asset / balanced funds",
+  "ret": 0.07,
+  "vol": 0.1,
+  "beta": 0.6,
+  "risk": 3.0,
+  "scen": [
+   0.065,
+   0.13,
+   -0.12,
+   -0.14
+  ],
+  "factors": [
+   0.0,
+   -1.0,
+   1.0,
+   -1.0,
+   0.0,
+   0.0,
+   -1.0
+  ],
+  "riskEq": 0.0
+ },
+ {
+  "code": "MA-RP",
+  "l1": "MA",
+  "l1Name": "Multi-Asset",
+  "name": "Risk parity / all-weather",
+  "ret": 0.07,
+  "vol": 0.11,
+  "beta": 0.45,
+  "risk": 3.0,
+  "scen": [
+   0.06,
+   0.11,
+   -0.08,
+   -0.04
+  ],
+  "factors": [
+   -1.0,
+   0.0,
+   0.0,
+   1.0,
+   0.0,
+   1.0,
+   -1.0
+  ],
+  "riskEq": 0.0
+ },
+ {
+  "code": "SP-CPN",
+  "l1": "SP",
+  "l1Name": "Structured Products",
+  "name": "Capital-protected notes",
+  "ret": 0.05,
+  "vol": 0.06,
+  "beta": 0.35,
+  "risk": 2.0,
+  "scen": [
+   0.072,
+   0.16000000000000003,
+   0.0,
+   0.0
+  ],
+  "factors": [
+   -0.2000000000000001,
+   -0.2000000000000001,
+   0.4000000000000002,
+   -0.2000000000000001,
+   0.0,
+   -0.2000000000000001,
+   -0.7000000000000001
+  ],
+  "riskEq": 0.4
+ },
+ {
+  "code": "SP-YLD",
+  "l1": "SP",
+  "l1Name": "Structured Products",
+  "name": "Yield enhancement (barrier income)",
+  "ret": 0.07,
+  "vol": 0.12,
+  "beta": 0.7,
+  "risk": 4.0,
+  "scen": [
+   0.08,
+   0.08,
+   -0.055899999999999964,
+   -0.13139999999999996
+  ],
+  "factors": [
+   -0.755,
+   -0.755,
+   1.51,
+   -0.755,
+   0.0,
+   -0.755,
+   -1.255
+  ],
+  "riskEq": 0.755
+ },
+ {
+  "code": "SP-PRT",
+  "l1": "SP",
+  "l1Name": "Structured Products",
+  "name": "Participation & growth notes",
+  "ret": 0.075,
+  "vol": 0.15,
+  "beta": 0.9,
+  "risk": 4.0,
+  "scen": [
+   0.09,
+   0.2,
+   -0.18,
+   -0.28
+  ],
+  "factors": [
+   -0.46,
+   -0.46,
+   0.92,
+   -0.46,
+   0.0,
+   -0.46,
+   -0.96
+  ],
+  "riskEq": 1.0
+ },
+ {
+  "code": "SP-AMC",
+  "l1": "SP",
+  "l1Name": "Structured Products",
+  "name": "Actively managed certificates & trackers",
+  "ret": 0.07,
+  "vol": 0.14,
+  "beta": 0.8,
+  "risk": 4.0,
+  "scen": [
+   0.08,
+   0.19,
+   -0.19,
+   -0.29000000000000004
+  ],
+  "factors": [
+   -1.0,
+   -1.0,
+   2.0,
+   -1.0,
+   0.0,
+   -1.0,
+   -1.5
+  ],
+  "riskEq": 1.0
+ },
+ {
+  "code": "OT-01",
+  "l1": "OT",
+  "l1Name": "Other / Future additions",
+  "name": "(Spare sub-asset class 1)",
+  "ret": 0.0,
+  "vol": 0.15,
+  "beta": 0.5,
+  "risk": 3.0,
+  "scen": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "factors": [
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "riskEq": 0.0
+ },
+ {
+  "code": "OT-02",
+  "l1": "OT",
+  "l1Name": "Other / Future additions",
+  "name": "(Spare sub-asset class 2)",
+  "ret": 0.0,
+  "vol": 0.15,
+  "beta": 0.5,
+  "risk": 3.0,
+  "scen": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "factors": [
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "riskEq": 0.0
+ },
+ {
+  "code": "OT-03",
+  "l1": "OT",
+  "l1Name": "Other / Future additions",
+  "name": "(Spare sub-asset class 3)",
+  "ret": 0.0,
+  "vol": 0.15,
+  "beta": 0.5,
+  "risk": 3.0,
+  "scen": [
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "factors": [
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0,
+   0.0
+  ],
+  "riskEq": 0.0
+ }
+]

@@ -1,0 +1,20 @@
+# Whitelist: the team repo carries only the app and what it needs to build, run and test.
+# Research, audit, client files and screenshots stay local.
+/*
+!/.gitignore
+!/README.md
+!/package.json
+!/package-lock.json
+!/next.config.ts
+!/postcss.config.mjs
+!/tsconfig.json
+!/app/
+!/components/
+!/lib/
+!/data/
+!/public/
+
+node_modules
+.next
+next-env.d.ts
+*.tsbuildinfo
