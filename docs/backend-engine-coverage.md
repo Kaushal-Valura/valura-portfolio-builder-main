@@ -19,7 +19,7 @@ This branch extends the existing TypeScript calculation engine. The Excel workbo
 - `data/scenario-evidence.json` contains the manually refreshable evidence table and house prior from the workbook. It is intentionally not connected to external market-data providers.
 - `app/page.tsx` hydrates the product catalogue and scenario evidence before calling the existing portfolio engine.
 - `lib/engine.ts` now uses the evidence-derived scenario probabilities and confidence, and calculates central / pessimistic / optimistic 12-month portfolio projections.
-- Start Here is a dashboard formula adapter: it accepts the linked sheet outputs and reproduces the six workbook status strings. It does not duplicate the underlying investment calculations.
+- Start Here is integrated into the portfolio analysis result through `deriveStartHereDashboard`; all six dashboard status strings are calculated from the same live product, portfolio, risk, scenario, action and hedge outputs used by the rest of the engine.
 
 ## Existing calculation coverage retained
 
