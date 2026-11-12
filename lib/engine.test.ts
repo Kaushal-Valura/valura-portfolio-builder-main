@@ -114,17 +114,17 @@ test("Portfolio Builder keeps unknown product amounts in totals, weights and sle
     { id: "", sleeve: "Equity", amount: 2_000 },
   ];
   const r = analyse(defaultClient(data.assumptions), [...sample.lines, ...extra], data);
-  close(r.value, 1_015_000, "Portfolio Builder!E64 includes unknown-ID and blank-ID amounts");
+  close(r.value, 1_017_000, "Portfolio Builder!E64 includes unknown-ID and blank-ID amounts");
   assert.equal(r.counts.lines, 15, "Portfolio Builder!D64 counts nonblank IDs only");
   assert.equal(r.unmappedLines.length, 2);
   assert.deepEqual(r.unmappedLines.map((line) => [line.id, line.source, line.eligibility]), [
     ["P999", "Public", "CHECK: ID not found in masters"],
     ["X999", "Unknown", "CHECK: unknown product ID"],
   ]);
-  close(r.unmappedLines[0].weight, 10_000 / 1_015_000, "unknown-ID line weight");
+  close(r.unmappedLines[0].weight, 10_000 / 1_017_000, "unknown-ID line weight");
   close(r.mandate.find((s) => s.name === "Equity")!.actual, 110_000, "sleeve SUMIF includes unknown product");
-  close(r.mandate.find((s) => s.name === "Equity")!.targetUsd, 0.1 * 1_015_000, "sleeve target uses invested total");
-  close(r.mandate.find((s) => s.name === "Equity")!.actualPct, 110_000 / 1_015_000, "sleeve actual weight uses invested total");
+  close(r.mandate.find((s) => s.name === "Equity")!.targetUsd, 0.1 * 1_017_000, "sleeve target uses invested total");
+  close(r.mandate.find((s) => s.name === "Equity")!.actualPct, 110_000 / 1_017_000, "sleeve actual weight uses invested total");
   assert.equal(r.geoStatus, "Check look-through %", "unknown-ID amounts have zero look-through shares");
 });
 
