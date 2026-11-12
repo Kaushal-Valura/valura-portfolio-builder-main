@@ -7,8 +7,8 @@ const assumptions: ProductMasterAssumptions = {
   lossGivenDefault: 0.6,
   creditSpreadExpectedLossShare: 0.5,
   assetClasses: [
-    { code: "EQ-USLC", level1: "EQ", name: "US Large Cap", expectedReturn: 0.075, volatility: 0.16, beta: 1, riskRating: 4 },
-    { code: "FI-HY", level1: "FI", name: "High Yield", expectedReturn: 0.1, volatility: 0.18, beta: 0.7, riskRating: 5 },
+    { code: "EQ-USLC", level1Name: "Equity", name: "US Large Cap", expectedReturn: 0.075, volatility: 0.16, beta: 1, riskRating: 4 },
+    { code: "FI-HY", level1Name: "Fixed Income", name: "High Yield", expectedReturn: 0.1, volatility: 0.18, beta: 0.7, riskRating: 5 },
   ],
   creditDefaults: [
     { rating: "BB", annualDefaultProbability: 0.008 },
@@ -22,7 +22,7 @@ const base: PublicProductInput = {
 
 test("uses asset-class defaults for non-bond products and derives classification", () => {
   const result = derivePublicProduct(base, assumptions);
-  assert.equal(result.assetClassCode, "EQ");
+  assert.equal(result.assetClassName, "Equity");
   assert.equal(result.subclassName, "US Large Cap");
   assert.equal(result.expectedReturn, 0.075);
   assert.equal(result.volatility, 0.16);
@@ -88,11 +88,11 @@ test("maps every formula output column and expands to all 80 workbook slots", as
   assert.equal(PRODUCT_MASTER_CAPACITY, 80);
   assert.equal(slots.length, 80);
   assert.deepEqual(Object.keys(PRODUCT_MASTER_FORMULA_MAP), ["G", "H", "U", "AT", "AU", "AV", "AW", "AX"]);
-  assert.equal(slots[0].assetClassCode, "EQ");
+  assert.equal(slots[0].assetClassName, "Equity");
   assert.equal(slots[0].subclassName, "US Large Cap");
   assert.equal(slots[0].geographyCheck, "OK");
   for (const blank of slots.slice(1)) {
-    assert.equal(blank.assetClassCode, "");
+    assert.equal(blank.assetClassName, "");
     assert.equal(blank.subclassName, "");
     assert.equal(blank.usSitus, "");
     assert.equal(blank.expectedReturn, 0);
