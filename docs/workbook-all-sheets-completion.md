@@ -17,35 +17,33 @@ The workbook contains 22 sheets and 11,866 formula cells. Product Master is alre
 7. Run the complete test suite and production build before marking the sheet complete.
 8. Move to the next sheet only after the current sheet's verification is documented.
 
-## Remaining sheets and workbook formula-cell counts
+## Progress
 
-Counts are from a formula-cell inventory of the supplied workbook.
+| Order | Sheet | Formula cells | Status | Evidence |
+|---:|---|---:|---|---|
+| 1 | Start Here | 6 | Implemented; focused parity tests added; CI verification pending | `lib/start-here.ts`, `lib/start-here.test.ts`; all six outputs matched saved workbook cached values |
+| 2 | Portfolio Builder | 2,321 | Pending | — |
+| 3 | Monitoring | 22 | Pending | — |
+| 4 | Client Summary | 1,904 | Pending | — |
+| 5 | Next Best Actions | 794 | Pending | — |
+| 6 | Scenario Engine | 197 | Existing module; formula-by-formula audit and parity re-verification pending | `lib/scenario-engine.ts` |
+| 7 | Scenarios | 444 | Existing engine coverage; sheet-specific audit and parity re-verification pending | `lib/engine.ts` |
+| 8 | Asset Class Master | 671 | Existing master-data / aggregation coverage; full sheet audit pending | `lib/master-data.ts`, `lib/engine.ts` |
+| 9 | Private Assets Master | 400 | Existing module; formula-by-formula audit and parity re-verification pending | `lib/private-assets.ts` |
+| 10 | Structured Notes | 990 | Existing module; formula-by-formula audit and parity re-verification pending | `lib/structured-notes.ts` |
+| 11 | Inputs | 47 | Existing input integration; full sheet audit pending | `lib/master-data.ts`, `lib/engine.ts` |
+| 12 | Risk & Hedging | 1,492 | Existing engine coverage; full sheet audit pending | `lib/engine.ts` |
+| 13 | F1 Rates | 253 | Existing factor aggregation; sheet formula audit pending | `lib/engine.ts` |
+| 14 | F2 Inflation | 253 | Existing factor aggregation; sheet formula audit pending | `lib/engine.ts` |
+| 15 | F3 Growth & AI | 261 | Existing factor aggregation; sheet formula audit pending | `lib/engine.ts` |
+| 16 | F4 Oil & Geopolitics | 253 | Existing factor aggregation; sheet formula audit pending | `lib/engine.ts` |
+| 17 | F5 Currency | 262 | Existing factor aggregation; sheet formula audit pending | `lib/engine.ts` |
+| 18 | F6 Valuation | 253 | Existing factor aggregation; sheet formula audit pending | `lib/engine.ts` |
+| 19 | F7 Credit & Fiscal | 253 | Existing factor aggregation; sheet formula audit pending | `lib/engine.ts` |
+| 20 | Sources | 0 | No formula cells; source-reference audit pending | — |
+| 21 | Lists | 150 | Pending | — |
 
-| Order | Sheet | Formula cells |
-|---:|---|---:|
-| 1 | Start Here | 6 |
-| 2 | Portfolio Builder | 2,321 |
-| 3 | Monitoring | 22 |
-| 4 | Client Summary | 1,904 |
-| 5 | Next Best Actions | 794 |
-| 6 | Scenario Engine | 197 |
-| 7 | Scenarios | 444 |
-| 8 | Asset Class Master | 671 |
-| 9 | Private Assets Master | 400 |
-| 10 | Structured Notes | 990 |
-| 11 | Inputs | 47 |
-| 12 | Risk & Hedging | 1,492 |
-| 13 | F1 Rates | 253 |
-| 14 | F2 Inflation | 253 |
-| 15 | F3 Growth & AI | 261 |
-| 16 | F4 Oil & Geopolitics | 253 |
-| 17 | F5 Currency | 262 |
-| 18 | F6 Valuation | 253 |
-| 19 | F7 Credit & Fiscal | 253 |
-| 20 | Sources | 0 |
-| 21 | Lists | 150 |
-
-Product Master (640 formula cells) is the completed baseline and is not reimplemented in this PR.
+Product Master (640 formula cells) is the completed baseline on the target backend branch and is not reimplemented in this PR.
 
 ## Safety boundaries
 
