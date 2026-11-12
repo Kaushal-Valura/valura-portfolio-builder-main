@@ -1,3 +1,5 @@
+import { calculateScenarioEngine, type ScenarioEngineInput } from "./scenario-engine";
+
 // Portfolio engine: a line-for-line port of the Valura workbook formulas
 // (Portfolio Builder -> Asset Class Master -> Risk & Hedging -> Scenarios -> Next Best Actions -> Monitoring).
 // Pure: no IO, no React. Sheet references in comments point at the source cells.
@@ -34,7 +36,7 @@ export type Assumptions = {
   monitoring: Indicator[];
   events: { date: string; event: string; factor: string; why: string }[];
 };
-export type Data = { products: Product[]; subclasses: Subclass[]; assumptions: Assumptions };
+export type Data = { products: Product[]; subclasses: Subclass[]; assumptions: Assumptions; scenarioEvidence?: ScenarioEngineInput };
 
 export type Client = {
   name: string; riskProfile: string; horizon: number; target: number; amount: number;
@@ -95,7 +97,12 @@ export function analyse(client: Client, input: Line[], data: Data) {
   const l1Index = new Map(A.l1.map((x, i) => [x.code, i]));
   const accredited = client.accredited === "Yes";
   const situs = (p: Product) => p.usSitus === "Yes" && client.usPerson !== "Yes"; // estate-tax rules are for non-US persons
-  const probs = A.scenarios.map((s, k) => client.probOverride?.[k] ?? s.prob); // Scenarios!D6:D9 = IF(K6="", engine, K6), per scenario
+  const scenarioModel = data.scenarioEvidence ? calculateScenarioEngine(data.scenarioEvidence) : null;
+  const scenarioKeys = ["base", "bull", "bear", "tail"] as const;
+  const engineProbabilities = scenarioModel
+    ? scenarioKeys.map((key) => scenarioModel.finalProbabilities[key])
+    : A.scenarios.map((s) => s.prob);
+  const probs = A.scenarios.map((s, k) => client.probOverride?.[k] ?? engineProbabilities[k]); // advisor override > live evidence model > workbook snapshot
 
   const held = input.filter((l) => byId.has(l.id));
   const V = held.reduce((s, l) => s + (l.amount || 0), 0); // Portfolio Builder!E64
@@ -310,7 +317,7 @@ export function analyse(client: Client, input: Line[], data: Data) {
       sixtyForty: 0.6 * sub("EQ-USLC")[k] + 0.2 * sub("FI-UST")[k] + 0.2 * sub("FI-IG")[k], // Scenarios!E59
     })),
     probWeighted: dot(probs),
-    engineWeighted: dot(A.scenarios.map((s) => s.prob)), // Scenario Engine!D65: engine odds, ignores the advisor override
+    engineWeighted: dot(engineProbabilities), // Scenario Engine!D65: engine odds, ignores the advisor override
     sixtyFortyWeighted: probs.reduce((t, p, k) => t + p * (0.6 * sub("EQ-USLC")[k] + 0.2 * sub("FI-UST")[k] + 0.2 * sub("FI-IG")[k]), 0), // Scenarios!I59
     pessimistic: dot(A.scenarios.map((s) => s.pessimistic)),
     optimistic: dot(A.scenarios.map((s) => s.optimistic)),
@@ -396,7 +403,7 @@ export function analyse(client: Client, input: Line[], data: Data) {
   const blocked = lines.filter((l) => l.eligibility.startsWith("BLOCKED")).length;
   const review = lines.filter((l) => l.eligibility.startsWith("REVIEW")).length;
   const nearBarrier = lines.filter((l) => l.amount > 0 && l.product.distToBarrier != null && l.product.distToBarrier < L.barrierProximity).length;
-  const live: Record<number, number> = { 9: A.engineConfidence, 10: blocked, 11: review, 12: nearBarrier, 13: usSitusAmt };
+  const live: Record<number, number> = { 9: scenarioModel?.overallConfidenceScore ?? A.engineConfidence, 10: blocked, 11: review, 12: nearBarrier, 13: usSitusAmt };
   if (client.drawdown != null) live[14] = client.drawdown;
   const monitoring = A.monitoring.map((m, i) => {
     const current = live[i] ?? m.current;
@@ -457,13 +464,13 @@ export function analyse(client: Client, input: Line[], data: Data) {
   const keyMessages = [
     `The advisor's construction (${usd(V)}) ${sleeveOk === mandate.length && geoOk === geography.length ? "meets" : "does not yet meet"} the mandate: sleeves ${sleeveOk}/${mandate.length} and geography ${geoOk}/${geography.length} on target. Expected return is ${pct(ret, 1)} a year in USD (${pct(retInr, 1)} in INR terms) with volatility of ${pct(vol, 1)}.`,
     `In an ordinary year the portfolio should end between ${usd(V * (1 + risk.lo))} and ${usd(V * (1 + risk.hi))}; a rare tough year (about 1 in 20) could take it to about ${usd(V * (1 + risk.toughYear))}.`,
-    `Next 12 months: expected ${sp(scenarios.engineWeighted)} (range ${sp(scenarios.pessimistic)} to ${sp(scenarios.optimistic)}), using probabilities blended from prediction markets, futures, options, nowcasts, shipping and credit data - confidence ${A.engineConfidenceLevel}.`,
+    `Next 12 months: expected ${sp(scenarios.engineWeighted)} (range ${sp(scenarios.pessimistic)} to ${sp(scenarios.optimistic)}), using probabilities blended from prediction markets, futures, options, nowcasts, shipping and credit data - confidence ${scenarioModel?.overallConfidence ?? A.engineConfidenceLevel}.`,
     `The engine raises ${counts.high} high-priority and ${counts.medium} medium-priority actions.${top ? ` Top priority: ${top.product.name} - ${top.action}.` : ""}`,
     `${rec.length} hedges are recommended; together they move the tail-scenario result from ${sp(hedges.tailBefore)} to ${sp(hedges.tailAfter)} after one year's cost.`,
   ];
 
   return {
-    value: V, invested: client.amount, unallocated: client.amount - V,
+    value: V, invested: client.amount, unallocated: client.amount - V, scenarioEngine: scenarioModel,
     lines: lines.map((l) => ({ ...l, riskShare: lineRisk(l) })), subs, byL1, risk, scenarios, cashLadder, feeCost, why, factorExposure, factorSummary, hedges, mandate, geography, mandateStatus, geoStatus,
     monitoring, actions, counts, keyMessages, riskLimits, sensitivity, marketView,
   };
