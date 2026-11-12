@@ -484,7 +484,7 @@ export function analyse(client: Client, input: Line[], data: Data) {
 
   // ---- Client Summary rows 15/21 and 292-296: totals status and key messages ----
   const sleeveOk = mandate.filter((m) => m.status === "On target").length, geoOk = geography.filter((g) => g.status === "On target").length;
-  const mandateStatus = Math.round(mandate.reduce((t, m) => t + m.actual, 0)) === Math.round(V) ? "All lines mapped" : "Unmapped sleeve";
+  const mandateStatus = xround(mandate.reduce((t, m) => t + m.actual, 0), 0) === xround(V, 0) ? "All lines mapped" : "Unmapped sleeve";
   const geoStatus = V && lt(Math.abs(geography.reduce((t, g) => t + g.actual, 0) / V - 1), 0.001) ? "Look-through complete" : "Check look-through %";
   const sp = (x: number) => signed(x * 100, 1, "%");
   const top = actions[0];
