@@ -1,4 +1,5 @@
 import { calculateScenarioEngine, type ScenarioEngineInput } from "./scenario-engine";
+import { deriveStartHereDashboard } from "./start-here";
 
 // Portfolio engine: a line-for-line port of the Valura workbook formulas
 // (Portfolio Builder -> Asset Class Master -> Risk & Hedging -> Scenarios -> Next Best Actions -> Monitoring).
@@ -495,8 +496,27 @@ export function analyse(client: Client, input: Line[], data: Data) {
     `${rec.length} hedges are recommended; together they move the tail-scenario result from ${sp(hedges.tailBefore)} to ${sp(hedges.tailAfter)} after one year's cost.`,
   ];
 
+  // Start Here!F6:F11 - dashboard formulas link the live outputs from all other sheets.
+  const startHere = deriveStartHereDashboard({
+    publicProductIds: data.products.filter((product) => product.source === "Public").map((product) => product.id),
+    privateAssetIds: data.products.filter((product) => product.source === "Private").map((product) => product.id),
+    privateDueDiligenceStatuses: data.products.filter((product) => product.source === "Private").map((product) => product.ddStatus),
+    structuredNoteIds: data.products.filter((product) => product.source === "Structured").map((product) => product.id),
+    portfolioLineNames: input.map((line) => line.id),
+    portfolioValue: V,
+    sleeveStatuses: mandate.map((item) => item.status),
+    geographyStatuses: geography.map((item) => item.status),
+    eligibilityStatuses: [...lines.map((line) => line.eligibility), ...unmappedLines.map((line) => line.eligibility)],
+    annualReturn: risk.ret,
+    annualVolatility: risk.vol,
+    expected12MonthReturn: scenarios.engineWeighted,
+    scenarioConfidence: scenarioModel?.overallConfidence ?? A.engineConfidenceLevel,
+    actionPriorities: lines.map((line) => line.priority),
+    hedgeStatuses: hedgeRows.map((hedge) => hedge.status),
+  });
+
   return {
-    value: V, invested: client.amount, unallocated: client.amount - V, scenarioEngine: scenarioModelReport,
+    value: V, invested: client.amount, unallocated: client.amount - V, scenarioEngine: scenarioModelReport, startHere,
     lines: lines.map((l) => ({ ...l, riskShare: lineRisk(l) })), unmappedLines, subs, byL1, risk, scenarios, cashLadder, feeCost, why, factorExposure, factorSummary, hedges, mandate, geography, mandateStatus, geoStatus,
     monitoring, actions, counts, keyMessages, riskLimits, sensitivity, marketView,
   };
