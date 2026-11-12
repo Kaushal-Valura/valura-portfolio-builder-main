@@ -7,6 +7,7 @@ import products from "../data/products.json" with { type: "json" };
 import subclasses from "../data/subclasses.json" with { type: "json" };
 import assumptions from "../data/assumptions.json" with { type: "json" };
 import sample from "../data/sample.json" with { type: "json" };
+import scenarioEvidence from "../data/scenario-evidence.json" with { type: "json" };
 
 const data = { products, subclasses, assumptions } as unknown as Data;
 const E = sample.expected;
@@ -82,4 +83,16 @@ test("US person: US-situs rules switch off", () => {
   assert.ok(r.lines.every((l) => l.action !== "SWITCH TO NON-US-SITUS LINE"));
   assert.equal(r.hedges.rows.find((h) => h.hedge === "US estate-tax exposure")!.status, "Not needed");
   assert.equal(r.riskLimits[5].status, "PASS");
+});
+
+
+test("live evidence model reproduces the workbook's scenario probabilities and confidence", () => {
+  const evidenceData = { ...data, scenarioEvidence } as unknown as Data;
+  const r = analyse(defaultClient(data.assumptions), sample.lines, evidenceData);
+  assert.ok(r.scenarioEngine);
+  r.scenarios.list.forEach((scenario, index) => {
+    close(scenario.prob, data.assumptions.scenarios[index].prob, `scenario probability ${index}`);
+  });
+  close(r.scenarioEngine!.overallConfidenceScore, data.assumptions.engineConfidence, "overall scenario confidence");
+  assert.equal(r.scenarioEngine!.overallConfidence, data.assumptions.engineConfidenceLevel);
 });
