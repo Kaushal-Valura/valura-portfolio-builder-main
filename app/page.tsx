@@ -186,7 +186,8 @@ export default function Page() {
           })}
           onRemove={(id) => {
             const gone = lines.find((line) => line.uid === id);
-            const next = removeLine(lines, id, client);
+            const preserve = new Set(lines.filter((line) => line.uid !== id && isEdited(line)).map((line) => line.uid ?? ""));
+            const next = removeLine(lines, id, client, preserve);
             if (gone && !next.some((line) => line.sleeve === gone.sleeve)) {
               const active = client.sleeves.filter((sleeve) => next.some((line) => line.sleeve === sleeve.name));
               const activeTotal = active.reduce((sum, sleeve) => sum + sleeve.target, 0);
