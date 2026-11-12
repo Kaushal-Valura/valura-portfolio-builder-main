@@ -122,9 +122,9 @@ test("Portfolio Builder keeps unknown product amounts in totals, weights and sle
     ["X999", "Unknown", "CHECK: unknown product ID"],
   ]);
   close(r.unmappedLines[0].weight, 10_000 / 1_017_000, "unknown-ID line weight");
-  close(r.mandate.find((s) => s.name === "Equity")!.actual, 110_000, "sleeve SUMIF includes unknown product");
+  close(r.mandate.find((s) => s.name === "Equity")!.actual, 112_000, "sleeve SUMIF includes unresolved and blank-ID amounts");
   close(r.mandate.find((s) => s.name === "Equity")!.targetUsd, 0.1 * 1_017_000, "sleeve target uses invested total");
-  close(r.mandate.find((s) => s.name === "Equity")!.actualPct, 110_000 / 1_017_000, "sleeve actual weight uses invested total");
+  close(r.mandate.find((s) => s.name === "Equity")!.actualPct, 112_000 / 1_017_000, "sleeve actual weight uses invested total");
   assert.equal(r.geoStatus, "Check look-through %", "unknown-ID amounts have zero look-through shares");
 });
 
