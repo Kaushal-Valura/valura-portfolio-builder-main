@@ -94,6 +94,13 @@ test("live evidence model reproduces the workbook's scenario probabilities and c
     close(scenario.prob, data.assumptions.scenarios[index].prob, `scenario probability ${index}`);
   });
   close(r.scenarioEngine!.overallConfidenceScore, data.assumptions.engineConfidence, "overall scenario confidence");
+  close(r.scenarioEngine!.totalEffectiveWeight, 40.407673275924395, "total effective evidence weight");
+  assert.equal(r.scenarioEngine!.signalsUpdatedLast30Days, 12);
+  close(r.scenarioEngine!.brierScore!, 0.11245, "calibration Brier score");
+  (["base", "bull", "bear", "tail"] as const).forEach((key, index) => {
+    close(r.scenarioEngine!.pessimisticProbabilities[key], data.assumptions.scenarios[index].pessimistic, `pessimistic probability ${key}`);
+    close(r.scenarioEngine!.optimisticProbabilities[key], data.assumptions.scenarios[index].optimistic, `optimistic probability ${key}`);
+  });
   close(r.scenarioEngine!.expected12MonthReturn!.central, r.scenarios.engineWeighted, "central scenario engine return");
   close(r.scenarioEngine!.projectedPortfolioValue!.central, r.value * (1 + r.scenarios.engineWeighted), "scenario engine projected portfolio value");
   assert.equal(r.scenarioEngine!.overallConfidence, data.assumptions.engineConfidenceLevel);
