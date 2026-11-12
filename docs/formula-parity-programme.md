@@ -106,3 +106,7 @@ A formula cell is complete only when all of the following are recorded:
 A LibreOffice headless open/convert round-trip (XLSX → ODS → XLSX) was attempted on a copy. It produced no cached formula errors, but the same 2,204 cells still have no cached value when read by openpyxl. This does not establish whether those cells are blank-by-design or require a different calculation path. The no-cache cells are concentrated in formula-filled rows that often gate on blank product/holding IDs, but each must be classified rather than assumed blank.
 
 A detailed downloadable inventory was generated during this audit with one row per formula cell, formula text, saved cached result/status and extracted cross-sheet references. The workbook hash above pins the exact source version.
+
+## CI after the input correction
+
+Workflow run `43169616579` completed successfully on commit `944f5137975b19ffe4f97f524101bd2654f5bc4a`: backend/parity tests passed and production build passed. Subsequent commits in this programme document the workbook inventory and audit criteria; the CI result above validates the code correction, not the entire 11,866-cell parity programme.
