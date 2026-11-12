@@ -111,7 +111,7 @@ export function analyse(client: Client, input: Line[], data: Data) {
   // but must remain in the portfolio denominator and sleeve actuals.
   const V = input.reduce((s, l) => s + (l.amount || 0), 0);
   const unmappedLines = input
-    .filter((l) => l.id.trim() !== "" && !byId.has(l.id))
+    .filter((l) => l.id !== "" && !byId.has(l.id))
     .map((l) => {
       const prefix = l.id.slice(0, 1).toUpperCase();
       const source = prefix === "P" ? "Public" : prefix === "A" ? "Private" : prefix === "S" ? "Structured" : "Unknown";
@@ -475,7 +475,7 @@ export function analyse(client: Client, input: Line[], data: Data) {
   const actions = [...lines].sort((a, b) => b.score - a.score);
   const counts = {
     // Portfolio Builder!D64 counts nonblank advisor IDs, including unresolved IDs.
-    lines: input.filter((l) => l.id.trim() !== "").length, blocked, review,
+    lines: input.filter((l) => l.id !== "").length, blocked, review,
     high: lines.filter((l) => l.priority === "High").length, medium: lines.filter((l) => l.priority === "Medium").length,
     hedges: rec.length, red: monitoring.filter((m) => m.status === "RED").length, amber: monitoring.filter((m) => m.status === "AMBER").length,
   };
