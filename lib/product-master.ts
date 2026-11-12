@@ -157,6 +157,8 @@ export function derivePublicProductSlots(
   products: PublicProductInput[],
   assumptions: ProductMasterAssumptions,
 ): DerivedPublicProduct[] {
+  const assumptionErrors = validateProductMasterAssumptions(assumptions);
+  if (assumptionErrors.length) throw new Error(`Invalid Product Master assumptions: ${assumptionErrors.join("; ")}`);
   if (products.length > PRODUCT_MASTER_CAPACITY) {
     throw new Error(`Product Master supports ${PRODUCT_MASTER_CAPACITY} rows; received ${products.length}`);
   }
