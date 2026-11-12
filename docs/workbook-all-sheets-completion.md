@@ -23,7 +23,7 @@ The workbook contains 22 sheets and 11,866 formula cells. Product Master is alre
 |---:|---|---:|---|---|
 | 1 | Start Here | 6 | Implemented and integrated; all six cached workbook outputs and edge cases checked locally; CI verification pending | `lib/start-here.ts`, `lib/start-here.test.ts`, `lib/engine.ts`, `lib/engine.test.ts`
 | 2 | Portfolio Builder | 2,321 | Formula audit underway; unknown/blank ID, invested-value denominator, sleeve mapping and case-insensitive ID fixes added; full row/summary parity and CI verification pending | `docs/portfolio-builder-formula-audit.md`, `lib/engine.ts`, `lib/engine.test.ts`
-| 3 | Monitoring | 22 | Pending | — |
+| 3 | Monitoring | 22 | Implemented in runtime; all 15 traffic-light outputs and RED/AMBER counts covered by regression tests; US-situs metric corrected to match Excel independently of US-person status; CI pending | `lib/engine.ts`, `lib/engine.test.ts`, `docs/monitoring-formula-audit.md` |
 | 4 | Client Summary | 1,904 | Pending | — |
 | 5 | Next Best Actions | 794 | Pending | — |
 | 6 | Scenario Engine | 197 | Existing module; formula-by-formula audit and parity re-verification pending | `lib/scenario-engine.ts` |
