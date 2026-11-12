@@ -1,6 +1,6 @@
 # Product Master engine coverage
 
-Status: implementation and focused tests added; final CI verification pending.
+Status: implementation and focused tests added; latest full CI run is being checked after wiring all formula outputs into runtime product records.
 
 ## Workbook scope
 
