@@ -429,7 +429,10 @@ export function analyse(client: Client, input: Line[], data: Data) {
   const blocked = lines.filter((l) => l.eligibility.startsWith("BLOCKED")).length;
   const review = lines.filter((l) => l.eligibility.startsWith("REVIEW")).length;
   const nearBarrier = lines.filter((l) => l.amount > 0 && l.product.distToBarrier != null && l.product.distToBarrier < L.barrierProximity).length;
-  const live: Record<number, number> = { 9: scenarioModel?.overallConfidenceScore ?? A.engineConfidence, 10: blocked, 11: review, 12: nearBarrier, 13: usSitusAmt };
+  // Monitoring!E19 sums Portfolio Builder!T="Yes" directly; unlike the estate-tax hedge,
+  // this dashboard metric is not switched off for US-person clients.
+  const monitoringUsSitusAmt = lines.reduce((total, line) => total + (line.product.usSitus === "Yes" ? line.amount : 0), 0);
+  const live: Record<number, number> = { 9: scenarioModel?.overallConfidenceScore ?? A.engineConfidence, 10: blocked, 11: review, 12: nearBarrier, 13: monitoringUsSitusAmt };
   if (client.drawdown != null) live[14] = client.drawdown;
   const monitoring = A.monitoring.map((m, i) => {
     const current = live[i] ?? m.current;
