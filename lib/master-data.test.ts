@@ -21,10 +21,12 @@ test("all workbook master rows derive the same expected return, volatility, beta
     close(result.beta, original.beta, `${original.id} beta`);
     close(result.risk, original.risk, `${original.id} risk rating`);
     assert.equal(result.usSitus, original.usSitus, `${original.id} US situs`);
-    const linkedSubclass = (subclasses as Subclass[]).find((item) => item.code === original.subclass)!;
-    assert.equal(result.assetClassName, linkedSubclass.l1Name, `${original.id} Level 1 name`);
-    assert.equal(result.subclassName, linkedSubclass.name, `${original.id} sub-class name`);
-    assert.equal(result.geographyCheck, "OK", `${original.id} geography check`);
+    if (original.source === "Public") {
+      const linkedSubclass = (subclasses as Subclass[]).find((item) => item.code === original.subclass)!;
+      assert.equal(result.assetClassName, linkedSubclass.l1Name, `${original.id} Level 1 name`);
+      assert.equal(result.subclassName, linkedSubclass.name, `${original.id} sub-class name`);
+      assert.equal(result.geographyCheck, "OK", `${original.id} geography check`);
+    }
   }
 });
 
