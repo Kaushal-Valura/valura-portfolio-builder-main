@@ -19,7 +19,7 @@ export type MasterInputs = {
 
 const scenarioKeys = ["base", "bull", "bear", "tail"] as const;
 const assetClassDefaults = (subclasses: Subclass[]) => subclasses.map((item) => ({
-  code: item.code, level1: item.l1, name: item.name, expectedReturn: item.ret,
+  code: item.code, level1Name: item.l1Name, name: item.name, expectedReturn: item.ret,
   volatility: item.vol, beta: item.beta, riskRating: item.risk,
 }));
 
