@@ -20,7 +20,9 @@ export function splitSleeve(ls: Line[], sleeve: string, c: Budget): Line[] {
   });
 }
 
-export const addLine = (ls: Line[], line: Line, c: Budget) => capBudget(splitSleeve([...ls, line], line.sleeve, c), c.amount);
+export function addLine(ls: Line[], line: Line, c: Budget, preserveUids: Set<string> = new Set()): Line[] {
+  return rebalancePreservingEdits([...ls, line], c, preserveUids);
+}
 
 // Keep the portfolio at or below the client's budget even if previously edited sleeves were already over target.
 export function capBudget(ls: Line[], budget: number): Line[] {
@@ -62,10 +64,10 @@ export function rebalanceLines(ls: Line[], c: Budget): Line[] {
   return c.sleeves.reduce((out, sleeve) => splitSleeve(out, sleeve.name, c), ls);
 }
 
-export function removeLine(ls: Line[], uid: string, c: Budget) {
+export function removeLine(ls: Line[], uid: string, c: Budget, preserveUids: Set<string> = new Set()) {
   const gone = ls.find((l) => l.uid === uid);
   const rest = ls.filter((l) => l.uid !== uid);
-  return gone ? splitSleeve(rest, gone.sleeve, c) : rest;
+  return gone ? rebalancePreservingEdits(rest, c, preserveUids) : rest;
 }
 
 export const updateLine = (ls: Line[], uid: string, patch: Partial<Line>) => ls.map((l) => (l.uid === uid ? { ...l, ...patch } : l));
