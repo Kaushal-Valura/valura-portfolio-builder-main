@@ -189,7 +189,7 @@ export function deriveStructuredNote(
         : issuerCreditRisk === "High" ? assumptions.issuerCreditAdjustment.high : 0
       : 0;
     return subclassCode && note.underlyingSubclassCode
-      ? clamp(riskEquivalent * (underlyingScore + creditAdjustment), -2, 2)
+      ? clamp(riskEquivalent * underlyingScore + creditAdjustment, -2, 2)
       : 0;
   });
 
