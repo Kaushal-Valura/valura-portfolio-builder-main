@@ -152,10 +152,10 @@ test("preserve advisor-edited holdings when a new product is added to the sleeve
   assert.ok(sum(out.map((x) => x.amount)) <= custom.amount, "budget remains respected");
 });
 
-test("mandate actual percentages use the client's full investment budget when partly unallocated", () => {
+test("mandate actual percentages use invested portfolio value when partly unallocated", () => {
   const partial = { ...client, amount: 1_000_000 };
   const holdings: Line[] = [{ uid: uid(), id: "P001", sleeve: EQ, amount: 100_000 }];
   const r = analyse(partial, holdings, data);
-  assert.equal(r.mandate.find((m) => m.name === EQ)!.actualPct, 0.1);
-  assert.equal(r.geography.reduce((sum, g) => sum + g.actualPct, 0), 0.1);
+  assert.equal(r.mandate.find((m) => m.name === EQ)!.actualPct, 1);
+  assert.equal(r.geography.reduce((sum, g) => sum + g.actualPct, 0), 1);
 });

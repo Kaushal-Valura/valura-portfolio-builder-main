@@ -18,6 +18,14 @@ test("engine matches the Excel workbook on the sample client", () => {
   const r = analyse(defaultClient(data.assumptions), sample.lines, data);
 
   close(r.value, 1_000_000, "portfolio value");
+  assert.deepEqual(r.startHere, {
+    productAvailability: "27 public | 6 private (4 DD-approved) | 4 notes",
+    portfolioConstruction: "13 lines | $1,000,000 | sleeves on target 5/5 | geography 3/3",
+    eligibility: "0 blocked | 1 under review",
+    riskAndScenarios: "Return 7.2% | volatility 6.4% | 12m expected +4.3% | confidence Medium",
+    actionsAndHedges: "1 high / 7 medium actions | 6 hedges recommended",
+    clientPresentation: "Ready",
+  });
   close(r.risk.ret, E.ret, "expected return");
   close(r.risk.retInr, E.retInr, "INR return");
   close(r.risk.vol, E.vol, "volatility");
@@ -82,6 +90,9 @@ test("US person: US-situs rules switch off", () => {
   const r = analyse({ ...defaultClient(data.assumptions), usPerson: "Yes" }, sample.lines, data);
   assert.ok(r.lines.every((l) => l.action !== "SWITCH TO NON-US-SITUS LINE"));
   assert.equal(r.hedges.rows.find((h) => h.hedge === "US estate-tax exposure")!.status, "Not needed");
+  // Monitoring!E19 is a raw US-situs exposure metric and remains populated for US persons.
+  close(r.monitoring[13].current, 150_000, "Monitoring!E19 is independent of estate-tax applicability");
+  assert.equal(r.monitoring[13].status, "RED");
   assert.equal(r.riskLimits[5].status, "PASS");
 });
 
@@ -104,4 +115,74 @@ test("live evidence model reproduces the workbook's scenario probabilities and c
   close(r.scenarioEngine!.expected12MonthReturn!.central, r.scenarios.engineWeighted, "central scenario engine return");
   close(r.scenarioEngine!.projectedPortfolioValue!.central, r.value * (1 + r.scenarios.engineWeighted), "scenario engine projected portfolio value");
   assert.equal(r.scenarioEngine!.overallConfidence, data.assumptions.engineConfidenceLevel);
+});
+
+
+test("Monitoring reproduces all 15 traffic-light formulas and the RED/AMBER dashboard counts", () => {
+  const r = analyse(defaultClient(data.assumptions), sample.lines, data);
+  assert.deepEqual(r.monitoring.map((indicator) => indicator.status), E.monitoringStatus);
+  assert.equal(r.monitoring.length, 15, "Monitoring!I6:I20");
+  assert.equal(r.counts.red, 1, "Monitoring!E22 = COUNTIF(I6:I20,\"RED\")");
+  assert.equal(r.counts.amber, 2, "Monitoring!E23 = COUNTIF(I6:I20,\"AMBER\")");
+  assert.deepEqual(r.monitoring.slice(0, 9).map((indicator) => indicator.current), data.assumptions.monitoring.slice(0, 9).map((indicator) => indicator.current));
+  close(r.monitoring[9].current, data.assumptions.engineConfidence, "Monitoring!E15 links Scenario Engine!D58");
+  assert.equal(r.monitoring[10].current, 0, "Monitoring!E16 blocked lines");
+  assert.equal(r.monitoring[11].current, 1, "Monitoring!E17 review lines");
+  assert.equal(r.monitoring[12].current, 0, "Monitoring!E18 near-barrier notes");
+  assert.equal(r.monitoring[13].current, 150_000, "Monitoring!E19 US-situs amount");
+  assert.equal(r.monitoring[14].current, 0, "Monitoring!E20 drawdown default");
+});
+
+test("Portfolio Builder keeps unknown product amounts in totals, weights and sleeve actuals", () => {
+  const extra = [
+    { id: "P999", sleeve: "Equity", amount: 10_000 },
+    { id: "X999", sleeve: "Bonds & fixed income", amount: 5_000 },
+    { id: "", sleeve: "Equity", amount: 2_000 },
+  ];
+  const r = analyse(defaultClient(data.assumptions), [...sample.lines, ...extra], data);
+  close(r.value, 1_017_000, "Portfolio Builder!E64 includes unknown-ID and blank-ID amounts");
+  assert.equal(r.counts.lines, 15, "Portfolio Builder!D64 counts nonblank IDs only");
+  assert.equal(r.unmappedLines.length, 3, "amount-only blank-ID slot retains its formula weight");
+  assert.deepEqual(r.unmappedLines.map((line) => [line.id, line.source, line.eligibility]), [
+    ["P999", "Public", "CHECK: ID not found in masters"],
+    ["X999", "Unknown", "CHECK: unknown product ID"],
+    ["", "", ""],
+  ]);
+  close(r.unmappedLines[0].weight, 10_000 / 1_017_000, "unknown-ID line weight");
+  close(r.unmappedLines[2].weight, 2_000 / 1_017_000, "blank-ID amount-only slot weight");
+  close(r.mandate.find((s) => s.name === "Equity")!.actual, 112_000, "sleeve SUMIF includes unresolved and blank-ID amounts");
+  close(r.mandate.find((s) => s.name === "Equity")!.targetUsd, 0.1 * 1_017_000, "sleeve target uses invested total");
+  close(r.mandate.find((s) => s.name === "Equity")!.actualPct, 112_000 / 1_017_000, "sleeve actual weight uses invested total");
+  assert.equal(r.geoStatus, "Check look-through %", "unknown-ID amounts have zero look-through shares");
+});
+
+test("Portfolio Builder sleeve and geography targets use invested value, not the client budget", () => {
+  const client = { ...defaultClient(data.assumptions), amount: 2_000_000 };
+  const r = analyse(client, sample.lines, data);
+  close(r.value, 1_000_000, "invested portfolio value");
+  close(r.mandate[0].targetUsd, 100_000, "sleeve target USD uses Portfolio Builder!E64");
+  close(r.mandate[0].actualPct, 0.1, "sleeve actual percent uses Portfolio Builder!E64");
+  close(r.geography[0].targetUsd, 400_000, "geography target USD uses Portfolio Builder!E64");
+  close(r.geography[0].actualPct, 0.4, "geography actual percent uses Portfolio Builder!E64");
+});
+
+
+test("Portfolio Builder master lookup follows Excel MATCH case-insensitive text semantics", () => {
+  const lowerCaseId = { ...sample.lines[0], id: sample.lines[0].id.toLowerCase() };
+  const r = analyse(defaultClient(data.assumptions), [lowerCaseId], data);
+  assert.equal(r.lines.length, 1);
+  assert.equal(r.lines[0].product.id, sample.lines[0].id);
+  assert.equal(r.unmappedLines.length, 0);
+  close(r.value, sample.lines[0].amount, "case-insensitive product ID match retains amount");
+});
+
+
+test("Portfolio Builder mandate completeness uses Excel ROUND half-away-from-zero semantics", () => {
+  const lines = [
+    { id: "P001", sleeve: "Equity", amount: -1 },
+    { id: "X999", sleeve: "Unmapped", amount: -0.5 },
+  ];
+  const r = analyse(defaultClient(data.assumptions), lines, data);
+  assert.equal(r.value, -1.5);
+  assert.equal(r.mandateStatus, "Unmapped sleeve");
 });

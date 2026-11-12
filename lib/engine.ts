@@ -1,4 +1,5 @@
 import { calculateScenarioEngine, type ScenarioEngineInput } from "./scenario-engine";
+import { deriveStartHereDashboard } from "./start-here";
 
 // Portfolio engine: a line-for-line port of the Valura workbook formulas
 // (Portfolio Builder -> Asset Class Master -> Risk & Hedging -> Scenarios -> Next Best Actions -> Monitoring).
@@ -93,7 +94,7 @@ export function normCdf(z: number) {
 export function analyse(client: Client, input: Line[], data: Data) {
   const { assumptions: A, subclasses } = data;
   const L = A.limits, M = A.market;
-  const byId = new Map(data.products.map((p) => [p.id, p]));
+  const byId = new Map(data.products.map((p) => [p.id.toLocaleUpperCase(), p]));
   const sc = new Map(subclasses.map((s) => [s.code, s]));
   const l1Index = new Map(A.l1.map((x, i) => [x.code, i]));
   const accredited = client.accredited === "Yes";
@@ -105,12 +106,28 @@ export function analyse(client: Client, input: Line[], data: Data) {
     : A.scenarios.map((s) => s.prob);
   const probs = A.scenarios.map((s, k) => client.probOverride?.[k] ?? engineProbabilities[k]); // advisor override > live evidence model > workbook snapshot
 
-  const held = input.filter((l) => byId.has(l.id));
-  const V = held.reduce((s, l) => s + (l.amount || 0), 0); // Portfolio Builder!E64
+  const held = input.filter((l) => byId.has(l.id.toLocaleUpperCase()));
+  // Portfolio Builder!E64 sums every advisor-entered amount, including rows whose product ID
+  // cannot be resolved. Unknown IDs contribute zero to product-specific look-through fields,
+  // but must remain in the portfolio denominator and sleeve actuals.
+  const V = input.reduce((s, l) => s + (l.amount || 0), 0);
+  const unmappedLines = input
+    .filter((l) => !byId.has(l.id.toLocaleUpperCase()) && (l.id !== "" || (l.amount || 0) !== 0))
+    .map((l) => {
+      const prefix = l.id.slice(0, 1).toUpperCase();
+      const source = l.id === "" ? "" : prefix === "P" ? "Public" : prefix === "A" ? "Private" : prefix === "S" ? "Structured" : "Unknown";
+      const eligibility = l.id === "" ? "" : source === "Unknown" ? "CHECK: unknown product ID" : "CHECK: ID not found in masters";
+      return {
+        ...l,
+        source,
+        eligibility,
+        weight: V ? (l.amount || 0) / V : 0,
+      };
+    });
 
   // ---- Portfolio Builder: one enriched row per line (cols G..BJ) ----
   const lines = held.map((l, i) => {
-    const p = byId.get(l.id)!, s = sc.get(p.subclass)!;
+    const p = byId.get(l.id.toLocaleUpperCase())!, s = sc.get(p.subclass)!;
     const amount = l.amount || 0, weight = V ? amount / V : 0;
     // PB!AO:AU - notes carry their own scores; other products look up their sub-class row (F sheets have no SP / OT rows
     // in that lookup range, so a non-note in an SP sub-class scores 0, as IFERROR(...,0) gives)
@@ -397,21 +414,25 @@ export function analyse(client: Client, input: Line[], data: Data) {
 
   // ---- Portfolio Builder A: mandate and look-through geography ----
   const mandate = client.sleeves.map((s) => {
-    const actual = lines.filter((l) => l.sleeve === s.name).reduce((t, l) => t + l.amount, 0);
-    const actualPct = client.amount > 0 ? actual / client.amount : 0;
-    return { ...s, targetUsd: s.target * client.amount, actual, actualPct, gap: actualPct - s.target, status: statusOf(actualPct - s.target) };
+    // Workbook SUMIF includes every advisor line, even if its product ID is unresolved.
+    const actual = input.filter((l) => l.sleeve === s.name).reduce((t, l) => t + (l.amount || 0), 0);
+    const actualPct = V ? actual / V : 0;
+    return { ...s, targetUsd: s.target * V, actual, actualPct, gap: actualPct - s.target, status: statusOf(actualPct - s.target) };
   });
   const geography = client.geoTargets.map((g, k) => {
     const actual = lines.reduce((t, l) => t + l.amount * (l.product.geo[k] ?? 0), 0);
-    const actualPct = client.amount > 0 ? actual / client.amount : 0;
-    return { ...g, targetUsd: g.target * client.amount, actual, actualPct, gap: actualPct - g.target, status: statusOf(actualPct - g.target) };
+    const actualPct = V ? actual / V : 0;
+    return { ...g, targetUsd: g.target * V, actual, actualPct, gap: actualPct - g.target, status: statusOf(actualPct - g.target) };
   });
 
   // ---- Monitoring: market indicators are static; rows 10-15 are live ----
   const blocked = lines.filter((l) => l.eligibility.startsWith("BLOCKED")).length;
   const review = lines.filter((l) => l.eligibility.startsWith("REVIEW")).length;
   const nearBarrier = lines.filter((l) => l.amount > 0 && l.product.distToBarrier != null && l.product.distToBarrier < L.barrierProximity).length;
-  const live: Record<number, number> = { 9: scenarioModel?.overallConfidenceScore ?? A.engineConfidence, 10: blocked, 11: review, 12: nearBarrier, 13: usSitusAmt };
+  // Monitoring!E19 sums Portfolio Builder!T="Yes" directly; unlike the estate-tax hedge,
+  // this dashboard metric is not switched off for US-person clients.
+  const monitoringUsSitusAmt = lines.reduce((total, line) => total + (line.product.usSitus === "Yes" ? line.amount : 0), 0);
+  const live: Record<number, number> = { 9: scenarioModel?.overallConfidenceScore ?? A.engineConfidence, 10: blocked, 11: review, 12: nearBarrier, 13: monitoringUsSitusAmt };
   if (client.drawdown != null) live[14] = client.drawdown;
   const monitoring = A.monitoring.map((m, i) => {
     const current = live[i] ?? m.current;
@@ -458,14 +479,15 @@ export function analyse(client: Client, input: Line[], data: Data) {
 
   const actions = [...lines].sort((a, b) => b.score - a.score);
   const counts = {
-    lines: lines.length, blocked, review,
+    // Portfolio Builder!D64 counts nonblank advisor IDs, including unresolved IDs.
+    lines: input.filter((l) => l.id !== "").length, blocked, review,
     high: lines.filter((l) => l.priority === "High").length, medium: lines.filter((l) => l.priority === "Medium").length,
     hedges: rec.length, red: monitoring.filter((m) => m.status === "RED").length, amber: monitoring.filter((m) => m.status === "AMBER").length,
   };
 
   // ---- Client Summary rows 15/21 and 292-296: totals status and key messages ----
   const sleeveOk = mandate.filter((m) => m.status === "On target").length, geoOk = geography.filter((g) => g.status === "On target").length;
-  const mandateStatus = Math.round(mandate.reduce((t, m) => t + m.actual, 0)) === Math.round(V) ? "All lines mapped" : "Unmapped sleeve";
+  const mandateStatus = xround(mandate.reduce((t, m) => t + m.actual, 0), 0) === xround(V, 0) ? "All lines mapped" : "Unmapped sleeve";
   const geoStatus = V && lt(Math.abs(geography.reduce((t, g) => t + g.actual, 0) / V - 1), 0.001) ? "Look-through complete" : "Check look-through %";
   const sp = (x: number) => signed(x * 100, 1, "%");
   const top = actions[0];
@@ -477,9 +499,28 @@ export function analyse(client: Client, input: Line[], data: Data) {
     `${rec.length} hedges are recommended; together they move the tail-scenario result from ${sp(hedges.tailBefore)} to ${sp(hedges.tailAfter)} after one year's cost.`,
   ];
 
+  // Start Here!F6:F11 - dashboard formulas link the live outputs from all other sheets.
+  const startHere = deriveStartHereDashboard({
+    publicProductIds: data.products.filter((product) => product.source === "Public").map((product) => product.id),
+    privateAssetIds: data.products.filter((product) => product.source === "Private").map((product) => product.id),
+    privateDueDiligenceStatuses: data.products.filter((product) => product.source === "Private").map((product) => product.ddStatus),
+    structuredNoteIds: data.products.filter((product) => product.source === "Structured").map((product) => product.id),
+    portfolioLineNames: input.map((line) => line.id),
+    portfolioValue: V,
+    sleeveStatuses: mandate.map((item) => item.status),
+    geographyStatuses: geography.map((item) => item.status),
+    eligibilityStatuses: [...lines.map((line) => line.eligibility), ...unmappedLines.map((line) => line.eligibility)],
+    annualReturn: risk.ret,
+    annualVolatility: risk.vol,
+    expected12MonthReturn: scenarios.engineWeighted,
+    scenarioConfidence: scenarioModel?.overallConfidence ?? A.engineConfidenceLevel,
+    actionPriorities: lines.map((line) => line.priority),
+    hedgeStatuses: hedgeRows.map((hedge) => hedge.status),
+  });
+
   return {
-    value: V, invested: client.amount, unallocated: client.amount - V, scenarioEngine: scenarioModelReport,
-    lines: lines.map((l) => ({ ...l, riskShare: lineRisk(l) })), subs, byL1, risk, scenarios, cashLadder, feeCost, why, factorExposure, factorSummary, hedges, mandate, geography, mandateStatus, geoStatus,
+    value: V, invested: client.amount, unallocated: client.amount - V, scenarioEngine: scenarioModelReport, startHere,
+    lines: lines.map((l) => ({ ...l, riskShare: lineRisk(l) })), unmappedLines, subs, byL1, risk, scenarios, cashLadder, feeCost, why, factorExposure, factorSummary, hedges, mandate, geography, mandateStatus, geoStatus,
     monitoring, actions, counts, keyMessages, riskLimits, sensitivity, marketView,
   };
 }
