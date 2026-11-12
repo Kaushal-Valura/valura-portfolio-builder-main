@@ -53,7 +53,8 @@ export function deriveMasterProducts(
       const derived = derivePublicProduct(raw, productAssumptions);
       return {
         ...product, ret: derived.expectedReturn, vol: derived.volatility,
-        beta: derived.beta, risk: derived.riskRating, usSitus: derived.usSitus || product.usSitus,
+        beta: derived.beta, risk: derived.riskRating, usSitus: derived.usSitus,
+        assetClassName: derived.assetClassName, subclassName: derived.subclassName, geographyCheck: derived.geographyCheck,
         scen: scenarioKeys.map((key) => raw.scenarioOverrides?.[key] ?? null),
       };
     }
