@@ -14,6 +14,20 @@ A formula cell is complete only when all of the following are recorded:
 7. Edge-case coverage (blank, zero, boundary, negative, maximum/minimum, missing master-data match where applicable).
 8. Status: exact, tolerance match, intentional UI-only, workbook-only, blocked, or discrepancy.
 
+## Formula occurrence vs reusable calculation architecture
+
+Do not interpret 11,866 formula cells as 11,866 independent business calculations. A syntax-aware normalization of the frozen source workbook gives:
+
+- 11,866 formula-cell occurrences (cell-level audit/traceability denominator).
+- 1,334 normalized formula templates across the workbook.
+- 1,795 normalized templates summed across worksheets (the same template can appear on more than one sheet).
+- 2,695 direct single-cell reference formulas (normally data-flow aliases, not standalone calculation functions).
+- 9,171 other formula occurrences.
+
+These normalized-template counts are structural, not semantic. The final count of business calculations must come from dependency and business-rule analysis; it is not safe to infer it from formula text alone. Dragged formula ranges should become reusable row-level functions or transformations. Direct references should become explicit field/data relationships where appropriate. Every original formula cell must still retain a traceable mapping and be included in parity coverage.
+
+The detailed manifest and normalization method are in [formula-architecture-analysis.md](formula-architecture-analysis.md) and `Valura_Formula_Architecture_Analysis.xlsx`. This replaces any earlier rough template estimate; use the counts above as the current reproducible baseline.
+
 ## Validation phases
 
 ### Phase 1 — Freeze and inventory
