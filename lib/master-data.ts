@@ -10,7 +10,7 @@ import { deriveStructuredNote, type StructuredNoteInput, type StructuredNoteAssu
 
 export type MasterInputs = {
   productAssumptions: Omit<ProductMasterAssumptions, "assetClasses">;
-  privateAssetAssumptions: PrivateAssetAssumptions;
+  privateAssetAssumptions: Omit<PrivateAssetAssumptions, "assetClasses">;
   structuredNoteAssumptions: Omit<StructuredNoteAssumptions, "assetClasses">;
   public: PublicProductInput[];
   private: PrivateAssetInput[];
