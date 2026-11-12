@@ -4,7 +4,7 @@
  * the existing portfolio engine's Product contract.
  */
 import type { Product, Subclass } from "./engine";
-import { derivePublicProduct, type PublicProductInput, type ProductMasterAssumptions } from "./product-master";
+import { derivePublicProduct, validateProductMasterAssumptions, type PublicProductInput, type ProductMasterAssumptions } from "./product-master";
 import { derivePrivateAsset, type PrivateAssetInput, type PrivateAssetAssumptions } from "./private-assets";
 import { deriveStructuredNote, type StructuredNoteInput, type StructuredNoteAssumptions } from "./structured-notes";
 
@@ -28,6 +28,8 @@ export function deriveMasterProducts(
   subclasses: Subclass[],
   inputs: MasterInputs,
 ): Product[] {
+  const assumptionErrors = validateProductMasterAssumptions({ ...inputs.productAssumptions, assetClasses: assetClassDefaults(subclasses) });
+  if (assumptionErrors.length) throw new Error(`Invalid Product Master assumptions: ${assumptionErrors.join("; ")}`);
   const defaults = assetClassDefaults(subclasses);
   const productAssumptions: ProductMasterAssumptions = {
     ...inputs.productAssumptions, assetClasses: defaults,
@@ -40,6 +42,7 @@ export function deriveMasterProducts(
   };
   const subclassByCode = new Map(subclasses.map((item) => [item.code, item]));
   const publicById = new Map(inputs.public.map((item) => [item.id, item]));
+  if (publicById.size !== inputs.public.length) throw new Error("Duplicate Product Master raw input ID");
   const privateById = new Map(inputs.private.map((item) => [item.id, item]));
   const structuredById = new Map(inputs.structured.map((item) => [item.id, item]));
 
