@@ -139,3 +139,13 @@ test("Portfolio Builder sleeve and geography targets use invested value, not the
   close(r.geography[0].targetUsd, 400_000, "geography target USD uses Portfolio Builder!E64");
   close(r.geography[0].actualPct, 0.4, "geography actual percent uses Portfolio Builder!E64");
 });
+
+
+test("Portfolio Builder master lookup follows Excel MATCH case-insensitive text semantics", () => {
+  const lowerCaseId = { ...sample.lines[0], id: sample.lines[0].id.toLowerCase() };
+  const r = analyse(defaultClient(data.assumptions), [lowerCaseId], data);
+  assert.equal(r.lines.length, 1);
+  assert.equal(r.lines[0].product.id, sample.lines[0].id);
+  assert.equal(r.unmappedLines.length, 0);
+  close(r.value, sample.lines[0].amount, "case-insensitive product ID match retains amount");
+});
