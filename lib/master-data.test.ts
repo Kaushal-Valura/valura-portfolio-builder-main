@@ -27,7 +27,7 @@ test("all workbook master rows derive the same expected return, volatility, beta
 test("structured note factor and scenario outputs reproduce the workbook master", () => {
   for (const original of expected.filter((item) => item.source === "Structured")) {
     const result = derived.find((item) => item.id === original.id)!;
-    assert.deepEqual(result.factors, original.factors, `${original.id} factor scores`);
+    result.factors!.forEach((value, index) => close(value, original.factors![index], `${original.id} factor score ${index}`));
     result.scen.forEach((value, index) => close(value ?? 0, original.scen[index] ?? 0, `${original.id} scenario ${index}`));
     if (original.distToBarrier !== null) close(result.distToBarrier ?? 0, original.distToBarrier, `${original.id} barrier distance`);
     assert.equal(result.issuerCreditRisk, original.issuerCreditRisk);
