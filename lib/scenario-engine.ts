@@ -115,8 +115,12 @@ export function calculateScenarioEngine(input: ScenarioEngineInput): ScenarioEng
     const validTotal = Number.isFinite(rowTotal) && Math.abs(rowTotal - 1) <= 0.001;
     if (!named) issues.push("Signal name is blank; excluded from evidence");
     if (!validTotal) issues.push("Scenario probabilities do not sum to 100%; excluded from evidence");
-    if (!Number.isFinite(signal.reliability) || signal.reliability < 1 || signal.reliability > 5) {
-      issues.push("Reliability must be between 1 and 5");
+    if (!Number.isFinite(signal.reliability)) {
+      issues.push("Reliability is non-numeric and contributes zero, matching Excel N()");
+    } else if (signal.reliability < 1 || signal.reliability > 5) {
+      // The sheet describes a 1–5 scale but its formula uses the entered
+      // numeric value directly; preserve that formula rather than clamping.
+      warnings.push(`Signal "${signal.name}" has reliability outside the suggested 1–5 range`);
     }
     if (SCENARIOS.some((key) => !Number.isFinite(signal.probabilities[key]))) {
       issues.push("Signal probabilities must be finite");
