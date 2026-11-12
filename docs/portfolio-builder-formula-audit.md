@@ -66,3 +66,8 @@ These changes are implemented in `lib/engine.ts`; focused regression tests have 
 4. Verify every populated formula output against saved workbook cached values; separately verify blank slots and invalid-ID cases with formula-semantic tests.
 5. Compare summary outputs D6:H11, D14:H17 and row 64 totals; run the complete test suite and production build.
 6. Record all remaining discrepancies before marking the sheet complete.
+
+
+## CI finding and correction
+
+The first CI run on this PR executed 84 tests: 75 passed, 1 failed, and 8 were skipped. The only failure was a pre-existing builder test that expected sleeve / geography actual percentages to be measured against the client's full budget when the portfolio was partly unallocated. That expectation conflicts with the workbook formulas, which divide by invested portfolio value `Portfolio Builder!E64`. The stale test has been updated to assert the workbook result; the workflow must be rerun before this sheet can be considered verified.
