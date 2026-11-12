@@ -65,7 +65,7 @@ test("flags unknown subclasses and incomplete look-through", () => {
   const result = derivePublicProduct({
     ...base, subclassCode: "NO-SUCH-CODE", geography: { us: 0.5, india: 0.2, restOfWorld: 0.2 },
   }, assumptions);
-  assert.equal(result.assetClassCode, "Unknown code");
+  assert.equal(result.assetClassName, "Unknown code");
   assert.equal(result.expectedReturn, 0);
   assert.equal(result.geographyCheck, "CHECK");
   assert.equal(result.warnings.length, 2);
