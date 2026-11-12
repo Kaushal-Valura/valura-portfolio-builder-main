@@ -46,9 +46,17 @@ The workbook counts and includes every nonblank advisor line ID / amount in Port
 - `AM24:AM63` explicitly returns `CHECK: unknown product ID` for an unknown ID.
 - Sleeve actuals use `SUMIF` on advisor sleeve and amount, independent of successful product lookup.
 
-The current engine filters input lines to IDs present in the product catalogue before calculating portfolio value:
-`const held = input.filter((l) => byId.has(l.id)); const V = held.reduce(...)`.
-This silently drops unknown-ID amounts and lines from total value, line count, weights, and sleeve actuals. It therefore does not reproduce the workbook's explicit unknown-ID handling. This is a confirmed formula-parity gap to fix in the Portfolio Builder implementation.
+The initial engine implementation filtered input lines to IDs present in the product catalogue before calculating portfolio value. It also used the client's budget rather than invested value for mandate / geography target dollars and actual percentages, and performed case-sensitive product ID matching.
+
+The first correction set now:
+- Sums all 40 advisor amount slots for `E64`, even if the product ID is unknown or blank.
+- Counts nonblank IDs for `D64`, including IDs that cannot be resolved.
+- Exposes unresolved and amount-only blank-ID slots as `unmappedLines`; valid prefixes retain the Excel source classification and unresolved IDs receive the workbook's CHECK status.
+- Includes every advisor amount in sleeve `SUMIF` actuals.
+- Uses invested value `E64`, not the client budget, for sleeve / geography target USD and actual percentages.
+- Matches product IDs case-insensitively, consistent with Excel exact `MATCH` text behaviour.
+
+These changes are implemented in `lib/engine.ts`; focused regression tests have been added to `lib/engine.test.ts`. Full suite / production CI verification remains pending.
 
 ## Verification plan
 
