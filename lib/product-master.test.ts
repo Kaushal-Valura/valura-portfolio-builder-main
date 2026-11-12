@@ -111,10 +111,11 @@ test("reproduces the complete workbook rating-default lookup table", () => {
     ["BB-", 0.013], ["B+", 0.022], ["B", 0.035], ["B-", 0.055],
     ["CCC or below", 0.25], ["Not rated", 0.03],
   ] as const;
+  const completeAssumptions = { ...assumptions, creditDefaults: defaults.map(([rating, annualDefaultProbability]) => ({ rating, annualDefaultProbability })) };
   for (const [rating, probability] of defaults) {
     const result = derivePublicProduct({
       ...base, subclassCode: "FI-HY", yieldToMaturity: 0.06, creditRating: rating,
-    }, assumptions);
+    }, completeAssumptions);
     const expected = 0.06 - Math.max(probability * 0.6, 0.005);
     assert.ok(Math.abs(result.expectedReturn - expected) < 1e-12, `${rating}: ${result.expectedReturn} != ${expected}`);
   }
