@@ -61,3 +61,48 @@ A formula cell is complete only when all of the following are recorded:
 - Source workbook received and independently scanned: 22 worksheets, 11,866 formula cells.
 - First confirmed input discrepancy corrected on the PR branch.
 - Full cell-by-cell mapping and independent recalculation/parity suite are still in progress. Do not claim formula-parity completion until all phases pass.
+
+## Uploaded workbook inventory baseline (12 Nov 2026)
+
+- File: `Valura_Report_REDACTED 21102026_Karmesh(1).xlsx`
+- SHA-256: `2fa2b6367b0195ec711467939e59f921866b1ae68566a998c922ef55463da3d7`
+- Worksheet count: 22
+- Formula-cell count: 11,866
+- Formula cells with saved cached values: 9,662
+- Formula cells without saved cached values: 2,204
+- Defined names: none
+- External workbook links: none
+
+### Formula cells by worksheet
+
+| Worksheet | Formula cells |
+|---|---:|
+| Start Here | 6 |
+| Portfolio Builder | 2,321 |
+| Monitoring | 22 |
+| Client Summary | 1,904 |
+| Next Best Actions | 794 |
+| Scenario Engine | 197 |
+| Scenarios | 444 |
+| Product Master | 640 |
+| Asset Class Master | 671 |
+| Private Assets Master | 400 |
+| Structured Notes | 990 |
+| Inputs | 47 |
+| Risk & Hedging | 1,492 |
+| F1 Rates | 253 |
+| F2 Inflation | 253 |
+| F3 Growth & AI | 261 |
+| F4 Oil & Geopolitics | 253 |
+| F5 Currency | 262 |
+| F6 Valuation | 253 |
+| F7 Credit & Fiscal | 253 |
+| Sources | 0 |
+| Lists | 150 |
+| **Total** | **11,866** |
+
+### Recalculation experiment
+
+A LibreOffice headless open/convert round-trip (XLSX → ODS → XLSX) was attempted on a copy. It produced no cached formula errors, but the same 2,204 cells still have no cached value when read by openpyxl. This does not establish whether those cells are blank-by-design or require a different calculation path. The no-cache cells are concentrated in formula-filled rows that often gate on blank product/holding IDs, but each must be classified rather than assumed blank.
+
+A detailed downloadable inventory was generated during this audit with one row per formula cell, formula text, saved cached result/status and extracted cross-sheet references. The workbook hash above pins the exact source version.
