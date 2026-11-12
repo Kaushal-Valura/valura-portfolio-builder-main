@@ -1,0 +1,621 @@
+{
+  "productAssumptions": {
+    "fiveYearTreasuryYield": 0.05,
+    "lossGivenDefault": 0.6,
+    "creditSpreadExpectedLossShare": 0.5,
+    "creditDefaults": [
+      {
+        "rating": "AAA",
+        "annualDefaultProbability": 0
+      },
+      {
+        "rating": "AA+",
+        "annualDefaultProbability": 0.0001
+      },
+      {
+        "rating": "AA",
+        "annualDefaultProbability": 0.0002
+      },
+      {
+        "rating": "AA-",
+        "annualDefaultProbability": 0.0003
+      },
+      {
+        "rating": "A+",
+        "annualDefaultProbability": 0.0005
+      },
+      {
+        "rating": "A",
+        "annualDefaultProbability": 0.0006
+      },
+      {
+        "rating": "A-",
+        "annualDefaultProbability": 0.0008
+      },
+      {
+        "rating": "BBB+",
+        "annualDefaultProbability": 0.0012
+      },
+      {
+        "rating": "BBB",
+        "annualDefaultProbability": 0.0018
+      },
+      {
+        "rating": "BBB-",
+        "annualDefaultProbability": 0.003
+      },
+      {
+        "rating": "BB+",
+        "annualDefaultProbability": 0.005
+      },
+      {
+        "rating": "BB",
+        "annualDefaultProbability": 0.008
+      },
+      {
+        "rating": "BB-",
+        "annualDefaultProbability": 0.013
+      },
+      {
+        "rating": "B+",
+        "annualDefaultProbability": 0.022
+      },
+      {
+        "rating": "B",
+        "annualDefaultProbability": 0.035
+      },
+      {
+        "rating": "B-",
+        "annualDefaultProbability": 0.055
+      },
+      {
+        "rating": "CCC or below",
+        "annualDefaultProbability": 0.25
+      },
+      {
+        "rating": "Not rated",
+        "annualDefaultProbability": 0.03
+      }
+    ]
+  },
+  "privateAssetAssumptions": {
+    "realisationFactor": 0.8
+  },
+  "structuredNoteAssumptions": {
+    "barrierIncomeBaseRisk": 0.3,
+    "barrierIncomeBarrierSlope": 0.7,
+    "protectedResidualExposure": 0.4,
+    "protectedIncomeBaseRisk": 0.1,
+    "lossGivenBreachFactor": 0.8,
+    "protectedUpsideCapture": 0.8,
+    "issuerCreditAdjustment": {
+      "low": -0.25,
+      "medium": -0.5,
+      "high": -1
+    },
+    "highIssuerRiskRatingAddon": 1,
+    "americanBarrierRiskAddon": 1,
+    "defaultIncomeCoupon": 0.08
+  },
+  "public": [
+    {
+      "id": "P001",
+      "subclassCode": "EQ-USLC",
+      "domicile": "Ireland",
+      "geography": {
+        "us": 1,
+        "india": 0,
+        "restOfWorld": 0
+      }
+    },
+    {
+      "id": "P002",
+      "subclassCode": "EQ-EM",
+      "domicile": "Ireland",
+      "geography": {
+        "us": 0,
+        "india": 0.2,
+        "restOfWorld": 0.8
+      }
+    },
+    {
+      "id": "P003",
+      "subclassCode": "EQ-ENRG",
+      "domicile": "Ireland",
+      "geography": {
+        "us": 1,
+        "india": 0,
+        "restOfWorld": 0
+      }
+    },
+    {
+      "id": "P004",
+      "subclassCode": "FI-UST",
+      "domicile": "Ireland",
+      "geography": {
+        "us": 1,
+        "india": 0,
+        "restOfWorld": 0
+      }
+    },
+    {
+      "id": "P005",
+      "subclassCode": "FI-IG",
+      "domicile": "Ireland",
+      "geography": {
+        "us": 1,
+        "india": 0,
+        "restOfWorld": 0
+      }
+    },
+    {
+      "id": "P006",
+      "subclassCode": "PM-PE",
+      "domicile": "Ireland",
+      "geography": {
+        "us": 0.6,
+        "india": 0,
+        "restOfWorld": 0.4
+      },
+      "yieldToMaturity": null,
+      "creditRating": null,
+      "volatilityOverride": 0.24,
+      "betaOverride": 1.3
+    },
+    {
+      "id": "P007",
+      "subclassCode": "CM-GOLD",
+      "domicile": "Ireland",
+      "geography": {
+        "us": 0,
+        "india": 0,
+        "restOfWorld": 1
+      }
+    },
+    {
+      "id": "P008",
+      "subclassCode": "RA-INF",
+      "domicile": "Ireland",
+      "geography": {
+        "us": 0.4,
+        "india": 0,
+        "restOfWorld": 0.6
+      }
+    },
+    {
+      "id": "P009",
+      "subclassCode": "EQ-USLC",
+      "domicile": "United States",
+      "geography": {
+        "us": 1,
+        "india": 0,
+        "restOfWorld": 0
+      }
+    },
+    {
+      "id": "P010",
+      "subclassCode": "EQ-DM",
+      "domicile": "Ireland",
+      "geography": {
+        "us": 0,
+        "india": 0,
+        "restOfWorld": 1
+      }
+    },
+    {
+      "id": "P011",
+      "subclassCode": "EQ-IN",
+      "domicile": "India (GIFT IFSC)",
+      "geography": {
+        "us": 0,
+        "india": 1,
+        "restOfWorld": 0
+      }
+    },
+    {
+      "id": "P012",
+      "subclassCode": "EQ-USSM",
+      "domicile": "Ireland",
+      "geography": {
+        "us": 1,
+        "india": 0,
+        "restOfWorld": 0
+      }
+    },
+    {
+      "id": "P013",
+      "subclassCode": "EQ-TECH",
+      "domicile": "Luxembourg",
+      "geography": {
+        "us": 0.8,
+        "india": 0,
+        "restOfWorld": 0.2
+      }
+    },
+    {
+      "id": "P014",
+      "subclassCode": "FI-TIPS",
+      "domicile": "Ireland",
+      "geography": {
+        "us": 1,
+        "india": 0,
+        "restOfWorld": 0
+      }
+    },
+    {
+      "id": "P015",
+      "subclassCode": "FI-HY",
+      "domicile": "Ireland",
+      "geography": {
+        "us": 1,
+        "india": 0,
+        "restOfWorld": 0
+      }
+    },
+    {
+      "id": "P016",
+      "subclassCode": "FI-EMD",
+      "domicile": "Ireland",
+      "geography": {
+        "us": 0,
+        "india": 0.05,
+        "restOfWorld": 0.95
+      }
+    },
+    {
+      "id": "P017",
+      "subclassCode": "CA-MM",
+      "domicile": "Ireland",
+      "geography": {
+        "us": 1,
+        "india": 0,
+        "restOfWorld": 0
+      }
+    },
+    {
+      "id": "P018",
+      "subclassCode": "CM-BRD",
+      "domicile": "Ireland",
+      "geography": {
+        "us": 0,
+        "india": 0,
+        "restOfWorld": 1
+      }
+    },
+    {
+      "id": "P019",
+      "subclassCode": "RA-REIT",
+      "domicile": "Ireland",
+      "geography": {
+        "us": 0.6,
+        "india": 0,
+        "restOfWorld": 0.4
+      }
+    },
+    {
+      "id": "P020",
+      "subclassCode": "HF-EQ",
+      "domicile": "Luxembourg",
+      "geography": {
+        "us": 0.5,
+        "india": 0,
+        "restOfWorld": 0.5
+      }
+    },
+    {
+      "id": "P021",
+      "subclassCode": "HF-MAC",
+      "domicile": "Luxembourg",
+      "geography": {
+        "us": 0.5,
+        "india": 0,
+        "restOfWorld": 0.5
+      }
+    },
+    {
+      "id": "P022",
+      "subclassCode": "HF-MAC",
+      "domicile": "United States",
+      "geography": {
+        "us": 0.5,
+        "india": 0,
+        "restOfWorld": 0.5
+      },
+      "yieldToMaturity": null,
+      "creditRating": null,
+      "volatilityOverride": 0.11,
+      "betaOverride": -0.48
+    },
+    {
+      "id": "P023",
+      "subclassCode": "HF-MS",
+      "domicile": "United States",
+      "geography": {
+        "us": 0.6,
+        "india": 0,
+        "restOfWorld": 0.4
+      },
+      "yieldToMaturity": null,
+      "creditRating": null,
+      "volatilityOverride": 0.07,
+      "betaOverride": 0.35
+    },
+    {
+      "id": "P024",
+      "subclassCode": "MA-RP",
+      "domicile": "United States",
+      "geography": {
+        "us": 0.5,
+        "india": 0,
+        "restOfWorld": 0.5
+      },
+      "yieldToMaturity": null,
+      "creditRating": null,
+      "volatilityOverride": 0.11,
+      "betaOverride": 0.45
+    },
+    {
+      "id": "P025",
+      "subclassCode": "FI-HY",
+      "domicile": "United States",
+      "usSitusOverride": "No",
+      "geography": {
+        "us": 1,
+        "india": 0,
+        "restOfWorld": 0
+      },
+      "yieldToMaturity": 0.1578,
+      "creditRating": "B+",
+      "volatilityOverride": 0.18,
+      "betaOverride": 0.7,
+      "riskOverride": 5,
+      "scenarioOverrides": {
+        "base": 0.1,
+        "bull": 0.22,
+        "bear": -0.12,
+        "tail": -0.35
+      }
+    },
+    {
+      "id": "P026",
+      "subclassCode": "FI-IG",
+      "domicile": "Luxembourg",
+      "geography": {
+        "us": 0,
+        "india": 0,
+        "restOfWorld": 1
+      },
+      "yieldToMaturity": 0.054,
+      "creditRating": "A-",
+      "volatilityOverride": 0.04,
+      "betaOverride": 0.1,
+      "riskOverride": 2
+    },
+    {
+      "id": "P027",
+      "subclassCode": "MA-BAL",
+      "domicile": "Luxembourg",
+      "geography": {
+        "us": 0.6,
+        "india": 0,
+        "restOfWorld": 0.4
+      }
+    }
+  ],
+  "private": [
+    {
+      "id": "A001",
+      "subclassCode": "HF-EQ",
+      "domicile": "India (GIFT IFSC)",
+      "structure": "Open-ended",
+      "redemptionFrequency": "Monthly",
+      "managementFee": 0.015,
+      "performanceFee": 0.15,
+      "hurdle": 0.08,
+      "targetGrossIrr": 0.15,
+      "targetNetIrr": 0.12,
+      "reportedVolatility": 0.14,
+      "desmoothingFactor": 1,
+      "betaToListedMarkets": 0.45,
+      "dueDiligenceRating": 4,
+      "geography": {
+        "us": 0,
+        "india": 1,
+        "restOfWorld": 0
+      },
+      "scenarioOverrides": {
+        "base": 0.11,
+        "bull": 0.18,
+        "bear": -0.2,
+        "tail": -0.12
+      }
+    },
+    {
+      "id": "A002",
+      "subclassCode": "PM-PC",
+      "domicile": "India (GIFT IFSC)",
+      "structure": "Closed-ended",
+      "redemptionFrequency": "None (distributions quarterly)",
+      "managementFee": 0.015,
+      "performanceFee": 0.15,
+      "hurdle": 0.09,
+      "targetGrossIrr": 0.14,
+      "targetNetIrr": 0.11,
+      "reportedVolatility": 0.04,
+      "desmoothingFactor": 2,
+      "betaToListedMarkets": 0.35,
+      "dueDiligenceRating": 4,
+      "geography": {
+        "us": 0,
+        "india": 1,
+        "restOfWorld": 0
+      },
+      "scenarioOverrides": {
+        "base": 0.08,
+        "bull": 0.1,
+        "bear": -0.04,
+        "tail": -0.07
+      }
+    },
+    {
+      "id": "A003",
+      "subclassCode": "PM-RIA",
+      "domicile": "India (GIFT IFSC)",
+      "structure": "Closed-ended",
+      "redemptionFrequency": "None",
+      "managementFee": 0.0175,
+      "performanceFee": 0.2,
+      "hurdle": 0.1,
+      "targetGrossIrr": 0.17,
+      "targetNetIrr": 0.13,
+      "reportedVolatility": 0.05,
+      "desmoothingFactor": 2,
+      "betaToListedMarkets": 0.4,
+      "dueDiligenceRating": 3,
+      "geography": {
+        "us": 0,
+        "india": 1,
+        "restOfWorld": 0
+      },
+      "scenarioOverrides": {
+        "base": 0.08,
+        "bull": 0.12,
+        "bear": -0.06,
+        "tail": -0.1
+      }
+    },
+    {
+      "id": "A004",
+      "subclassCode": "PM-PE",
+      "domicile": "India (GIFT IFSC)",
+      "structure": "Closed-ended",
+      "redemptionFrequency": "None",
+      "managementFee": 0.0125,
+      "performanceFee": 0.125,
+      "hurdle": 0.08,
+      "targetGrossIrr": 0.16,
+      "targetNetIrr": 0.13,
+      "reportedVolatility": 0.08,
+      "desmoothingFactor": 1.8,
+      "betaToListedMarkets": 0.6,
+      "dueDiligenceRating": 4,
+      "geography": {
+        "us": 0.6,
+        "india": 0,
+        "restOfWorld": 0.4
+      }
+    },
+    {
+      "id": "A005",
+      "subclassCode": "PM-PE",
+      "domicile": "India (GIFT IFSC)",
+      "structure": "Closed-ended",
+      "redemptionFrequency": "None",
+      "managementFee": 0.02,
+      "performanceFee": 0.2,
+      "hurdle": 0.1,
+      "targetGrossIrr": 0.22,
+      "targetNetIrr": 0.17,
+      "reportedVolatility": 0.1,
+      "desmoothingFactor": 2,
+      "betaToListedMarkets": 0.9,
+      "dueDiligenceRating": 3,
+      "geography": {
+        "us": 0,
+        "india": 1,
+        "restOfWorld": 0
+      }
+    },
+    {
+      "id": "A006",
+      "subclassCode": "HF-MAC",
+      "domicile": "Cayman Islands",
+      "structure": "Open-ended",
+      "redemptionFrequency": "Quarterly",
+      "managementFee": 0.02,
+      "performanceFee": 0.2,
+      "hurdle": 0,
+      "targetGrossIrr": 0.1,
+      "targetNetIrr": 0.07,
+      "reportedVolatility": 0.09,
+      "desmoothingFactor": 1,
+      "betaToListedMarkets": 0.05,
+      "dueDiligenceRating": null,
+      "geography": {
+        "us": 0.5,
+        "india": 0,
+        "restOfWorld": 0.5
+      }
+    }
+  ],
+  "structured": [
+    {
+      "id": "S101",
+      "structureType": "Protected Income Note",
+      "issuerRating": "A+",
+      "issuerDomicile": "Netherlands",
+      "underlyingSubclassCode": "EQ-USLC",
+      "tenorYears": 3,
+      "couponYield": 0.0525,
+      "participation": null,
+      "cap": null,
+      "capitalProtection": 0.95,
+      "barrierStrike": 1,
+      "barrierObservation": "European (maturity)",
+      "underlyingInitialLevel": 7690.73,
+      "underlyingCurrentLevel": 7690.73,
+      "annualFee": 0
+    },
+    {
+      "id": "S102",
+      "structureType": "Participation Note",
+      "issuerRating": "A",
+      "issuerDomicile": "Switzerland",
+      "underlyingSubclassCode": "EQ-USLC",
+      "tenorYears": 3,
+      "couponYield": 0,
+      "participation": 1,
+      "cap": 0.35,
+      "capitalProtection": 0.9,
+      "barrierStrike": null,
+      "barrierObservation": "None",
+      "underlyingInitialLevel": 7690.73,
+      "underlyingCurrentLevel": 7690.73,
+      "annualFee": 0
+    },
+    {
+      "id": "S001",
+      "structureType": "Phoenix Autocallable",
+      "issuerRating": "A",
+      "issuerDomicile": "Switzerland",
+      "underlyingSubclassCode": "EQ-TECH",
+      "tenorYears": 2,
+      "couponYield": 0.1,
+      "participation": null,
+      "cap": null,
+      "capitalProtection": 0,
+      "barrierStrike": 0.6,
+      "barrierObservation": "European (maturity)",
+      "underlyingInitialLevel": 100,
+      "underlyingCurrentLevel": 100,
+      "annualFee": 0
+    },
+    {
+      "id": "S002",
+      "structureType": "AMC",
+      "issuerRating": "AA-",
+      "issuerDomicile": "Luxembourg",
+      "underlyingSubclassCode": "RA-INF",
+      "tenorYears": 5,
+      "couponYield": 0,
+      "participation": 1,
+      "cap": null,
+      "capitalProtection": 0,
+      "barrierStrike": null,
+      "barrierObservation": "None",
+      "underlyingInitialLevel": 100,
+      "underlyingCurrentLevel": 100,
+      "annualFee": 0.01
+    }
+  ]
+}
