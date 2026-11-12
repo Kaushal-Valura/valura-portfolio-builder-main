@@ -157,3 +157,14 @@ test("Portfolio Builder master lookup follows Excel MATCH case-insensitive text 
   assert.equal(r.unmappedLines.length, 0);
   close(r.value, sample.lines[0].amount, "case-insensitive product ID match retains amount");
 });
+
+
+test("Portfolio Builder mandate completeness uses Excel ROUND half-away-from-zero semantics", () => {
+  const lines = [
+    { id: "P001", sleeve: "Equity", amount: -1 },
+    { id: "X999", sleeve: "Unmapped", amount: -0.5 },
+  ];
+  const r = analyse(defaultClient(data.assumptions), lines, data);
+  assert.equal(r.value, -1.5);
+  assert.equal(r.mandateStatus, "Unmapped sleeve");
+});
