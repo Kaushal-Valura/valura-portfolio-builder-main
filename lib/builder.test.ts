@@ -4,7 +4,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { analyse, defaultClient, type Data, type Line } from "./engine.ts";
-import { addLine, capBudget, isEdited, linesFromWeights, rebalanceLines, removeLine, sleeveFromDrop, updateLine } from "./builder.ts";
+import { addLine, capBudget, isEdited, linesFromWeights, rebalanceLines, rebalancePreservingEdits, removeLine, sleeveFromDrop, updateLine } from "./builder.ts";
 import { DEF_LEVERS, recommend } from "./optimiser.ts";
 import products from "../data/products.json" with { type: "json" };
 import subclasses from "../data/subclasses.json" with { type: "json" };
