@@ -43,7 +43,7 @@ test("missing raw master records fail loudly instead of silently using stale out
 
 
 test("public Product Master outputs map Level 1 names, subclass names and geography for every live row", async () => {
-  const { derivePublicProduct, type ProductMasterAssumptions } = await import("./product-master");
+  const { derivePublicProduct } = await import("./product-master");
   const { public: rawProducts, productAssumptions } = masterInputs as MasterInputs;
   const defaults = (subclasses as Subclass[]).map((item) => ({
     code: item.code, level1Name: item.l1Name, name: item.name, expectedReturn: item.ret,
