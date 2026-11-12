@@ -80,3 +80,73 @@ test("blank domicile remains blank and blank subclass zeroes model outputs", () 
   assert.equal(result.volatility, 0);
   assert.equal(result.geographyCheck, "OK");
 });
+
+
+test("maps every formula output column and expands to all 80 workbook slots", async () => {
+  const { derivePublicProductSlots, PRODUCT_MASTER_CAPACITY, PRODUCT_MASTER_FORMULA_MAP } = await import("./product-master");
+  const slots = derivePublicProductSlots([base], assumptions);
+  assert.equal(PRODUCT_MASTER_CAPACITY, 80);
+  assert.equal(slots.length, 80);
+  assert.deepEqual(Object.keys(PRODUCT_MASTER_FORMULA_MAP), ["G", "H", "U", "AT", "AU", "AV", "AW", "AX"]);
+  assert.equal(slots[0].assetClassCode, "EQ");
+  assert.equal(slots[0].subclassName, "US Large Cap");
+  assert.equal(slots[0].geographyCheck, "OK");
+  for (const blank of slots.slice(1)) {
+    assert.equal(blank.assetClassCode, "");
+    assert.equal(blank.subclassName, "");
+    assert.equal(blank.usSitus, "");
+    assert.equal(blank.expectedReturn, 0);
+    assert.equal(blank.volatility, 0);
+    assert.equal(blank.beta, 0);
+    assert.equal(blank.riskRating, 0);
+    assert.equal(blank.geographyCheck, "");
+  }
+});
+
+test("reproduces the complete workbook rating-default lookup table", () => {
+  const defaults = [
+    ["AAA", 0], ["AA+", 0.0001], ["AA", 0.0002], ["AA-", 0.0003],
+    ["A+", 0.0005], ["A", 0.0006], ["A-", 0.0008], ["BBB+", 0.0012],
+    ["BBB", 0.0018], ["BBB-", 0.003], ["BB+", 0.005], ["BB", 0.008],
+    ["BB-", 0.013], ["B+", 0.022], ["B", 0.035], ["B-", 0.055],
+    ["CCC or below", 0.25], ["Not rated", 0.03],
+  ] as const;
+  for (const [rating, probability] of defaults) {
+    const result = derivePublicProduct({
+      ...base, subclassCode: "FI-HY", yieldToMaturity: 0.06, creditRating: rating,
+    }, assumptions);
+    const expected = 0.06 - Math.max(probability * 0.6, 0.005);
+    assert.ok(Math.abs(result.expectedReturn - expected) < 1e-12, `${rating}: ${result.expectedReturn} != ${expected}`);
+  }
+});
+
+test("keeps zero overrides and negative beta as valid explicit values", () => {
+  const result = derivePublicProduct({
+    ...base, expectedReturnOverride: 0, volatilityOverride: 0, betaOverride: -0.48, riskOverride: 0,
+  }, assumptions);
+  assert.equal(result.expectedReturn, 0);
+  assert.equal(result.volatility, 0);
+  assert.equal(result.beta, -0.48);
+  assert.equal(result.riskRating, 0);
+});
+
+test("rejects duplicate product IDs and excess worksheet rows", async () => {
+  const { derivePublicProductSlots } = await import("./product-master");
+  assert.throws(() => derivePublicProductSlots([base, base], assumptions), /Duplicate Product Master product ID/);
+  assert.throws(() => derivePublicProductSlots(Array.from({ length: 81 }, (_, i) => ({ ...base, id: `P${i}` })), assumptions), /supports 80 rows/);
+});
+
+test("validates linked assumptions and duplicate lookup keys", async () => {
+  const { validateProductMasterAssumptions } = await import("./product-master");
+  assert.deepEqual(validateProductMasterAssumptions(assumptions), []);
+  const invalid = {
+    ...assumptions,
+    assetClasses: [...assumptions.assetClasses, assumptions.assetClasses[0]],
+    creditDefaults: [...assumptions.creditDefaults, assumptions.creditDefaults[0]],
+    fiveYearTreasuryYield: Number.NaN,
+  };
+  const errors = validateProductMasterAssumptions(invalid);
+  assert.ok(errors.some((error) => error.includes("Inputs!D45")));
+  assert.ok(errors.some((error) => error.includes("duplicate sub-asset-class")));
+  assert.ok(errors.some((error) => error.includes("duplicate ratings")));
+});
