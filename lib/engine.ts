@@ -12,6 +12,7 @@ export type Product = {
   ddStatus: string; commitment: string; call1y: number; lockupYrs: number;
   ret: number; vol: number; beta: number; risk: number;
   factors: number[] | null; scen: (number | null)[]; distToBarrier: number | null; issuerCreditRisk: string; notes: string;
+  assetClassName?: string; subclassName?: string; geographyCheck?: "OK" | "CHECK" | "";
   facts: [string, string][]; // key terms from the master sheet, shown as "why this holding"
 };
 export type Subclass = {
