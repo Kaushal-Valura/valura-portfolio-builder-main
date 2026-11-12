@@ -311,6 +311,13 @@ export function analyse(client: Client, input: Line[], data: Data) {
   const sub = (code: string) => sc.get(code)!.scen;
   const scenRet = [0, 1, 2, 3].map((k) => (V ? lines.reduce((t, l) => t + l.amount * l.scen[k], 0) / V : 0));
   const dot = (p: number[]) => p.reduce((t, x, k) => t + x * scenRet[k], 0);
+  const scenarioModelReport = scenarioModel && data.scenarioEvidence
+    ? calculateScenarioEngine({
+        ...data.scenarioEvidence,
+        scenarioReturns: { base: scenRet[0], bull: scenRet[1], bear: scenRet[2], tail: scenRet[3] },
+        portfolioValue: V,
+      })
+    : scenarioModel;
   const scenarios = {
     list: A.scenarios.map((s, k) => ({
       ...s, prob: probs[k], ret: scenRet[k], value: V * (1 + scenRet[k]),
@@ -464,13 +471,13 @@ export function analyse(client: Client, input: Line[], data: Data) {
   const keyMessages = [
     `The advisor's construction (${usd(V)}) ${sleeveOk === mandate.length && geoOk === geography.length ? "meets" : "does not yet meet"} the mandate: sleeves ${sleeveOk}/${mandate.length} and geography ${geoOk}/${geography.length} on target. Expected return is ${pct(ret, 1)} a year in USD (${pct(retInr, 1)} in INR terms) with volatility of ${pct(vol, 1)}.`,
     `In an ordinary year the portfolio should end between ${usd(V * (1 + risk.lo))} and ${usd(V * (1 + risk.hi))}; a rare tough year (about 1 in 20) could take it to about ${usd(V * (1 + risk.toughYear))}.`,
-    `Next 12 months: expected ${sp(scenarios.engineWeighted)} (range ${sp(scenarios.pessimistic)} to ${sp(scenarios.optimistic)}), using probabilities blended from prediction markets, futures, options, nowcasts, shipping and credit data - confidence ${scenarioModel?.overallConfidence ?? A.engineConfidenceLevel}.`,
+    `Next 12 months: expected ${sp(scenarios.engineWeighted)} (range ${sp(scenarioModelReport?.expected12MonthReturn?.pessimistic ?? scenarios.pessimistic)} to ${sp(scenarioModelReport?.expected12MonthReturn?.optimistic ?? scenarios.optimistic)}), using probabilities blended from prediction markets, futures, options, nowcasts, shipping and credit data - confidence ${scenarioModel?.overallConfidence ?? A.engineConfidenceLevel}.`,
     `The engine raises ${counts.high} high-priority and ${counts.medium} medium-priority actions.${top ? ` Top priority: ${top.product.name} - ${top.action}.` : ""}`,
     `${rec.length} hedges are recommended; together they move the tail-scenario result from ${sp(hedges.tailBefore)} to ${sp(hedges.tailAfter)} after one year's cost.`,
   ];
 
   return {
-    value: V, invested: client.amount, unallocated: client.amount - V, scenarioEngine: scenarioModel,
+    value: V, invested: client.amount, unallocated: client.amount - V, scenarioEngine: scenarioModelReport,
     lines: lines.map((l) => ({ ...l, riskShare: lineRisk(l) })), subs, byL1, risk, scenarios, cashLadder, feeCost, why, factorExposure, factorSummary, hedges, mandate, geography, mandateStatus, geoStatus,
     monitoring, actions, counts, keyMessages, riskLimits, sensitivity, marketView,
   };
