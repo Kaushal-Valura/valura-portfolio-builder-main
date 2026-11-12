@@ -4,6 +4,7 @@ import { analyse, defaultClient, type Client, type Data, type Line } from "@/lib
 import products from "@/data/products.json";
 import subclasses from "@/data/subclasses.json";
 import assumptions from "@/data/assumptions.json";
+import scenarioEvidence from "@/data/scenario-evidence.json";
 import sample from "@/data/sample.json";
 import Setup, { setupErrors } from "@/components/Setup";
 import Builder, { suggestSleeve } from "@/components/Builder";
@@ -13,7 +14,7 @@ import { addLine, capBudget, isEdited, linesFromWeights, rebalancePreservingEdit
 import Analysis, { TABS as REPORT_TABS } from "@/components/Analysis";
 import { usdK } from "@/components/ui";
 
-const data = { products, subclasses, assumptions } as unknown as Data;
+const data = { products, subclasses, assumptions, scenarioEvidence } as unknown as Data;
 const uid = () => Math.random().toString(36).slice(2, 10);
 const TABS = ["Client", "Build", ...REPORT_TABS] as const;
 type Tab = (typeof TABS)[number];
