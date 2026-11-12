@@ -94,5 +94,7 @@ test("live evidence model reproduces the workbook's scenario probabilities and c
     close(scenario.prob, data.assumptions.scenarios[index].prob, `scenario probability ${index}`);
   });
   close(r.scenarioEngine!.overallConfidenceScore, data.assumptions.engineConfidence, "overall scenario confidence");
+  close(r.scenarioEngine!.expected12MonthReturn!.central, r.scenarios.engineWeighted, "central scenario engine return");
+  close(r.scenarioEngine!.projectedPortfolioValue!.central, r.value * (1 + r.scenarios.engineWeighted), "scenario engine projected portfolio value");
   assert.equal(r.scenarioEngine!.overallConfidence, data.assumptions.engineConfidenceLevel);
 });
