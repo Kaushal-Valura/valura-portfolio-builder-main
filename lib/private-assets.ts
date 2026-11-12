@@ -99,7 +99,7 @@ export function derivePrivateAsset(
 
   const usSitus = !fund.domicile ? "" : fund.domicile === "United States" ? "Yes" : "No";
   const geoTotal = [fund.geography.us, fund.geography.india, fund.geography.restOfWorld]
-    .reduce((total, value) => total + (value ?? 0), 0);
+    .reduce<number>((total, value) => total + (value ?? 0), 0);
   const geographyCheck = !fund.id ? "" : Math.abs(geoTotal - 1) < 0.001 ? "OK" : "CHECK";
   if (geographyCheck === "CHECK") warnings.push("Look-through geography does not sum to 100%");
 
