@@ -42,6 +42,14 @@ Latest PR workflow run: `43166560818` (commit `ad57b173c67ba508150de5c83402f4a1d
 
 The workbook contains 11,866 formula cells, but a formula count is not proof of parity. Some formulas intentionally return blank for unused rows; cached formula results are therefore not sufficient as the sole expected-value oracle. The audit harness must distinguish active rows, blank-by-design rows and genuine formula errors.
 
+## Formula architecture refinement (12 Nov 2026)
+
+The 11,866 figure is a count of formula-cell occurrences, not independent business calculations. Relative-reference normalization of the pinned workbook identifies **1,334 syntactically distinct formula templates across the workbook**, or **1,795 when distinct templates are counted separately within each sheet**. There are **2,695 direct single-cell reference formulas**. The remaining 9,171 occurrences are non-direct formulas.
+
+These are structural counts, not a final semantic business-rule count. A normalized template can be reused across many dragged rows; formulas with different syntax may still implement the same business rule, and formulas with similar syntax may have different meanings. The architecture target is reusable calculation functions plus canonical inputs/data relationships, while preserving a mapping for every original formula cell.
+
+See [formula architecture analysis](formula-architecture-analysis.md) and the companion workbook `Valura_Formula_Architecture_Analysis.xlsx` for template IDs, original formula occurrences, normalized structures, and sheet-level counts. **Semantic consolidation, full cell ownership mapping, and parity testing remain incomplete.**
+
 ## Worksheet audit
 
 | # | Workbook worksheet | Application / backend mapping | Audit result | Remaining validation / gap |
