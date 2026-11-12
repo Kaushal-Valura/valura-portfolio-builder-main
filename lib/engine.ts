@@ -111,14 +111,15 @@ export function analyse(client: Client, input: Line[], data: Data) {
   // but must remain in the portfolio denominator and sleeve actuals.
   const V = input.reduce((s, l) => s + (l.amount || 0), 0);
   const unmappedLines = input
-    .filter((l) => l.id !== "" && !byId.has(l.id))
+    .filter((l) => !byId.has(l.id) && (l.id !== "" || (l.amount || 0) !== 0))
     .map((l) => {
       const prefix = l.id.slice(0, 1).toUpperCase();
-      const source = prefix === "P" ? "Public" : prefix === "A" ? "Private" : prefix === "S" ? "Structured" : "Unknown";
+      const source = l.id === "" ? "" : prefix === "P" ? "Public" : prefix === "A" ? "Private" : prefix === "S" ? "Structured" : "Unknown";
+      const eligibility = l.id === "" ? "" : source === "Unknown" ? "CHECK: unknown product ID" : "CHECK: ID not found in masters";
       return {
         ...l,
         source,
-        eligibility: source === "Unknown" ? "CHECK: unknown product ID" : "CHECK: ID not found in masters",
+        eligibility,
         weight: V ? (l.amount || 0) / V : 0,
       };
     });
