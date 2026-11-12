@@ -1,0 +1,265 @@
+{
+  "asOf": "2026-10-21",
+  "housePrior": {
+    "base": 0.55,
+    "bull": 0.2,
+    "bear": 0.15,
+    "tail": 0.1
+  },
+  "evidenceWeight": 0.6,
+  "freshnessHalfLifeDays": 45,
+  "signals": [
+    {
+      "name": "Fed path priced in futures after Sep CPI",
+      "family": "Futures-implied",
+      "source": "CME FedWatch via investingLive",
+      "reading": "Oct hike odds 47%; ~36 bp of hikes priced for 2026",
+      "observedAt": "2026-10-14",
+      "probabilities": {
+        "base": 0.55,
+        "bull": 0.1,
+        "bear": 0.25,
+        "tail": 0.1
+      },
+      "reliability": 5,
+      "translation": "Hawkish repricing tilts toward stagflation risk"
+    },
+    {
+      "name": "US recession in 2027 (2 negative GDP quarters, Q4-26 to Q4-27)",
+      "family": "Prediction market",
+      "source": "Kalshi via Crypto Briefing",
+      "reading": "20% (record low)",
+      "observedAt": "2026-09-26",
+      "probabilities": {
+        "base": 0.6,
+        "bull": 0.2,
+        "bear": 0.08,
+        "tail": 0.12
+      },
+      "reliability": 4,
+      "translation": "Recession risk split between stagflation and growth-scare paths"
+    },
+    {
+      "name": "US economic state at end-2026",
+      "family": "Prediction market",
+      "source": "Polymarket via SimpleFunctions",
+      "reading": "Soft landing 55%; overheating 39%",
+      "observedAt": "2026-08-11",
+      "probabilities": {
+        "base": 0.48,
+        "bull": 0.12,
+        "bear": 0.32,
+        "tail": 0.08
+      },
+      "reliability": 3,
+      "translation": "'Overheating' (inflation >= 3.5%) maps to the stagflation path"
+    },
+    {
+      "name": "US recession by end-2026",
+      "family": "Prediction market",
+      "source": "Polymarket via KuCoin / Crypto Briefing",
+      "reading": "8%",
+      "observedAt": "2026-08-31",
+      "probabilities": {
+        "base": 0.62,
+        "bull": 0.22,
+        "bear": 0.1,
+        "tail": 0.06
+      },
+      "reliability": 3,
+      "translation": "Near-term tail risk low"
+    },
+    {
+      "name": "Real-time GDP nowcast (Q3 2026)",
+      "family": "Nowcast",
+      "source": "Atlanta Fed GDPNow via investingLive",
+      "reading": "3.6% SAAR; inventories ~half",
+      "observedAt": "2026-10-15",
+      "probabilities": {
+        "base": 0.6,
+        "bull": 0.2,
+        "bear": 0.13,
+        "tail": 0.07
+      },
+      "reliability": 4,
+      "translation": "Strong but inventory-flattered growth"
+    },
+    {
+      "name": "Oil options: P(Brent > USD 100 in Mar 2027)",
+      "family": "Options-implied",
+      "source": "Goldman Sachs via Hellenic Shipping News",
+      "reading": "~25% (from ~6% a month earlier)",
+      "observedAt": "2026-09-15",
+      "probabilities": {
+        "base": 0.55,
+        "bull": 0.2,
+        "bear": 0.17,
+        "tail": 0.08
+      },
+      "reliability": 3,
+      "translation": "Market expects oil to fall but upside tail is priced"
+    },
+    {
+      "name": "Oil fear premium in futures curve",
+      "family": "Futures-implied",
+      "source": "Goldman via Free Press Journal; Dec Brent USD 106.65",
+      "reading": "> USD 20/bbl risk premium",
+      "observedAt": "2026-10-12",
+      "probabilities": {
+        "base": 0.55,
+        "bull": 0.15,
+        "bear": 0.22,
+        "tail": 0.08
+      },
+      "reliability": 4,
+      "translation": "Supply-shock risk still elevated"
+    },
+    {
+      "name": "Gulf crude export flows (shipping / tanker data)",
+      "family": "Shipping & satellite",
+      "source": "Morgan Stanley via investingLive",
+      "reading": "Within 10% of pre-war levels",
+      "observedAt": "2026-10-14",
+      "probabilities": {
+        "base": 0.55,
+        "bull": 0.25,
+        "bear": 0.12,
+        "tail": 0.08
+      },
+      "reliability": 3,
+      "translation": "Physical flows recovering faster than prices"
+    },
+    {
+      "name": "High-yield and AI-credit stress",
+      "family": "Credit market",
+      "source": "Guggenheim (HY OAS); Admirals (CoreWeave yields)",
+      "reading": "HY OAS 275->312 bp; CRWV 2032 notes ~15%",
+      "observedAt": "2026-10-14",
+      "probabilities": {
+        "base": 0.5,
+        "bull": 0.12,
+        "bear": 0.18,
+        "tail": 0.2
+      },
+      "reliability": 4,
+      "translation": "AI-infrastructure credit cracking is an early tail signal"
+    },
+    {
+      "name": "Equity fear gauge",
+      "family": "Options-implied",
+      "source": "Tapeboard (VIX)",
+      "reading": "VIX 19.99 (+21% in a day)",
+      "observedAt": "2026-10-16",
+      "probabilities": {
+        "base": 0.55,
+        "bull": 0.18,
+        "bear": 0.15,
+        "tail": 0.12
+      },
+      "reliability": 3,
+      "translation": "Moderate stress"
+    },
+    {
+      "name": "Market breadth and crowding",
+      "family": "Positioning",
+      "source": "Admirals (breadth); CFTC (gold longs)",
+      "reading": "~25% of S&P above 50-day avg; gold longs 91st pct",
+      "observedAt": "2026-10-05",
+      "probabilities": {
+        "base": 0.52,
+        "bull": 0.15,
+        "bear": 0.15,
+        "tail": 0.18
+      },
+      "reliability": 2,
+      "translation": "Narrow, crowded market is fragile"
+    },
+    {
+      "name": "Consumer inflation expectations",
+      "family": "Survey",
+      "source": "Univ. of Michigan via Admirals",
+      "reading": "1-yr 4.6% (from 4.0%)",
+      "observedAt": "2026-10-05",
+      "probabilities": {
+        "base": 0.5,
+        "bull": 0.12,
+        "bear": 0.3,
+        "tail": 0.08
+      },
+      "reliability": 3,
+      "translation": "Unanchoring risk"
+    },
+    {
+      "name": "Labour market momentum",
+      "family": "Official data",
+      "source": "BLS via Admirals",
+      "reading": "Payrolls +29k; revisions -60k",
+      "observedAt": "2026-10-02",
+      "probabilities": {
+        "base": 0.52,
+        "bull": 0.12,
+        "bear": 0.14,
+        "tail": 0.22
+      },
+      "reliability": 4,
+      "translation": "Softening jobs raise growth-scare odds"
+    },
+    {
+      "name": "Earnings season tone",
+      "family": "Corporate data",
+      "source": "FactSet Earnings Insight",
+      "reading": "Q3 EPS +29%; 84% beat",
+      "observedAt": "2026-10-16",
+      "probabilities": {
+        "base": 0.58,
+        "bull": 0.25,
+        "bear": 0.1,
+        "tail": 0.07
+      },
+      "reliability": 4,
+      "translation": "Fundamentals still strong"
+    },
+    {
+      "name": "Strategist consensus",
+      "family": "Consensus poll",
+      "source": "Kitco / Wealth Advisor / Newsquawk",
+      "reading": "S&P 500 year-end targets cluster at 8,000",
+      "observedAt": "2026-10-01",
+      "probabilities": {
+        "base": 0.6,
+        "bull": 0.25,
+        "bear": 0.09,
+        "tail": 0.06
+      },
+      "reliability": 2,
+      "translation": "Sell-side tends to be optimistic - low weight"
+    },
+    {
+      "name": "US-Iran peace-deal odds",
+      "family": "Prediction market",
+      "source": "Manifold via Tech-Insider; Kalshi via Bitcoin.com",
+      "reading": "End-of-war by 31 Aug: 2%; nuclear deal before 2027: 54% (Mar)",
+      "observedAt": "2026-08-26",
+      "probabilities": {
+        "base": 0.55,
+        "bull": 0.15,
+        "bear": 0.22,
+        "tail": 0.08
+      },
+      "reliability": 2,
+      "translation": "Stale - refresh before client meeting"
+    }
+  ],
+  "calibration": [
+    {
+      "statement": "EXAMPLE: Fed hikes at least once in H2 2026",
+      "probability": 0.65,
+      "outcome": 1
+    },
+    {
+      "statement": "EXAMPLE: US recession declared in 2026",
+      "probability": 0.32,
+      "outcome": 0
+    }
+  ]
+}
