@@ -18,6 +18,14 @@ test("engine matches the Excel workbook on the sample client", () => {
   const r = analyse(defaultClient(data.assumptions), sample.lines, data);
 
   close(r.value, 1_000_000, "portfolio value");
+  assert.deepEqual(r.startHere, {
+    productAvailability: "27 public | 6 private (4 DD-approved) | 4 notes",
+    portfolioConstruction: "13 lines | $1,000,000 | sleeves on target 5/5 | geography 3/3",
+    eligibility: "0 blocked | 1 under review",
+    riskAndScenarios: "Return 7.2% | volatility 6.4% | 12m expected +4.3% | confidence Medium",
+    actionsAndHedges: "1 high / 7 medium actions | 6 hedges recommended",
+    clientPresentation: "Ready",
+  });
   close(r.risk.ret, E.ret, "expected return");
   close(r.risk.retInr, E.retInr, "INR return");
   close(r.risk.vol, E.vol, "volatility");
