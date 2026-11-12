@@ -100,7 +100,7 @@ export function derivePublicProduct(
   // Product Master!AX: Excel N() treats blank geography cells as zero.
   const geoValues = [product.geography.us, product.geography.india, product.geography.restOfWorld];
   const geographyCheck = !product.id ? "" :
-    Math.abs(geoValues.reduce((total, value) => total + (value ?? 0), 0) - 1) < 0.001 ? "OK" : "CHECK";
+    Math.abs(geoValues.reduce<number>((total, value) => total + (value ?? 0), 0) - 1) < 0.001 ? "OK" : "CHECK";
   if (geographyCheck === "CHECK") warnings.push("Look-through geography does not sum to 100%");
 
   return {
