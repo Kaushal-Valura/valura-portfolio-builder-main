@@ -28,20 +28,20 @@ The workbook contains 22 sheets and 11,866 formula cells. Product Master is alre
 | 5 | Next Best Actions | 794 | Pending | — |
 | 6 | Scenario Engine | 197 | Existing module; formula-by-formula audit and parity re-verification pending | `lib/scenario-engine.ts` |
 | 7 | Scenarios | 444 | Existing engine coverage; sheet-specific audit and parity re-verification pending | `lib/engine.ts` |
-| 8 | Asset Class Master | 671 | Existing master-data / aggregation coverage; full sheet audit pending | `lib/master-data.ts`, `lib/engine.ts` |
-| 9 | Private Assets Master | 400 | Existing module; formula-by-formula audit and parity re-verification pending | `lib/private-assets.ts` |
-| 10 | Structured Notes | 990 | Existing module; formula-by-formula audit and parity re-verification pending | `lib/structured-notes.ts` |
-| 11 | Inputs | 47 | Existing input integration; full sheet audit pending | `lib/master-data.ts`, `lib/engine.ts` |
-| 12 | Risk & Hedging | 1,492 | Existing engine coverage; full sheet audit pending | `lib/engine.ts` |
-| 13 | F1 Rates | 253 | Existing factor aggregation; sheet formula audit pending | `lib/engine.ts` |
-| 14 | F2 Inflation | 253 | Existing factor aggregation; sheet formula audit pending | `lib/engine.ts` |
-| 15 | F3 Growth & AI | 261 | Existing factor aggregation; sheet formula audit pending | `lib/engine.ts` |
-| 16 | F4 Oil & Geopolitics | 253 | Existing factor aggregation; sheet formula audit pending | `lib/engine.ts` |
-| 17 | F5 Currency | 262 | Existing factor aggregation; sheet formula audit pending | `lib/engine.ts` |
-| 18 | F6 Valuation | 253 | Existing factor aggregation; sheet formula audit pending | `lib/engine.ts` |
-| 19 | F7 Credit & Fiscal | 253 | Existing factor aggregation; sheet formula audit pending | `lib/engine.ts` |
+| 8 | Asset Class Master | 671 | Formula inventory / dependency audit documented; cell-level parity pending | `docs/asset-class-master-formula-audit.md` |
+| 9 | Private Assets Master | 400 | Formula inventory / dependency audit documented; 230 cached values and 170 uncached cells; full parity pending | `docs/private-assets-master-formula-audit.md`, `lib/private-assets.ts` |
+| 10 | Structured Notes | 990 | Formula inventory / dependency audit documented; 834 cached values and 156 uncached cells; full parity pending | `docs/structured-notes-formula-audit.md`, `lib/structured-notes.ts` |
+| 11 | Inputs | 47 | Formula inventory / dependency audit documented; cell-level parity pending | `docs/inputs-formula-audit.md` |
+| 12 | Risk & Hedging | 1,492 | Formula inventory / dependency audit documented; matrix / output parity pending | `docs/risk-hedging-formula-audit.md`, `lib/engine.ts` |
+| 13 | F1 Rates | 253 | Shared factor formula audit documented; cell-level parity pending | `docs/factor-sheets-formula-audit.md` |
+| 14 | F2 Inflation | 253 | Shared factor formula audit documented; cell-level parity pending | `docs/factor-sheets-formula-audit.md` |
+| 15 | F3 Growth & AI | 261 | Shared factor formula audit documented; extra H-column formulas require explicit mapping | `docs/factor-sheets-formula-audit.md` |
+| 16 | F4 Oil & Geopolitics | 253 | Shared factor formula audit documented; cell-level parity pending | `docs/factor-sheets-formula-audit.md` |
+| 17 | F5 Currency | 262 | Shared factor formula audit documented; extra H/K formulas require explicit mapping | `docs/factor-sheets-formula-audit.md` |
+| 18 | F6 Valuation | 253 | Shared factor formula audit documented; cell-level parity pending | `docs/factor-sheets-formula-audit.md` |
+| 19 | F7 Credit & Fiscal | 253 | Shared factor formula audit documented; cell-level parity pending | `docs/factor-sheets-formula-audit.md` |
 | 20 | Sources | 0 | No formula cells; source-reference audit pending | — |
-| 21 | Lists | 150 | Pending | — |
+| 21 | Lists | 150 | Formula inventory / source-link audit documented; runtime output and slot parity pending | `docs/lists-formula-audit.md` |
 
 Product Master (640 formula cells) is the completed baseline on the target backend branch and is not reimplemented in this PR.
 
