@@ -5,6 +5,9 @@ import products from "@/data/products.json";
 import subclasses from "@/data/subclasses.json";
 import assumptions from "@/data/assumptions.json";
 import scenarioEvidence from "@/data/scenario-evidence.json";
+import masterInputs from "@/data/master-inputs.json";
+import { deriveMasterProducts, type MasterInputs } from "@/lib/master-data";
+import type { Product, Subclass } from "@/lib/engine";
 import sample from "@/data/sample.json";
 import Setup, { setupErrors } from "@/components/Setup";
 import Builder, { suggestSleeve } from "@/components/Builder";
@@ -14,7 +17,14 @@ import { addLine, capBudget, isEdited, linesFromWeights, rebalancePreservingEdit
 import Analysis, { TABS as REPORT_TABS } from "@/components/Analysis";
 import { usdK } from "@/components/ui";
 
-const data = { products, subclasses, assumptions, scenarioEvidence } as unknown as Data;
+const data = {
+  products: deriveMasterProducts(
+    products as unknown as Product[],
+    subclasses as unknown as Subclass[],
+    masterInputs as unknown as MasterInputs,
+  ),
+  subclasses, assumptions, scenarioEvidence,
+} as unknown as Data;
 const uid = () => Math.random().toString(36).slice(2, 10);
 const TABS = ["Client", "Build", ...REPORT_TABS] as const;
 type Tab = (typeof TABS)[number];
