@@ -28,7 +28,7 @@ test("de-smooths volatility and applies DD risk uplift for ratings 1–2", () =>
   const result = derivePrivateAsset({
     ...base, reportedVolatility: 0.1, desmoothingFactor: 1.5, dueDiligenceRating: 2,
   }, assumptions);
-  assert.equal(result.volatility, 0.15);
+  assert.ok(Math.abs(result.volatility - 0.15) < 1e-12);
   assert.equal(result.riskRating, 4);
 });
 
@@ -59,7 +59,7 @@ test("flags unknown subclass and incomplete look-through", () => {
     ...base, subclassCode: "UNKNOWN", geography: { us: 0.5, india: 0.2, restOfWorld: 0.2 },
   }, assumptions);
   assert.equal(result.assetClassCode, "Unknown code");
-  assert.equal(result.expectedReturn, 0);
+  assert.equal(result.expectedReturn, 0.096); // target net IRR is calculated even when the subclass lookup is unknown
   assert.equal(result.geographyCheck, "CHECK");
   assert.equal(result.warnings.length, 2);
 });
