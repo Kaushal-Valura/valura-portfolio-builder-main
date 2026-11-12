@@ -106,7 +106,22 @@ export function analyse(client: Client, input: Line[], data: Data) {
   const probs = A.scenarios.map((s, k) => client.probOverride?.[k] ?? engineProbabilities[k]); // advisor override > live evidence model > workbook snapshot
 
   const held = input.filter((l) => byId.has(l.id));
-  const V = held.reduce((s, l) => s + (l.amount || 0), 0); // Portfolio Builder!E64
+  // Portfolio Builder!E64 sums every advisor-entered amount, including rows whose product ID
+  // cannot be resolved. Unknown IDs contribute zero to product-specific look-through fields,
+  // but must remain in the portfolio denominator and sleeve actuals.
+  const V = input.reduce((s, l) => s + (l.amount || 0), 0);
+  const unmappedLines = input
+    .filter((l) => l.id.trim() !== "" && !byId.has(l.id))
+    .map((l) => {
+      const prefix = l.id.slice(0, 1).toUpperCase();
+      const source = prefix === "P" ? "Public" : prefix === "A" ? "Private" : prefix === "S" ? "Structured" : "Unknown";
+      return {
+        ...l,
+        source,
+        eligibility: source === "Unknown" ? "CHECK: unknown product ID" : "CHECK: ID not found in masters",
+        weight: V ? (l.amount || 0) / V : 0,
+      };
+    });
 
   // ---- Portfolio Builder: one enriched row per line (cols G..BJ) ----
   const lines = held.map((l, i) => {
@@ -397,14 +412,15 @@ export function analyse(client: Client, input: Line[], data: Data) {
 
   // ---- Portfolio Builder A: mandate and look-through geography ----
   const mandate = client.sleeves.map((s) => {
-    const actual = lines.filter((l) => l.sleeve === s.name).reduce((t, l) => t + l.amount, 0);
-    const actualPct = client.amount > 0 ? actual / client.amount : 0;
-    return { ...s, targetUsd: s.target * client.amount, actual, actualPct, gap: actualPct - s.target, status: statusOf(actualPct - s.target) };
+    // Workbook SUMIF includes every advisor line, even if its product ID is unresolved.
+    const actual = input.filter((l) => l.sleeve === s.name).reduce((t, l) => t + (l.amount || 0), 0);
+    const actualPct = V ? actual / V : 0;
+    return { ...s, targetUsd: s.target * V, actual, actualPct, gap: actualPct - s.target, status: statusOf(actualPct - s.target) };
   });
   const geography = client.geoTargets.map((g, k) => {
     const actual = lines.reduce((t, l) => t + l.amount * (l.product.geo[k] ?? 0), 0);
-    const actualPct = client.amount > 0 ? actual / client.amount : 0;
-    return { ...g, targetUsd: g.target * client.amount, actual, actualPct, gap: actualPct - g.target, status: statusOf(actualPct - g.target) };
+    const actualPct = V ? actual / V : 0;
+    return { ...g, targetUsd: g.target * V, actual, actualPct, gap: actualPct - g.target, status: statusOf(actualPct - g.target) };
   });
 
   // ---- Monitoring: market indicators are static; rows 10-15 are live ----
@@ -458,7 +474,8 @@ export function analyse(client: Client, input: Line[], data: Data) {
 
   const actions = [...lines].sort((a, b) => b.score - a.score);
   const counts = {
-    lines: lines.length, blocked, review,
+    // Portfolio Builder!D64 counts nonblank advisor IDs, including unresolved IDs.
+    lines: input.filter((l) => l.id.trim() !== "").length, blocked, review,
     high: lines.filter((l) => l.priority === "High").length, medium: lines.filter((l) => l.priority === "Medium").length,
     hedges: rec.length, red: monitoring.filter((m) => m.status === "RED").length, amber: monitoring.filter((m) => m.status === "AMBER").length,
   };
@@ -479,7 +496,7 @@ export function analyse(client: Client, input: Line[], data: Data) {
 
   return {
     value: V, invested: client.amount, unallocated: client.amount - V, scenarioEngine: scenarioModelReport,
-    lines: lines.map((l) => ({ ...l, riskShare: lineRisk(l) })), subs, byL1, risk, scenarios, cashLadder, feeCost, why, factorExposure, factorSummary, hedges, mandate, geography, mandateStatus, geoStatus,
+    lines: lines.map((l) => ({ ...l, riskShare: lineRisk(l) })), unmappedLines, subs, byL1, risk, scenarios, cashLadder, feeCost, why, factorExposure, factorSummary, hedges, mandate, geography, mandateStatus, geoStatus,
     monitoring, actions, counts, keyMessages, riskLimits, sensitivity, marketView,
   };
 }
