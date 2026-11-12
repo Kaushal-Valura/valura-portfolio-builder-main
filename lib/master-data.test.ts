@@ -40,3 +40,23 @@ test("missing raw master records fail loudly instead of silently using stale out
     /Missing Product Master raw inputs/,
   );
 });
+
+
+test("public Product Master outputs map Level 1 names, subclass names and geography for every live row", async () => {
+  const { derivePublicProduct, type ProductMasterAssumptions } = await import("./product-master");
+  const { public: rawProducts, productAssumptions } = masterInputs as MasterInputs;
+  const defaults = (subclasses as Subclass[]).map((item) => ({
+    code: item.code, level1Name: item.l1Name, name: item.name, expectedReturn: item.ret,
+    volatility: item.vol, beta: item.beta, riskRating: item.risk,
+  }));
+  const assumptions: ProductMasterAssumptions = { ...productAssumptions, assetClasses: defaults };
+  assert.equal(rawProducts.length, 27);
+  for (const raw of rawProducts) {
+    const result = derivePublicProduct(raw, assumptions);
+    const subclass = (subclasses as Subclass[]).find((item) => item.code === raw.subclassCode);
+    assert.ok(subclass, `missing subclass for ${raw.id}`);
+    assert.equal(result.assetClassName, subclass!.l1Name, `${raw.id} Product Master!G`);
+    assert.equal(result.subclassName, subclass!.name, `${raw.id} Product Master!H`);
+    assert.equal(result.geographyCheck, "OK", `${raw.id} Product Master!AX`);
+  }
+});
