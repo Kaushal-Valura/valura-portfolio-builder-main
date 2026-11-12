@@ -51,7 +51,7 @@ test("calculates income note risk, distance to barrier and loss probability", ()
   assert.equal(result.subclassCode, "SP-YLD");
   assert.equal(result.riskEquivalent, Math.min(1, 0.3 + 0.7 * 0.7));
   assert.ok(Math.abs((result.distanceToBarrier as number) - 0.2) < 1e-12);
-  assert.equal(result.riskRating, Math.min(5, Math.max(1, 4 + 1)));
+  assert.equal(result.riskRating, 4); // ROUND(0.79 x 4) + American-barrier add-on
 });
 
 test("tracker return is underlying return less annual fee", () => {
