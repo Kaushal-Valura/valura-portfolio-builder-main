@@ -93,7 +93,7 @@ export function normCdf(z: number) {
 export function analyse(client: Client, input: Line[], data: Data) {
   const { assumptions: A, subclasses } = data;
   const L = A.limits, M = A.market;
-  const byId = new Map(data.products.map((p) => [p.id, p]));
+  const byId = new Map(data.products.map((p) => [p.id.toLocaleUpperCase(), p]));
   const sc = new Map(subclasses.map((s) => [s.code, s]));
   const l1Index = new Map(A.l1.map((x, i) => [x.code, i]));
   const accredited = client.accredited === "Yes";
@@ -105,13 +105,13 @@ export function analyse(client: Client, input: Line[], data: Data) {
     : A.scenarios.map((s) => s.prob);
   const probs = A.scenarios.map((s, k) => client.probOverride?.[k] ?? engineProbabilities[k]); // advisor override > live evidence model > workbook snapshot
 
-  const held = input.filter((l) => byId.has(l.id));
+  const held = input.filter((l) => byId.has(l.id.toLocaleUpperCase()));
   // Portfolio Builder!E64 sums every advisor-entered amount, including rows whose product ID
   // cannot be resolved. Unknown IDs contribute zero to product-specific look-through fields,
   // but must remain in the portfolio denominator and sleeve actuals.
   const V = input.reduce((s, l) => s + (l.amount || 0), 0);
   const unmappedLines = input
-    .filter((l) => !byId.has(l.id) && (l.id !== "" || (l.amount || 0) !== 0))
+    .filter((l) => !byId.has(l.id.toLocaleUpperCase()) && (l.id !== "" || (l.amount || 0) !== 0))
     .map((l) => {
       const prefix = l.id.slice(0, 1).toUpperCase();
       const source = l.id === "" ? "" : prefix === "P" ? "Public" : prefix === "A" ? "Private" : prefix === "S" ? "Structured" : "Unknown";
@@ -126,7 +126,7 @@ export function analyse(client: Client, input: Line[], data: Data) {
 
   // ---- Portfolio Builder: one enriched row per line (cols G..BJ) ----
   const lines = held.map((l, i) => {
-    const p = byId.get(l.id)!, s = sc.get(p.subclass)!;
+    const p = byId.get(l.id.toLocaleUpperCase())!, s = sc.get(p.subclass)!;
     const amount = l.amount || 0, weight = V ? amount / V : 0;
     // PB!AO:AU - notes carry their own scores; other products look up their sub-class row (F sheets have no SP / OT rows
     // in that lookup range, so a non-note in an SP sub-class scores 0, as IFERROR(...,0) gives)
