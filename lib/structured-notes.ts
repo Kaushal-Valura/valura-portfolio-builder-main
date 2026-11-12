@@ -101,7 +101,9 @@ export function deriveStructuredNote(
   const subclassCode = classification.subclassCode;
   const payoffFamily = classification.payoffFamily;
   const assetClass = assumptions.assetClasses.find((item) => item.code === (note.underlyingSubclassCode ?? ""));
+  const noteSubclass = assumptions.assetClasses.find((item) => item.code === subclassCode);
   if (note.underlyingSubclassCode && !assetClass) warnings.push(`Unknown underlying sub-asset class code: ${note.underlyingSubclassCode}`);
+  if (subclassCode && !noteSubclass) warnings.push(`Unknown structured-note sub-asset class code: ${subclassCode}`);
 
   const underlyingExpectedReturn = assetClass?.expectedReturn ?? 0;
   const underlyingVolatility = assetClass?.volatility ?? 0;
@@ -220,8 +222,8 @@ export function deriveStructuredNote(
     warnings.push("Underlying volatility is zero; barrier probability is set to zero");
   }
   return {
-    id: note.id, subclassCode, assetClassCode: subclassCode ? "SP" : "",
-    subclassName: subclassCode, payoffFamily, riskEquivalent, distanceToBarrier,
+    id: note.id, subclassCode, assetClassCode: noteSubclass?.level1 ?? (subclassCode ? "Unknown code" : ""),
+    subclassName: noteSubclass?.name ?? (subclassCode ? "Unknown code" : ""), payoffFamily, riskEquivalent, distanceToBarrier,
     probabilityBelowBarrier, maximumLoss, expectedReturn, volatility, beta, riskRating,
     issuerCreditRisk, usSitus, factorScores, underlyingScenarioReturns, noteScenarioReturns, warnings,
   };
