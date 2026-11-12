@@ -3,9 +3,6 @@
 import type { Client } from "@/lib/engine";
 
 const RISKS = ["Low", "Medium-Low", "Medium", "Medium-High", "High"];
-// Starting annual volatility budgets by suitability category. Advisors can subsequently adjust
-// the target on the optimiser desk; the displayed risk profile remains the client's stated category.
-const RISK_VOL: Record<string, number> = { Low: 0.05, "Medium-Low": 0.065, Medium: 0.08, "Medium-High": 0.10, High: 0.12 };
 const words = new Intl.NumberFormat("en-US", { notation: "compact", compactDisplay: "long", maximumFractionDigits: 2 });
 
 export const setupErrors = (client: Client) => [
@@ -84,7 +81,7 @@ export default function Setup({ client, onChange, onNext }: { client: Client; on
             <div className="grid grid-cols-5 gap-1.5">
               {RISKS.map((r, i) => (
                 <label key={r} className="relative cursor-pointer">
-                  <input type="radio" name="risk" className="peer sr-only" checked={i === level} onChange={() => onChange({ ...client, riskProfile: r, targetVol: RISK_VOL[r] })} />
+                  <input type="radio" name="risk" className="peer sr-only" checked={i === level} onChange={() => onChange({ ...client, riskProfile: r })} />
                   <span aria-hidden className="block h-3 rounded-full transition-colors peer-focus-visible:ring-2 peer-focus-visible:ring-accent peer-focus-visible:ring-offset-2"
                     style={{ background: i <= level ? `color-mix(in srgb, var(--accent-deep) ${30 + i * 17}%, var(--mint))` : "var(--surface-2)" }} />
                   <span className={`mt-2 block text-[12.5px] leading-tight ${i === level ? "font-bold text-ink" : "text-muted"}`}>{r}</span>
