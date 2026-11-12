@@ -22,7 +22,7 @@ export const PRODUCT_MASTER_LAST_ROW = 88;
 export const PRODUCT_MASTER_CAPACITY = PRODUCT_MASTER_LAST_ROW - PRODUCT_MASTER_FIRST_ROW + 1;
 
 export const PRODUCT_MASTER_FORMULA_MAP = {
-  G: { output: "assetClassCode", formula: "IF(Frow=\"\",\"\",IFERROR(lookup(Frow,AssetClassMaster.B7:B39,AssetClassMaster.D7:D39),\"Unknown code\"))", dependencies: ["F", "Asset Class Master!B7:B39", "Asset Class Master!D7:D39"] },
+  G: { output: "assetClassName", formula: "IF(Frow=\"\",\"\",IFERROR(lookup(Frow,AssetClassMaster.B7:B39,AssetClassMaster.D7:D39),\"Unknown code\"))", dependencies: ["F", "Asset Class Master!B7:B39", "Asset Class Master!D7:D39"] },
   H: { output: "subclassName", formula: "IF(Frow=\"\",\"\",IFERROR(lookup(Frow,AssetClassMaster.B7:B39,AssetClassMaster.E7:E39),\"Unknown code\"))", dependencies: ["F", "Asset Class Master!B7:B39", "Asset Class Master!E7:E39"] },
   U: { output: "usSitus", formula: "IF(Srow=\"\",\"\",IF(Trow<>\"\",Trow,IF(Srow=\"United States\",\"Yes\",\"No\")))", dependencies: ["S", "T"] },
   AT: { output: "expectedReturn", formula: "IF(Frow=\"\",0,IF(ALrow<>\"\",ALrow,IF(ISNUMBER(ACrow),ACrow-MAX(ratingDefault*LGD,MAX(0,ACrow-Treasury5Y)*spreadLossShare),assetClassReturn)))", dependencies: ["F", "AL", "AC", "Z", "Product Master!C93:D110", "Inputs!D45", "Inputs!D51", "Inputs!D52", "Asset Class Master!B7:B39", "Asset Class Master!N7:N39"] },
@@ -34,7 +34,7 @@ export const PRODUCT_MASTER_FORMULA_MAP = {
 
 export type AssetClassDefaults = {
   code: string;
-  level1: string;
+  level1Name: string;
   name: string;
   expectedReturn: number;
   volatility: number;
@@ -70,7 +70,7 @@ export type ProductMasterAssumptions = {
 
 export type DerivedPublicProduct = {
   id: string;
-  assetClassCode: string;
+  assetClassName: string;
   subclassName: string;
   usSitus: "Yes" | "No" | "";
   expectedReturn: number;
@@ -132,7 +132,7 @@ export function derivePublicProduct(
 
   return {
     id: product.id,
-    assetClassCode: assetClass?.level1 ?? (hasSubclass ? "Unknown code" : ""),
+    assetClassName: assetClass?.level1Name ?? (hasSubclass ? "Unknown code" : ""),
     subclassName: assetClass?.name ?? (hasSubclass ? "Unknown code" : ""),
     usSitus,
     expectedReturn,
