@@ -40,7 +40,7 @@ test("calculates protected-income risk equivalence, barrier probability and note
   assert.equal(result.expectedReturn, 0.0525 - result.probabilityBelowBarrier * 0.05 * 0.8 / 3);
   assert.equal(result.volatility, result.riskEquivalent * 0.16);
   assert.equal(result.usSitus, "No");
-  assert.equal(result.factorScores[6], -0.7); // workbook: risk-equivalent x F7 base score, then add issuer adjustment
+  assert.ok(Math.abs(result.factorScores[6] + 0.7) < 1e-12); // workbook: risk-equivalent x F7 base score, then add issuer adjustment
 });
 
 test("calculates income note risk, distance to barrier and loss probability", () => {
