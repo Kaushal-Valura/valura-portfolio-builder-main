@@ -65,16 +65,19 @@ test("rejects invalid engine settings and invalid dates", () => {
   assert.throws(() => calculateScenarioEngine({ ...base, asOf: "not-a-date" }), /Invalid valuation date/);
 });
 
-test("exposes probability-band overrun rather than silently hiding it", () => {
-  const input = {
-    ...base,
-    signals: [
-      { name: "Disagreeing", family: "Survey", observedAt: "2026-10-16", reliability: 5,
-        probabilities: { base: 0.1, bull: 0.8, bear: 0.05, tail: 0.05 } },
-      { name: "Opposite", family: "Survey", observedAt: "2026-10-16", reliability: 5,
-        probabilities: { base: 0.8, bull: 0.05, bear: 0.1, tail: 0.05 } },
-    ],
-  };
-  const result = calculateScenarioEngine(input);
-  assert.ok(result.warnings.length >= 0);
+test("preserves the workbook's unnormalised one-standard-deviation probability bands", () => {
+  const signals = [
+    { name: "Base-only", family: "Survey", observedAt: "2026-10-16", reliability: 5,
+      probabilities: { base: 1, bull: 0, bear: 0, tail: 0 } },
+    { name: "Bull-only", family: "Survey", observedAt: "2026-10-16", reliability: 5,
+      probabilities: { base: 0, bull: 1, bear: 0, tail: 0 } },
+    { name: "Bear-only", family: "Survey", observedAt: "2026-10-16", reliability: 5,
+      probabilities: { base: 0, bull: 0, bear: 1, tail: 0 } },
+    { name: "Tail-only", family: "Survey", observedAt: "2026-10-16", reliability: 5,
+      probabilities: { base: 0, bull: 0, bear: 0, tail: 1 } },
+  ];
+  const result = calculateScenarioEngine({ ...base, housePrior: { base: 0.25, bull: 0.25, bear: 0.25, tail: 0.25 }, signals });
+  const pessimisticTotal = Object.values(result.pessimisticProbabilities).reduce((a, b) => a + b, 0);
+  assert.ok(pessimisticTotal > 1);
+  assert.ok(result.warnings.some((warning) => warning.includes("Pessimistic probability band exceeds 100%")));
 });
