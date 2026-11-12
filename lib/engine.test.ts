@@ -90,6 +90,9 @@ test("US person: US-situs rules switch off", () => {
   const r = analyse({ ...defaultClient(data.assumptions), usPerson: "Yes" }, sample.lines, data);
   assert.ok(r.lines.every((l) => l.action !== "SWITCH TO NON-US-SITUS LINE"));
   assert.equal(r.hedges.rows.find((h) => h.hedge === "US estate-tax exposure")!.status, "Not needed");
+  // Monitoring!E19 is a raw US-situs exposure metric and remains populated for US persons.
+  close(r.monitoring[13].current, 150_000, "Monitoring!E19 is independent of estate-tax applicability");
+  assert.equal(r.monitoring[13].status, "RED");
   assert.equal(r.riskLimits[5].status, "PASS");
 });
 
@@ -114,6 +117,21 @@ test("live evidence model reproduces the workbook's scenario probabilities and c
   assert.equal(r.scenarioEngine!.overallConfidence, data.assumptions.engineConfidenceLevel);
 });
 
+
+test("Monitoring reproduces all 15 traffic-light formulas and the RED/AMBER dashboard counts", () => {
+  const r = analyse(defaultClient(data.assumptions), sample.lines, data);
+  assert.deepEqual(r.monitoring.map((indicator) => indicator.status), E.monitoringStatus);
+  assert.equal(r.monitoring.length, 15, "Monitoring!I6:I20");
+  assert.equal(r.counts.red, 1, "Monitoring!E22 = COUNTIF(I6:I20,\"RED\")");
+  assert.equal(r.counts.amber, 2, "Monitoring!E23 = COUNTIF(I6:I20,\"AMBER\")");
+  assert.deepEqual(r.monitoring.slice(0, 9).map((indicator) => indicator.current), data.assumptions.monitoring.slice(0, 9).map((indicator) => indicator.current));
+  close(r.monitoring[9].current, data.assumptions.engineConfidence, "Monitoring!E15 links Scenario Engine!D58");
+  assert.equal(r.monitoring[10].current, 0, "Monitoring!E16 blocked lines");
+  assert.equal(r.monitoring[11].current, 1, "Monitoring!E17 review lines");
+  assert.equal(r.monitoring[12].current, 0, "Monitoring!E18 near-barrier notes");
+  assert.equal(r.monitoring[13].current, 150_000, "Monitoring!E19 US-situs amount");
+  assert.equal(r.monitoring[14].current, 0, "Monitoring!E20 drawdown default");
+});
 
 test("Portfolio Builder keeps unknown product amounts in totals, weights and sleeve actuals", () => {
   const extra = [
