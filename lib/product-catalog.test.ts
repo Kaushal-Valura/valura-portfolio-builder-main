@@ -112,3 +112,22 @@ test("new Product Master record joins the runtime catalogue with calculated engi
   assert.equal(added.geographyCheck, "OK");
   assert.equal(record.product.productMasterFields.name, "Test Global Equity ETF");
 });
+
+
+test("rejects unsupported dropdown values and out-of-range fee inputs at the validation boundary", () => {
+  const unsupported = { ...validForm(), currency: "XYZ" };
+  assert.ok(validatePublicProductForm(unsupported, existing, sub).some((error) => error.includes("Invalid currency")));
+  const excessiveFee = { ...validForm(), expenseRatio: "125" };
+  assert.ok(validatePublicProductForm(excessiveFee, existing, sub).some((error) => error.includes("Expense ratio must be between 0% and 100%")));
+  const invalidLiquidity = { ...validForm(), liquidity: "Instant" };
+  assert.ok(validatePublicProductForm(invalidLiquidity, existing, sub).some((error) => error.includes("Invalid liquidity")));
+});
+
+test("rejects corrupted persisted records instead of restoring unsafe model values", () => {
+  const record = createPublicProduct(validForm(), existing, sub, assumptions);
+  const corrupted = {
+    ...record,
+    product: { ...record.product, vol: Number.NaN },
+  };
+  assert.deepEqual(validateStoredPublicProducts([record, corrupted]).map((item) => item.product.id), ["P028"]);
+});
