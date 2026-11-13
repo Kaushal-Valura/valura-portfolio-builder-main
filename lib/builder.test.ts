@@ -4,7 +4,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { analyse, defaultClient, type Data, type Line } from "./engine.ts";
-import { addLine, capBudget, isEdited, linesFromWeights, rebalanceLines, rebalancePreservingEdits, removeLine, sleeveFromDrop, updateLine } from "./builder.ts";
+import { addLine, capBudget, isEdited, isProductAvailableForClient, linesFromWeights, rebalanceLines, rebalancePreservingEdits, removeLine, sleeveFromDrop, updateLine } from "./builder.ts";
 import { DEF_LEVERS, recommend } from "./optimiser.ts";
 import products from "../data/products.json" with { type: "json" };
 import subclasses from "../data/subclasses.json" with { type: "json" };
@@ -158,4 +158,20 @@ test("mandate actual percentages use the client's full investment budget when pa
   const r = analyse(partial, holdings, data);
   assert.equal(r.mandate.find((m) => m.name === EQ)!.actualPct, 0.1);
   assert.equal(r.geography.reduce((sum, g) => sum + g.actualPct, 0), 0.1);
+});
+
+
+test("Product Master access, accreditation and client minimum ticket gate the drag-and-drop catalogue", () => {
+  const base = {
+    ...products[0],
+    platform: "Yes",
+    accreditedOnly: "No",
+    minAccredited: 100_000,
+    minNonAccredited: 250_000,
+  } as Data["products"][number];
+  assert.equal(isProductAvailableForClient(base, { accredited: "No", amount: 250_000 }), true);
+  assert.equal(isProductAvailableForClient(base, { accredited: "No", amount: 249_999 }), false);
+  assert.equal(isProductAvailableForClient({ ...base, platform: "No" }, { accredited: "Yes", amount: 1_000_000 }), false);
+  assert.equal(isProductAvailableForClient({ ...base, accreditedOnly: "Yes" }, { accredited: "No", amount: 1_000_000 }), false);
+  assert.equal(isProductAvailableForClient({ ...base, accreditedOnly: "Yes" }, { accredited: "Yes", amount: 100_000 }), true);
 });
