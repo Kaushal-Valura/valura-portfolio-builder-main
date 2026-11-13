@@ -6,13 +6,11 @@ import {
   EMPTY_PUBLIC_PRODUCT_FORM, validatePublicProductForm,
   type PublicProductForm, type StoredPublicProduct,
 } from "@/lib/product-catalog";
-import type { ProductMasterAssumptions } from "@/lib/product-master";
 
 type Props = {
   open: boolean;
   products: Product[];
   subclasses: Subclass[];
-  assumptions: ProductMasterAssumptions;
   onClose: () => void;
   onSave: (record: StoredPublicProduct) => void;
 };
