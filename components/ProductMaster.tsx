@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import type { Product, Subclass } from "@/lib/engine";
 import {
-  createPublicProduct, EMPTY_PUBLIC_PRODUCT_FORM, validatePublicProductForm,
+  EMPTY_PUBLIC_PRODUCT_FORM, validatePublicProductForm,
   type PublicProductForm, type StoredPublicProduct,
 } from "@/lib/product-catalog";
 import type { ProductMasterAssumptions } from "@/lib/product-master";
@@ -64,6 +64,7 @@ export default function ProductMaster({ open, products, subclasses, assumptions,
   const [form, setForm] = useState<PublicProductForm>(EMPTY_PUBLIC_PRODUCT_FORM);
   const [submitError, setSubmitError] = useState("");
   const [showAdvanced, setShowAdvanced] = useState(false);
+  const [saving, setSaving] = useState(false);
   const errors = useMemo(() => validatePublicProductForm(form, products, subclasses), [form, products, subclasses]);
   const subclass = subclasses.find((item) => item.code === form.subclassCode);
   const bondLike = form.type.toLowerCase().includes("bond") || form.type.toLowerCase().includes("fixed maturity");
@@ -71,16 +72,25 @@ export default function ProductMaster({ open, products, subclasses, assumptions,
 
   if (!open) return null;
 
-  const submit = () => {
+  const submit = async () => {
     setSubmitError("");
+    setSaving(true);
     try {
-      const record = createPublicProduct(form, products, subclasses, assumptions);
-      onSave(record);
+      const response = await fetch("/api/products", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ form, existingProducts: products }),
+      });
+      const payload = await response.json() as { record?: StoredPublicProduct; error?: string };
+      if (!response.ok || !payload.record) throw new Error(payload.error || "Unable to validate or calculate this product.");
+      onSave(payload.record);
       setForm(EMPTY_PUBLIC_PRODUCT_FORM);
       setShowAdvanced(false);
       onClose();
     } catch (error) {
       setSubmitError(error instanceof Error ? error.message : "Unable to add this product.");
+    } finally {
+      setSaving(false);
     }
   };
 
@@ -180,7 +190,7 @@ export default function ProductMaster({ open, products, subclasses, assumptions,
 
       <footer className="flex flex-wrap items-center justify-between gap-3 border-t border-line px-5 py-4 sm:px-7">
         <p className="text-xs text-muted">* Required independent inputs. Derived columns are calculated automatically. Saved in this browser only.</p>
-        <div className="flex gap-2"><button type="button" onClick={onClose} className="btn btn-soft">Cancel</button><button type="button" onClick={submit} disabled={errors.length > 0} className="btn btn-primary disabled:cursor-not-allowed disabled:opacity-40">Validate & add product</button></div>
+        <div className="flex gap-2"><button type="button" onClick={onClose} className="btn btn-soft">Cancel</button><button type="button" onClick={submit} disabled={errors.length > 0 || saving} className="btn btn-primary disabled:cursor-not-allowed disabled:opacity-40">{saving ? "Calculating…" : "Validate & add product"}</button></div>
       </footer>
     </div>
   </div>;
