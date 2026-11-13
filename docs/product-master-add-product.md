@@ -36,7 +36,7 @@ The API at `POST /api/products` validates the inputs and calls the existing Prod
 | AW | Risk rating | Risk override, otherwise asset-class default |
 | AX | Look-through check | US + India + rest-of-world must equal 100% |
 
-The form requires the three geography weights to total 100% (with a 0.1 percentage-point tolerance). Bond-specific fields are required only for Bond and Fixed maturity plan types. Duplicate names and tickers / ISINs are rejected.
+The form requires the three geography weights to total 100% (with a 0.1 percentage-point tolerance). Bond-specific fields are required only for Bond and Fixed maturity plan types. Duplicate names and tickers / ISINs are rejected. Dropdown values are allowlisted and numeric fields are checked for finite values and workbook-appropriate ranges. Persisted browser records are revalidated before being restored, including generated ID shape and finite model outputs.
 
 All entered form values are also stored under `product.productMasterFields`; formula dependencies are stored in the raw Product Master input record; derived outputs are stored on the runtime product record.
 
@@ -44,6 +44,7 @@ All entered form values are also stored under `product.productMasterFields`; for
 
 - New products are added to the live `data.products` array.
 - The Builder product catalogue receives them immediately.
+- The Builder now hides products with Valura platform access set to No, accreditation restrictions that the client does not meet, or a minimum ticket above the client's available amount.
 - Manual add / drag-and-drop selections are resolved by product ID in the existing portfolio analysis engine, so the return, volatility, beta, risk, geography and eligibility calculations use the newly derived values.
 - Saved additions are reloaded and re-derived from raw inputs on the next visit.
 
@@ -57,4 +58,4 @@ The existing optimiser uses its own static universe in `data/optimiser.json` and
 
 ## Tests
 
-`lib/product-catalog.test.ts` covers ID generation, formula-derived outputs, percentage normalization, zero overrides, bond YTM adjustment, required fields, duplicate checks, geography validation and persisted-record validation. The test is included in `npm test`.
+`lib/product-catalog.test.ts` covers ID generation, formula-derived outputs, percentage normalization, zero overrides, bond YTM adjustment and return precedence, situs override precedence, required fields, duplicate checks, geography validation, dropdown and numeric boundaries, and persisted-record integrity. `lib/builder.test.ts` covers platform access, accreditation and minimum-ticket eligibility. Both are included in `npm test`.
