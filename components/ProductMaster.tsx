@@ -15,7 +15,7 @@ type Props = {
   onSave: (record: StoredPublicProduct) => void;
 };
 
-const PRODUCT_TYPES = ["UCITS ETF", "UCITS fund", "ETF (US-listed)", "ETC", "Money market fund", "Bond", "Fixed maturity plan", "Mutual fund", "FMP"];
+const PRODUCT_TYPES = ["UCITS ETF", "UCITS fund", "ETF (US-listed)", "ETC", "Money market fund", "Bond", "Fixed maturity plan", "Mutual fund"];
 const GEOGRAPHIES = ["Global", "United States", "India", "Emerging Markets", "Developed ex-US", "Europe", "Asia Pacific"];
 const CURRENCIES = ["USD", "EUR", "GBP", "INR", "CHF", "JPY", "Multi"];
 const DOMICILES = ["Ireland", "Luxembourg", "United States", "India", "India (GIFT IFSC)", "Singapore", "Jersey", "Other"];
