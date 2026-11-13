@@ -24,7 +24,7 @@ const assumptions: ProductMasterAssumptions = {
 const validForm = (): PublicProductForm => ({
   ...EMPTY_PUBLIC_PRODUCT_FORM,
   name: "Test Global Equity ETF", type: "UCITS ETF", ticker: "TESTX",
-  subclassCode: "EQ-USLC", strategy: "Broad market", geography: "United States",
+  subclassCode: "EQ-USLC", strategy: "Broad market", geography: "United States", seniority: "",
   geoUs: "100", geoIndia: "0", geoRest: "0", currency: "USD", underlyingCurrency: "USD",
   sector: "Diversified", segment: "Large cap", style: "Blend", domicile: "Ireland",
   managerIssuer: "Test Asset Management", expenseRatio: "0.10", liquidity: "Daily",
@@ -147,7 +147,7 @@ test("matches Excel bond-return precedence, rating fallback and credit-spread lo
     ...bond, name: "Unrated Parity Bond", ticker: "UNRATEDBOND",
     creditRating: "Not rated", yieldToMaturity: "6",
   }, existing, sub, assumptions);
-  assert.equal(unrated.product.ret, 0.042);
+  assert.ok(Math.abs(unrated.product.ret - 0.042) < 1e-12);
 
   const overrideWins = createPublicProduct({
     ...bond, name: "Override Parity Bond", ticker: "OVERRIDEBOND",
