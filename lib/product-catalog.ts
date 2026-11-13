@@ -85,11 +85,12 @@ export function validatePublicProductForm(
     const value = Number(raw);
     if (!Number.isFinite(value)) errors.push(`${label} must be a valid number.`);
     else if (["expenseRatio", "coupon", "yieldToMaturity", "returnOverride", "volatilityOverride", "scenarioBase", "scenarioBull", "scenarioBear", "scenarioTail"].includes(key) && (value < -100 || value > 100)) errors.push(`${label} must be between -100% and 100%.`);
-    else if (["expenseRatio", "volatilityOverride", "aumM", "modifiedDuration", "lockupYears", "minimumInvestment", "riskOverride"].includes(key) && value < 0) errors.push(`${label} cannot be negative.`);
+    else if (["expenseRatio", "coupon", "volatilityOverride", "aumM", "modifiedDuration", "lockupYears", "minimumInvestment", "riskOverride"].includes(key) && value < 0) errors.push(`${label} cannot be negative.`);
   }
   if (form.usSitusOverride && !["Yes", "No"].includes(form.usSitusOverride)) errors.push("US situs override must be Yes or No.");
   if (form.accreditedOnly && !["Yes", "No"].includes(form.accreditedOnly)) errors.push("Accredited-only must be Yes or No.");
   if (form.platformAccess && !["Yes", "No"].includes(form.platformAccess)) errors.push("Platform access must be Yes or No.");
+  if (form.riskOverride.trim() && Number(form.riskOverride) > 5) errors.push("Risk rating override must be between 0 and 5.");
 
   const bondLike = form.type.toLowerCase().includes("bond") || form.type.toLowerCase().includes("fixed maturity");
   if (bondLike) {
