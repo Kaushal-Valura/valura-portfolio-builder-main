@@ -131,3 +131,41 @@ test("rejects corrupted persisted records instead of restoring unsafe model valu
   };
   assert.deepEqual(validateStoredPublicProducts([record, corrupted]).map((item) => item.product.id), ["P028"]);
 });
+
+
+test("matches Excel bond-return precedence, rating fallback and credit-spread loss rules", () => {
+  const bond = {
+    ...validForm(), name: "Formula Parity Bond", type: "Bond", ticker: "PARITYBOND",
+    subclassCode: "FI-IG", bondIssuer: "Parity Issuer", creditRating: "AAA",
+    coupon: "5", maturity: "2032-01-01", yieldToMaturity: "5",
+    modifiedDuration: "4", seniority: "Senior unsecured",
+  };
+  const noLoss = createPublicProduct(bond, existing, sub, assumptions);
+  assert.equal(noLoss.product.ret, 0.05);
+
+  const unrated = createPublicProduct({
+    ...bond, name: "Unrated Parity Bond", ticker: "UNRATEDBOND",
+    creditRating: "Unlisted rating", yieldToMaturity: "6",
+  }, existing, sub, assumptions);
+  assert.equal(unrated.product.ret, 0.048);
+
+  const overrideWins = createPublicProduct({
+    ...bond, name: "Override Parity Bond", ticker: "OVERRIDEBOND",
+    yieldToMaturity: "6", returnOverride: "7",
+  }, existing, sub, assumptions);
+  assert.equal(overrideWins.product.ret, 0.07);
+});
+
+test("US situs follows domicile unless an explicit Excel override is supplied", () => {
+  const usDomiciled = createPublicProduct({
+    ...validForm(), name: "US Domiciled Product", ticker: "USDOMICILE",
+    domicile: "United States",
+  }, existing, sub, assumptions);
+  assert.equal(usDomiciled.product.usSitus, "Yes");
+
+  const overridden = createPublicProduct({
+    ...validForm(), name: "Overridden US Product", ticker: "USOVERRIDE",
+    domicile: "United States", usSitusOverride: "No",
+  }, existing, sub, assumptions);
+  assert.equal(overridden.product.usSitus, "No");
+});
