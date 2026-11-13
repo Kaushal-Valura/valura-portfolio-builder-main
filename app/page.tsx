@@ -93,7 +93,7 @@ export default function Page() {
   const [ran, setRan] = useState<Levers | null>(null); // desk as of the last Optimise
   const [run, setRun] = useState<RunSummary | null>(null);
   const [busy, setBusy] = useState(false);
-  const result = useMemo(() => analyse(client, lines, data), [client, lines]);
+  const result = useMemo(() => analyse(client, lines, data), [client, lines, data]);
   const errors = setupErrors(client);
   // Build needs a valid client; report tabs also need at least one product. A locked tab falls back to the nearest open one.
   const locked = (t: Tab) => (t !== "Client" && errors.length > 0) || (t !== "Client" && t !== "Build" && lines.length === 0);
