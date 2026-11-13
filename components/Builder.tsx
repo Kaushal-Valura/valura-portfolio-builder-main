@@ -202,7 +202,7 @@ export default function Builder({ data, client, result, lines, desk, onAdd, onUp
               <option value="All">All geographies</option><option value="India">India exposure</option><option value="Non-India">No India exposure</option>
             </select>
           </div>
-          <p className="mb-2 text-xs text-muted">Already-selected products are hidden. Drag a product into a sleeve, or press + to add it.</p>
+          <p className="mb-2 text-xs text-muted">Already-selected or ineligible products (platform access, accreditation and minimum ticket) are hidden. Drag an available product into a sleeve, or press + to add it.</p>
           <div className="flex flex-col gap-2">
             {catalog.length === 0 ? <p className="rounded-xl border border-dashed border-line p-4 text-center text-xs text-muted">No matching products. Change the filters or search term.</p> : catalog.map((p) => {
               const s = sub.get(p.subclass)!;
