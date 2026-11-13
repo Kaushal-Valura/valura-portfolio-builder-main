@@ -85,7 +85,7 @@ export function validatePublicProductForm(
     const value = Number(raw);
     if (!Number.isFinite(value)) errors.push(`${label} must be a valid number.`);
     else if (["expenseRatio", "coupon", "yieldToMaturity", "returnOverride", "volatilityOverride", "scenarioBase", "scenarioBull", "scenarioBear", "scenarioTail"].includes(key) && (value < -100 || value > 100)) errors.push(`${label} must be between -100% and 100%.`);
-    else if (["aumM", "modifiedDuration", "lockupYears", "minimumInvestment", "riskOverride"].includes(key) && value < 0) errors.push(`${label} cannot be negative.`);
+    else if (["expenseRatio", "volatilityOverride", "aumM", "modifiedDuration", "lockupYears", "minimumInvestment", "riskOverride"].includes(key) && value < 0) errors.push(`${label} cannot be negative.`);
   }
   if (form.usSitusOverride && !["Yes", "No"].includes(form.usSitusOverride)) errors.push("US situs override must be Yes or No.");
   if (form.accreditedOnly && !["Yes", "No"].includes(form.accreditedOnly)) errors.push("Accredited-only must be Yes or No.");
@@ -93,7 +93,7 @@ export function validatePublicProductForm(
 
   const bondLike = form.type.toLowerCase().includes("bond") || form.type.toLowerCase().includes("fixed maturity");
   if (bondLike) {
-    for (const [key, label] of [["bondIssuer", "Bond issuer"], ["creditRating", "Credit rating"], ["maturity", "Maturity"], ["yieldToMaturity", "Yield to maturity"], ["seniority", "Seniority"]] as const) {
+    for (const [key, label] of [["bondIssuer", "Bond issuer"], ["creditRating", "Credit rating"], ["coupon", "Coupon"], ["maturity", "Maturity"], ["yieldToMaturity", "Yield to maturity"], ["modifiedDuration", "Modified duration"], ["seniority", "Seniority"]] as const) {
       if (!form[key].trim()) errors.push(`${label} is required for bonds and fixed maturity plans.`);
     }
     if (form.maturity && Number.isNaN(Date.parse(form.maturity))) errors.push("Maturity must be a valid date.");
@@ -141,7 +141,7 @@ export function createPublicProduct(
     id, source: "Public", name: form.name.trim(), type: form.type, ticker: form.ticker.trim(),
     subclass: form.subclassCode, geography: form.geography, geo: [geo.us ?? 0, geo.india ?? 0, geo.restOfWorld ?? 0],
     ccy: form.currency, underlyingCcy: form.underlyingCurrency, domicile: form.domicile,
-    usSitus: derived.usSitus, liquidity: form.liquidity, sector: form.sector, issuer: form.managerIssuer.trim(),
+    usSitus: derived.usSitus, liquidity: form.liquidity, sector: form.sector, issuer: (form.bondIssuer || form.managerIssuer).trim(),
     rating: form.creditRating, yield: optionalPercent(form.yieldToMaturity) ?? 0, fee: asPercent(form.expenseRatio),
     aumM: number(form.aumM) ?? 0, platform: form.platformAccess, accreditedOnly: form.accreditedOnly,
     minAccredited: requiredNumber(form.minimumInvestment), minNonAccredited: requiredNumber(form.minimumInvestment),
