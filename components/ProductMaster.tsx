@@ -58,7 +58,7 @@ function Section({ title, description, children }: { title: string; description?
   </section>;
 }
 
-export default function ProductMaster({ open, products, subclasses, assumptions, onClose, onSave }: Props) {
+export default function ProductMaster({ open, products, subclasses, onClose, onSave }: Props) {
   const [form, setForm] = useState<PublicProductForm>(EMPTY_PUBLIC_PRODUCT_FORM);
   const [submitError, setSubmitError] = useState("");
   const [showAdvanced, setShowAdvanced] = useState(false);
