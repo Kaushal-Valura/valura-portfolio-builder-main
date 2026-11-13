@@ -137,7 +137,7 @@ export function createPublicProduct(
     ["Minimum investment (USD)", form.minimumInvestment], ["Accredited only?", form.accreditedOnly],
     ["Tag 1", form.tag1], ["Tag 2", form.tag2], ["Tag 3", form.tag3],
   ].filter(([, value]) => value !== "") as [string, string][];
-  const product: Product = {
+  const product: Product & { productMasterFields: PublicProductForm } = {
     id, source: "Public", name: form.name.trim(), type: form.type, ticker: form.ticker.trim(),
     subclass: form.subclassCode, geography: form.geography, geo: [geo.us ?? 0, geo.india ?? 0, geo.restOfWorld ?? 0],
     ccy: form.currency, underlyingCcy: form.underlyingCurrency, domicile: form.domicile,
@@ -151,7 +151,7 @@ export function createPublicProduct(
     scen: [optionalPercent(form.scenarioBase), optionalPercent(form.scenarioBull), optionalPercent(form.scenarioBear), optionalPercent(form.scenarioTail)],
     distToBarrier: null, issuerCreditRisk: "", notes: form.notes.trim(),
     assetClassName: derived.assetClassName, subclassName: derived.subclassName, geographyCheck: derived.geographyCheck,
-    facts,
+    facts, productMasterFields: { ...form },
   };
   // The selected subclass must exist; this also protects runtime calculations from invalid lookup keys.
   if (!subclass) throw new Error("Selected sub-asset class could not be resolved.");
