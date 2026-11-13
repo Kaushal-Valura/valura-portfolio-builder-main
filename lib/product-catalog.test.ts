@@ -145,9 +145,9 @@ test("matches Excel bond-return precedence, rating fallback and credit-spread lo
 
   const unrated = createPublicProduct({
     ...bond, name: "Unrated Parity Bond", ticker: "UNRATEDBOND",
-    creditRating: "Unlisted rating", yieldToMaturity: "6",
+    creditRating: "Not rated", yieldToMaturity: "6",
   }, existing, sub, assumptions);
-  assert.equal(unrated.product.ret, 0.048);
+  assert.equal(unrated.product.ret, 0.042);
 
   const overrideWins = createPublicProduct({
     ...bond, name: "Override Parity Bond", ticker: "OVERRIDEBOND",
