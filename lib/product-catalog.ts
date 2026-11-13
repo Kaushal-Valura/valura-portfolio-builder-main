@@ -15,7 +15,7 @@ export type PublicProductForm = {
   tag1: string; tag2: string; tag3: string; notes: string;
 };
 
-export type StoredPublicProduct = { product: Product; raw: PublicProductInput };
+export type StoredPublicProduct = { product: Product & { productMasterFields: PublicProductForm }; raw: PublicProductInput };
 
 export const EMPTY_PUBLIC_PRODUCT_FORM: PublicProductForm = {
   name: "", type: "UCITS ETF", ticker: "", subclassCode: "", strategy: "",
@@ -162,7 +162,7 @@ export function isStoredPublicProduct(value: unknown): value is StoredPublicProd
   if (!value || typeof value !== "object") return false;
   const candidate = value as Partial<StoredPublicProduct>;
   return !!candidate.product && candidate.product.source === "Public" && typeof candidate.product.id === "string" &&
-    !!candidate.raw && candidate.raw.id === candidate.product.id && typeof candidate.raw.subclassCode === "string";
+    !!candidate.product.productMasterFields && !!candidate.raw && candidate.raw.id === candidate.product.id && typeof candidate.raw.subclassCode === "string";
 }
 
 export function validateStoredPublicProducts(value: unknown): StoredPublicProduct[] {
