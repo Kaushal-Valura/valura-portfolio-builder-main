@@ -41,14 +41,14 @@ function InputField({ label, value, onChange, required, type = "text", step, pla
 }
 
 function SelectField({ label, value, onChange, options, required }: {
-  label: string; value: string; onChange: (value: string) => void; options: string[]; required?: boolean;
+  label: string; value: string; onChange: (value: string) => void; options: (string | { value: string; label: string })[]; required?: boolean;
 }) {
   return <label className="block min-w-0">
     <span className="mb-1.5 block text-xs font-semibold text-ink-2">{label}{required ? <span className="text-red-600"> *</span> : null}</span>
     <select required={required} value={value} onChange={(event) => onChange(event.target.value)}
       className="w-full rounded-lg border border-line bg-surface px-3 py-2 text-sm text-ink outline-none focus:border-accent">
       <option value="">Select…</option>
-      {options.map((option) => <option key={option} value={option}>{option}</option>)}
+      {options.map((option) => { const value = typeof option === "string" ? option : option.value; const label = typeof option === "string" ? option : option.label; return <option key={value} value={value}>{label}</option>; })}
     </select>
   </label>;
 }
@@ -87,7 +87,7 @@ export default function ProductMaster({ open, products, subclasses, assumptions,
   return <div className="no-print fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/55 p-3 sm:p-6" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) onClose(); }}>
     <div role="dialog" aria-modal="true" aria-labelledby="product-master-title" className="flex max-h-[94dvh] w-full max-w-5xl flex-col overflow-hidden rounded-2xl border border-line bg-surface shadow-2xl">
       <header className="flex items-start justify-between gap-4 border-b border-line px-5 py-4 sm:px-7">
-        <div><p className="eyebrow !text-accent-deep">Product Master · Public universe</p><h2 id="product-master-title" className="mt-1 text-xl font-extrabold text-ink">Add a new product</h2><p className="mt-1 text-sm text-muted">Enter independent product data. Derived risk and return values are calculated automatically.</p></div>
+        <div><p className="eyebrow !text-accent-deep">Product Master · Public universe</p><h2 id="product-master-title" className="mt-1 text-xl font-extrabold text-ink">Add a new product</h2><p className="mt-1 text-sm text-muted">Enter independent product data. Derived risk and return values are calculated automatically.</p><p className="mt-1 text-xs text-muted">New products are saved in this browser. Shared database synchronisation is not configured in this repository yet.</p></div>
         <button type="button" onClick={onClose} aria-label="Close" className="rounded-full border border-line px-3 py-1.5 text-sm text-muted hover:bg-surface-2">Close</button>
       </header>
 
@@ -96,7 +96,7 @@ export default function ProductMaster({ open, products, subclasses, assumptions,
           <InputField label="Product name" value={form.name} onChange={(v) => set("name", v)} required placeholder="Full legal / display name" />
           <SelectField label="Product type" value={form.type} onChange={(v) => set("type", v)} options={PRODUCT_TYPES} required />
           <InputField label="Ticker / ISIN" value={form.ticker} onChange={(v) => set("ticker", v)} required placeholder="e.g. CSPX / ISIN" />
-          <SelectField label="Sub-asset class (Level 2)" value={form.subclassCode} onChange={(v) => set("subclassCode", v)} options={subclasses.map((item) => item.code)} required />
+          <SelectField label="Sub-asset class (Level 2)" value={form.subclassCode} onChange={(v) => set("subclassCode", v)} options={subclasses.map((item) => ({ value: item.code, label: item.code + " — " + item.name }))} required />
           <InputField label="Level 3 / strategy" value={form.strategy} onChange={(v) => set("strategy", v)} required placeholder="e.g. Broad market / duration bucket" />
           <SelectField label="Primary geography" value={form.geography} onChange={(v) => set("geography", v)} options={GEOGRAPHIES} required />
           <SelectField label="Currency" value={form.currency} onChange={(v) => set("currency", v)} options={CURRENCIES} required />
@@ -179,7 +179,7 @@ export default function ProductMaster({ open, products, subclasses, assumptions,
       </div>
 
       <footer className="flex flex-wrap items-center justify-between gap-3 border-t border-line px-5 py-4 sm:px-7">
-        <p className="text-xs text-muted">* Required independent inputs. Derived columns are calculated automatically.</p>
+        <p className="text-xs text-muted">* Required independent inputs. Derived columns are calculated automatically. Saved in this browser only.</p>
         <div className="flex gap-2"><button type="button" onClick={onClose} className="btn btn-soft">Cancel</button><button type="button" onClick={submit} disabled={errors.length > 0} className="btn btn-primary disabled:cursor-not-allowed disabled:opacity-40">Validate & add product</button></div>
       </footer>
     </div>
