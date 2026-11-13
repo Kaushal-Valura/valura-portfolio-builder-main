@@ -16,6 +16,10 @@ import { DEF_LEVERS, recommend, type Levers } from "@/lib/optimiser";
 import { addLine, capBudget, isEdited, linesFromWeights, rebalancePreservingEdits, removeLine, updateLine } from "@/lib/builder";
 import Analysis, { TABS as REPORT_TABS } from "@/components/Analysis";
 import { usdK } from "@/components/ui";
+import ProductMaster from "@/components/ProductMaster";
+import { validateStoredPublicProducts, type StoredPublicProduct } from "@/lib/product-catalog";
+import type { MasterInputs } from "@/lib/master-data";
+import type { ProductMasterAssumptions } from "@/lib/product-master";
 
 const data = {
   products: deriveMasterProducts(
@@ -42,6 +46,44 @@ const STEPS: Record<Tab, [string, string]> = {
 
 export default function Page() {
   const [tab, setTab] = useState<Tab>("Client");
+  const [customProducts, setCustomProducts] = useState<StoredPublicProduct[]>([]);
+  const [customProductsLoaded, setCustomProductsLoaded] = useState(false);
+  const [productMasterOpen, setProductMasterOpen] = useState(false);
+  const data = useMemo(() => ({
+    ...baseData,
+    products: deriveMasterProducts(
+      [...baseData.products, ...customProducts.map((item) => item.product)],
+      baseData.subclasses,
+      { ...(masterInputs as unknown as MasterInputs), public: [...(masterInputs as unknown as MasterInputs).public, ...customProducts.map((item) => item.raw)] },
+    ),
+  }), [customProducts]);
+  const productMasterAssumptions = useMemo<ProductMasterAssumptions>(() => ({
+    ...(masterInputs as unknown as MasterInputs).productAssumptions,
+    assetClasses: data.subclasses.map((item) => ({
+      code: item.code, level1Name: item.l1Name, name: item.name,
+      expectedReturn: item.ret, volatility: item.vol, beta: item.beta, riskRating: item.risk,
+    })),
+  }), [data.subclasses]);
+  useEffect(() => {
+    try {
+      const stored = window.localStorage.getItem("valura:custom-public-products:v1");
+      setCustomProducts(validateStoredPublicProducts(stored ? JSON.parse(stored) : []));
+    } catch (error) {
+      console.error("Could not load saved Product Master additions", error);
+      setCustomProducts([]);
+    } finally {
+      setCustomProductsLoaded(true);
+    }
+  }, []);
+  useEffect(() => {
+    if (!customProductsLoaded) return;
+    try {
+      window.localStorage.setItem("valura:custom-public-products:v1", JSON.stringify(customProducts));
+    } catch (error) {
+      console.error("Could not persist Product Master additions", error);
+      window.alert("The product was added for this session, but browser storage could not save it. Check available browser storage.");
+    }
+  }, [customProducts, customProductsLoaded]);
   const [client, setClient] = useState<Client>(() => ({ ...defaultClient(data.assumptions), name: "", amount: 0 }));
   const [lines, setLines] = useState<Line[]>([]);
   const [levers, setLevers] = useState<Levers>(DEF_LEVERS);
@@ -116,12 +158,17 @@ export default function Page() {
               .filter(Boolean).map((c) => <span key={c} className="rounded-full bg-surface-2 px-2.5 py-1 text-xs font-semibold text-ink-2">{c}</span>)}
           </div>
           <div className="ml-auto flex gap-2">
+            <button onClick={() => setProductMasterOpen(true)} className="btn btn-soft">Manage products</button>
             <button onClick={loadSample} className="btn btn-soft">Load sample client</button>
             <button onClick={print} disabled={locked("Client summary")} className="btn btn-primary">Print / save PDF</button>
           </div>
         </div>
       </header>
 
+    <ProductMaster
+      open={productMasterOpen} products={data.products} subclasses={data.subclasses} assumptions={productMasterAssumptions}
+      onClose={() => setProductMasterOpen(false)} onSave={(record) => setCustomProducts((current) => [...current, record])}
+    />
     <main className={`mx-auto max-w-[1560px] px-4 pb-16 pt-4 ${fit ? "lg:flex lg:min-h-0 lg:w-full lg:flex-1 lg:flex-col lg:pb-4" : ""}`}>
       <nav className={`no-print sticky top-[60px] z-30 grid ${fit ? "mb-5 lg:mb-3" : "mb-5"} grid-cols-2 gap-1 rounded-[20px] border border-line bg-surface/95 p-2 shadow-[var(--shadow)] backdrop-blur-md sm:grid-cols-4 lg:grid-cols-8`} role="tablist">
         {TABS.map((t, i) => (
