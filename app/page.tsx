@@ -21,7 +21,7 @@ import { validateStoredPublicProducts, type StoredPublicProduct } from "@/lib/pr
 import type { MasterInputs } from "@/lib/master-data";
 import type { ProductMasterAssumptions } from "@/lib/product-master";
 
-const data = {
+const baseData = {
   products: deriveMasterProducts(
     products as unknown as Product[],
     subclasses as unknown as Subclass[],
@@ -67,7 +67,10 @@ export default function Page() {
   useEffect(() => {
     try {
       const stored = window.localStorage.getItem("valura:custom-public-products:v1");
-      setCustomProducts(validateStoredPublicProducts(stored ? JSON.parse(stored) : []).filter((item) =>\n        !baseData.products.some((product) => product.id === item.product.id) &&\n        baseData.subclasses.some((subclass) => subclass.code === item.raw.subclassCode)\n      ));
+      setCustomProducts(validateStoredPublicProducts(stored ? JSON.parse(stored) : []).filter((item) =>
+        !baseData.products.some((product) => product.id === item.product.id) &&
+        baseData.subclasses.some((subclass) => subclass.code === item.raw.subclassCode)
+      ));
     } catch (error) {
       console.error("Could not load saved Product Master additions", error);
       setCustomProducts([]);
