@@ -182,7 +182,7 @@ export function isStoredPublicProduct(value: unknown): value is StoredPublicProd
   const candidate = value as Partial<StoredPublicProduct>;
   const product = candidate.product;
   const raw = candidate.raw;
-  if (!product || product.source !== "Public" || typeof product.id !== "string" || !/^P\\d{3}$/.test(product.id)) return false;
+  if (!product || product.source !== "Public" || typeof product.id !== "string" || !/^P\d{3}$/.test(product.id)) return false;
   if (!product.productMasterFields || typeof product.productMasterFields !== "object" || !raw) return false;
   if (raw.id !== product.id || typeof raw.subclassCode !== "string" || !raw.subclassCode.trim()) return false;
   if (![product.ret, product.vol, product.beta, product.risk, product.fee, product.aumM, product.yield, product.lockupYrs, product.minAccredited, product.minNonAccredited].every((item) => typeof item === "number" && Number.isFinite(item))) return false;
