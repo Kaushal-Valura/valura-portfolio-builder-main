@@ -5,7 +5,7 @@ import {
   type DragEndEvent,
 } from "@dnd-kit/core";
 import { fixed, type Analysis, type Client, type Data, type Line, type Product } from "@/lib/engine";
-import { isEdited, sleeveFromDrop } from "@/lib/builder";
+import { isEdited, isProductAvailableForClient, sleeveFromDrop } from "@/lib/builder";
 import { Pill, Stat, Status, eligibilityKind, mandateKind, pct, priorityKind, spct, usd, usdK } from "./ui";
 
 // Default sleeve for a product added with the "+" button or placed by Optimise.
@@ -132,11 +132,7 @@ export default function Builder({ data, client, result, lines, desk, onAdd, onUp
   const catalog = data.products.filter((p) => {
     const s = sub.get(p.subclass);
     if (!s || heldIds.has(p.id)) return false;
-    // Product Master access rules must be applied before a product can enter a client portfolio.
-    if (p.platform !== "Yes") return false;
-    if (p.accreditedOnly === "Yes" && client.accredited !== "Yes") return false;
-    const minimumInvestment = client.accredited === "Yes" ? p.minAccredited : p.minNonAccredited;
-    if (minimumInvestment > client.amount) return false;
+    if (!isProductAvailableForClient(p, client)) return false;
     const text = `${p.id} ${p.name} ${p.ticker} ${s.name} ${p.issuer}`.toLowerCase();
     const indiaExposure = (p.geo?.[1] ?? 0) > 0 || /india/i.test(p.geography);
     return (source === "All" || p.source === source) && (l1 === "All" || s.l1 === l1)
