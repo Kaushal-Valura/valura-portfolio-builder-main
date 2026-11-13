@@ -140,10 +140,10 @@ export default function ProductMaster({ open, products, subclasses, assumptions,
         {bondLike ? <Section title="4. Bond / fixed maturity details" description="These fields are requested only for bond and fixed maturity products.">
           <InputField label="Bond issuer" value={form.bondIssuer} onChange={(v) => set("bondIssuer", v)} required />
           <SelectField label="Credit rating" value={form.creditRating} onChange={(v) => set("creditRating", v)} options={RATINGS} required />
-          <InputField label="Coupon" type="number" step="0.0001" suffix="%" value={form.coupon} onChange={(v) => set("coupon", v)} />
+          <InputField label="Coupon" type="number" step="0.0001" suffix="%" required value={form.coupon} onChange={(v) => set("coupon", v)} />
           <InputField label="Maturity" type="date" value={form.maturity} onChange={(v) => set("maturity", v)} required />
           <InputField label="Yield to maturity" type="number" step="0.0001" suffix="%" value={form.yieldToMaturity} onChange={(v) => set("yieldToMaturity", v)} required />
-          <InputField label="Modified duration" type="number" step="0.01" value={form.modifiedDuration} onChange={(v) => set("modifiedDuration", v)} />
+          <InputField label="Modified duration" type="number" step="0.01" required value={form.modifiedDuration} onChange={(v) => set("modifiedDuration", v)} />
           <SelectField label="Seniority" value={form.seniority} onChange={(v) => set("seniority", v)} options={SENIORITY} required />
         </Section> : null}
 
