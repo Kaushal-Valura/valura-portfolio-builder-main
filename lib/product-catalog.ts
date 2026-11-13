@@ -35,6 +35,7 @@ const optionalNumber = (value: string): number | null =>
 const requiredNumber = (value: string): number => Number(value);
 const finite = (value: number | null) => value === null || Number.isFinite(value);
 const asPercent = (value: string) => requiredNumber(value) / 100;
+const optionalPercent = (value: string) => value.trim() === "" ? null : Number(value) / 100;
 
 export function nextPublicProductId(products: Product[]): string {
   const used = new Set(products.map((product) => product.id));
@@ -114,8 +115,8 @@ export function createPublicProduct(
   const raw: PublicProductInput = {
     id, name: form.name.trim(), subclassCode: form.subclassCode, domicile: form.domicile,
     usSitusOverride: (form.usSitusOverride || "") as "Yes" | "No" | "",
-    geography: geo, yieldToMaturity: number(form.yieldToMaturity), creditRating: form.creditRating || null,
-    expectedReturnOverride: number(form.returnOverride), volatilityOverride: number(form.volatilityOverride),
+    geography: geo, yieldToMaturity: optionalPercent(form.yieldToMaturity), creditRating: form.creditRating || null,
+    expectedReturnOverride: optionalPercent(form.returnOverride), volatilityOverride: optionalPercent(form.volatilityOverride),
     betaOverride: number(form.betaOverride), riskOverride: number(form.riskOverride),
     scenarioOverrides: {
       base: number(form.scenarioBase), bull: number(form.scenarioBull),
@@ -141,13 +142,13 @@ export function createPublicProduct(
     subclass: form.subclassCode, geography: form.geography, geo: [geo.us ?? 0, geo.india ?? 0, geo.restOfWorld ?? 0],
     ccy: form.currency, underlyingCcy: form.underlyingCurrency, domicile: form.domicile,
     usSitus: derived.usSitus, liquidity: form.liquidity, sector: form.sector, issuer: form.managerIssuer.trim(),
-    rating: form.creditRating, yield: number(form.yieldToMaturity) ?? 0, fee: requiredNumber(form.expenseRatio),
+    rating: form.creditRating, yield: optionalPercent(form.yieldToMaturity) ?? 0, fee: asPercent(form.expenseRatio),
     aumM: number(form.aumM) ?? 0, platform: form.platformAccess, accreditedOnly: form.accreditedOnly,
     minAccredited: requiredNumber(form.minimumInvestment), minNonAccredited: requiredNumber(form.minimumInvestment),
     ddStatus: "", commitment: "", call1y: 0, lockupYrs: number(form.lockupYears) ?? 0,
     ret: derived.expectedReturn, vol: derived.volatility, beta: derived.beta, risk: derived.riskRating,
     factors: null,
-    scen: [number(form.scenarioBase), number(form.scenarioBull), number(form.scenarioBear), number(form.scenarioTail)],
+    scen: [optionalPercent(form.scenarioBase), optionalPercent(form.scenarioBull), optionalPercent(form.scenarioBear), optionalPercent(form.scenarioTail)],
     distToBarrier: null, issuerCreditRisk: "", notes: form.notes.trim(),
     assetClassName: derived.assetClassName, subclassName: derived.subclassName, geographyCheck: derived.geographyCheck,
     facts,
