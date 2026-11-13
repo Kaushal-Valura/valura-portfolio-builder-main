@@ -6,7 +6,7 @@ import subclasses from "@/data/subclasses.json";
 import assumptions from "@/data/assumptions.json";
 import scenarioEvidence from "@/data/scenario-evidence.json";
 import masterInputs from "@/data/master-inputs.json";
-import { deriveMasterProducts, type MasterInputs } from "@/lib/master-data";
+import { deriveMasterProducts } from "@/lib/master-data";
 import type { Product, Subclass } from "@/lib/engine";
 import sample from "@/data/sample.json";
 import Setup, { setupErrors } from "@/components/Setup";
@@ -67,7 +67,7 @@ export default function Page() {
   useEffect(() => {
     try {
       const stored = window.localStorage.getItem("valura:custom-public-products:v1");
-      setCustomProducts(validateStoredPublicProducts(stored ? JSON.parse(stored) : []));
+      setCustomProducts(validateStoredPublicProducts(stored ? JSON.parse(stored) : []).filter((item) =>\n        !baseData.products.some((product) => product.id === item.product.id) &&\n        baseData.subclasses.some((subclass) => subclass.code === item.raw.subclassCode)\n      ));
     } catch (error) {
       console.error("Could not load saved Product Master additions", error);
       setCustomProducts([]);
