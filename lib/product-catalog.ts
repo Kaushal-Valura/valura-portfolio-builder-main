@@ -50,6 +50,23 @@ export function validatePublicProductForm(
   subclasses: Subclass[],
 ): string[] {
   const errors: string[] = [];
+  const allowed: Record<string, string[]> = {
+    type: ["UCITS ETF", "UCITS fund", "ETF (US-listed)", "ETC", "Money market fund", "Bond", "Fixed maturity plan", "Mutual fund"],
+    geography: ["Global", "United States", "India", "Emerging Markets", "Developed ex-US", "Europe", "Asia Pacific"],
+    currency: ["USD", "EUR", "GBP", "INR", "CHF", "JPY", "Multi"],
+    domicile: ["Ireland", "Luxembourg", "United States", "India", "India (GIFT IFSC)", "Singapore", "Jersey", "Other"],
+    liquidity: ["Daily", "Weekly", "Monthly", "Quarterly", "Locked (lock-up)"],
+    seniority: ["Senior secured", "Senior unsecured", "Senior", "Subordinated", "Preferred", "Not applicable"],
+    creditRating: ["", "AAA", "AA+", "AA", "AA-", "A+", "A", "A-", "BBB+", "BBB", "BBB-", "BB+", "BB", "BB-", "B+", "B", "B-", "CCC or below", "Not rated"],
+    distributionChannel: ["Public offer", "Private placement"],
+    platformAccess: ["Yes", "No"],
+    accreditedOnly: ["Yes", "No"],
+    usSitusOverride: ["", "Yes", "No"],
+  };
+  for (const [key, values] of Object.entries(allowed)) {
+    const value = form[key as keyof PublicProductForm];
+    if (typeof value === "string" && !values.includes(value)) errors.push(`Invalid ${key} selection.`);
+  }
   const required: [string, string][] = [
     ["name", "Product name"], ["type", "Product type"], ["ticker", "Ticker / ISIN"],
     ["subclassCode", "Sub-asset class"], ["geography", "Primary geography"],
@@ -84,8 +101,9 @@ export function validatePublicProductForm(
     if (!raw.trim() && optional) continue;
     const value = Number(raw);
     if (!Number.isFinite(value)) errors.push(`${label} must be a valid number.`);
-    else if (["expenseRatio", "coupon", "yieldToMaturity", "returnOverride", "volatilityOverride", "scenarioBase", "scenarioBull", "scenarioBear", "scenarioTail"].includes(key) && (value < -100 || value > 100)) errors.push(`${label} must be between -100% and 100%.`);
-    else if (["expenseRatio", "coupon", "volatilityOverride", "aumM", "modifiedDuration", "lockupYears", "minimumInvestment", "riskOverride"].includes(key) && value < 0) errors.push(`${label} cannot be negative.`);
+    else if (["expenseRatio", "coupon", "yieldToMaturity"].includes(key) && (value < 0 || value > 100)) errors.push(`${label} must be between 0% and 100%.`);
+    else if (["returnOverride", "volatilityOverride", "scenarioBase", "scenarioBull", "scenarioBear", "scenarioTail"].includes(key) && (value < -100 || value > 100)) errors.push(`${label} must be between -100% and 100%.`);
+    else if (["volatilityOverride", "aumM", "modifiedDuration", "lockupYears", "minimumInvestment", "riskOverride"].includes(key) && value < 0) errors.push(`${label} cannot be negative.`);
   }
   if (form.usSitusOverride && !["Yes", "No"].includes(form.usSitusOverride)) errors.push("US situs override must be Yes or No.");
   if (form.accreditedOnly && !["Yes", "No"].includes(form.accreditedOnly)) errors.push("Accredited-only must be Yes or No.");
