@@ -56,7 +56,7 @@ export function validatePublicProductForm(
     currency: ["USD", "EUR", "GBP", "INR", "CHF", "JPY", "Multi"],
     domicile: ["Ireland", "Luxembourg", "United States", "India", "India (GIFT IFSC)", "Singapore", "Jersey", "Other"],
     liquidity: ["Daily", "Weekly", "Monthly", "Quarterly", "Locked (lock-up)"],
-    seniority: ["Senior secured", "Senior unsecured", "Senior", "Subordinated", "Preferred", "Not applicable"],
+    seniority: ["", "Senior secured", "Senior unsecured", "Senior", "Subordinated", "Preferred", "Not applicable"],
     creditRating: ["", "AAA", "AA+", "AA", "AA-", "A+", "A", "A-", "BBB+", "BBB", "BBB-", "BB+", "BB", "BB-", "B+", "B", "B-", "CCC or below", "Not rated"],
     distributionChannel: ["Public offer", "Private placement"],
     platformAccess: ["Yes", "No"],
