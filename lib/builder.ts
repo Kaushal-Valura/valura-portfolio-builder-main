@@ -1,8 +1,16 @@
 // Builder state changes (add / remove / edit / Optimise output), pure so lib/builder.test.ts can replay any sequence.
 // Weights are never stored: the engine derives each line's weight as amount / total, so they always sum to 100%.
-import type { Line } from "./engine.ts";
+import type { Client, Line, Product } from "./engine.ts";
 
 type Budget = { amount: number; sleeves: { name: string; target: number }[] };
+
+/** Whether a product can be offered to this client from the Product Master catalogue. */
+export function isProductAvailableForClient(product: Product, client: Pick<Client, "accredited" | "amount">): boolean {
+  if (product.platform !== "Yes") return false;
+  if (product.accreditedOnly === "Yes" && client.accredited !== "Yes") return false;
+  const minimumInvestment = client.accredited === "Yes" ? product.minAccredited : product.minNonAccredited;
+  return Number.isFinite(minimumInvestment) && minimumInvestment >= 0 && minimumInvestment <= client.amount;
+}
 
 // A sleeve's target dollars are split evenly across all products currently selected in that sleeve.
  // The first line receives any whole-dollar rounding remainder.
