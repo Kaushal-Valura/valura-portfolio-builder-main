@@ -96,7 +96,7 @@ export default function ProductMaster({ open, products, subclasses, assumptions,
           <InputField label="Product name" value={form.name} onChange={(v) => set("name", v)} required placeholder="Full legal / display name" />
           <SelectField label="Product type" value={form.type} onChange={(v) => set("type", v)} options={PRODUCT_TYPES} required />
           <InputField label="Ticker / ISIN" value={form.ticker} onChange={(v) => set("ticker", v)} required placeholder="e.g. CSPX / ISIN" />
-          <SelectField label="Sub-asset class (Level 2)" value={form.subclassCode} onChange={(v) => set("subclassCode", v)} options={subclasses.map((item) => item.code + " — " + item.name)} required />
+          <SelectField label="Sub-asset class (Level 2)" value={form.subclassCode} onChange={(v) => set("subclassCode", v)} options={subclasses.map((item) => item.code)} required />
           <InputField label="Level 3 / strategy" value={form.strategy} onChange={(v) => set("strategy", v)} required placeholder="e.g. Broad market / duration bucket" />
           <SelectField label="Primary geography" value={form.geography} onChange={(v) => set("geography", v)} options={GEOGRAPHIES} required />
           <SelectField label="Currency" value={form.currency} onChange={(v) => set("currency", v)} options={CURRENCIES} required />
