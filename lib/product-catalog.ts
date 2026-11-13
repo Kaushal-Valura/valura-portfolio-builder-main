@@ -180,8 +180,19 @@ export function createPublicProduct(
 export function isStoredPublicProduct(value: unknown): value is StoredPublicProduct {
   if (!value || typeof value !== "object") return false;
   const candidate = value as Partial<StoredPublicProduct>;
-  return !!candidate.product && candidate.product.source === "Public" && typeof candidate.product.id === "string" &&
-    !!candidate.product.productMasterFields && !!candidate.raw && candidate.raw.id === candidate.product.id && typeof candidate.raw.subclassCode === "string";
+  const product = candidate.product;
+  const raw = candidate.raw;
+  if (!product || product.source !== "Public" || typeof product.id !== "string" || !/^P\\d{3}$/.test(product.id)) return false;
+  if (!product.productMasterFields || typeof product.productMasterFields !== "object" || !raw) return false;
+  if (raw.id !== product.id || typeof raw.subclassCode !== "string" || !raw.subclassCode.trim()) return false;
+  if (![product.ret, product.vol, product.beta, product.risk, product.fee, product.aumM, product.yield, product.lockupYrs, product.minAccredited, product.minNonAccredited].every((item) => typeof item === "number" && Number.isFinite(item))) return false;
+  if (!Array.isArray(product.geo) || product.geo.length !== 3 || product.geo.some((item) => typeof item !== "number" || !Number.isFinite(item) || item < 0 || item > 1)) return false;
+  const geography = raw.geography;
+  if (!geography || ![geography.us, geography.india, geography.restOfWorld].every((item) => item === null || (typeof item === "number" && Number.isFinite(item) && item >= 0 && item <= 1))) return false;
+  const fields = product.productMasterFields;
+  if (typeof fields.name !== "string" || !fields.name.trim() || typeof fields.ticker !== "string" || !fields.ticker.trim()) return false;
+  if (typeof product.name !== "string" || !product.name.trim() || typeof product.ticker !== "string" || !product.ticker.trim()) return false;
+  return true;
 }
 
 export function validateStoredPublicProducts(value: unknown): StoredPublicProduct[] {
