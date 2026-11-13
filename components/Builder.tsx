@@ -132,6 +132,11 @@ export default function Builder({ data, client, result, lines, desk, onAdd, onUp
   const catalog = data.products.filter((p) => {
     const s = sub.get(p.subclass);
     if (!s || heldIds.has(p.id)) return false;
+    // Product Master access rules must be applied before a product can enter a client portfolio.
+    if (p.platform !== "Yes") return false;
+    if (p.accreditedOnly === "Yes" && client.accredited !== "Yes") return false;
+    const minimumInvestment = client.accredited === "Yes" ? p.minAccredited : p.minNonAccredited;
+    if (minimumInvestment > client.amount) return false;
     const text = `${p.id} ${p.name} ${p.ticker} ${s.name} ${p.issuer}`.toLowerCase();
     const indiaExposure = (p.geo?.[1] ?? 0) > 0 || /india/i.test(p.geography);
     return (source === "All" || p.source === source) && (l1 === "All" || s.l1 === l1)
