@@ -94,3 +94,21 @@ test("allocates the next free public product ID and validates persisted records"
   assert.deepEqual(validateStoredPublicProducts([record, record]).map((item) => item.product.id), ["P028"]);
   assert.deepEqual(validateStoredPublicProducts({}), []);
 });
+
+test("new Product Master record joins the runtime catalogue with calculated engine values", async () => {
+  const { deriveMasterProducts } = await import("./master-data");
+  const record = createPublicProduct(validForm(), existing, sub, assumptions);
+  const runtime = deriveMasterProducts(
+    [...existing, record.product],
+    sub,
+    { ...inputs, public: [...inputs.public, record.raw] },
+  );
+  const added = runtime.find((item) => item.id === record.product.id)!;
+  assert.ok(added);
+  assert.equal(added.ret, record.product.ret);
+  assert.equal(added.vol, record.product.vol);
+  assert.equal(added.beta, record.product.beta);
+  assert.equal(added.risk, record.product.risk);
+  assert.equal(added.geographyCheck, "OK");
+  assert.equal(record.product.productMasterFields.name, "Test Global Equity ETF");
+});
