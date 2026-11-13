@@ -19,7 +19,6 @@ import { usdK } from "@/components/ui";
 import ProductMaster from "@/components/ProductMaster";
 import { validateStoredPublicProducts, type StoredPublicProduct } from "@/lib/product-catalog";
 import type { MasterInputs } from "@/lib/master-data";
-import type { ProductMasterAssumptions } from "@/lib/product-master";
 
 const baseData = {
   products: deriveMasterProducts(
@@ -57,13 +56,6 @@ export default function Page() {
       { ...(masterInputs as unknown as MasterInputs), public: [...(masterInputs as unknown as MasterInputs).public, ...customProducts.map((item) => item.raw)] },
     ),
   }), [customProducts]);
-  const productMasterAssumptions = useMemo<ProductMasterAssumptions>(() => ({
-    ...(masterInputs as unknown as MasterInputs).productAssumptions,
-    assetClasses: data.subclasses.map((item) => ({
-      code: item.code, level1Name: item.l1Name, name: item.name,
-      expectedReturn: item.ret, volatility: item.vol, beta: item.beta, riskRating: item.risk,
-    })),
-  }), [data.subclasses]);
   useEffect(() => {
     try {
       const stored = window.localStorage.getItem("valura:custom-public-products:v1");
@@ -169,7 +161,7 @@ export default function Page() {
       </header>
 
     <ProductMaster
-      open={productMasterOpen} products={data.products} subclasses={data.subclasses} assumptions={productMasterAssumptions}
+      open={productMasterOpen} products={data.products} subclasses={data.subclasses}
       onClose={() => setProductMasterOpen(false)} onSave={(record) => setCustomProducts((current) => [...current, record])}
     />
     <main className={`mx-auto max-w-[1560px] px-4 pb-16 pt-4 ${fit ? "lg:flex lg:min-h-0 lg:w-full lg:flex-1 lg:flex-col lg:pb-4" : ""}`}>
